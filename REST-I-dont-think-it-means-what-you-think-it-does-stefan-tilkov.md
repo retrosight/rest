@@ -82,7 +82,7 @@ You should not care about URIs -- the hypermedia context is the important piece.
 ```json
 {
   "customer": {
-      |   "name: "John Doe",
+      |   "name": "John Doe",
       |   "orders": "http://----------"
   }   |      ^
 }     |      |
