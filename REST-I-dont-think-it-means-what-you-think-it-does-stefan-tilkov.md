@@ -79,7 +79,7 @@ http://example.com/customers/13/edit
 
 You should not care about URIs -- the hypermedia context is the important piece.
 
-```json
+```text
 {
   "customer": {
       |   "name": "John Doe",
@@ -142,8 +142,8 @@ Strict, Critical, Draconian
       |-----|      |-----|
 ----->|     |----->|     |
       |-----|      |-----|
-    ^            ^
-    |            |
+     ^            ^
+     |            |
 Liberal, Loose, Tolerant
 ```
 
@@ -307,12 +307,14 @@ Provide recipes
 -------------             -------------            -------------
 ```
 
-`application/atom+xml`
-`application/opensearchdescription+xml`
-`application/vnd.collection+json`
-`application/hal+json`
-`application/vnd.siren+json`
-`text/html`
+Examples
+
+* `application/atom+xml`
+* `application/opensearchdescription+xml`
+* `application/vnd.collection+json`
+* `application/hal+json`
+* `application/vnd.siren+json`
+* `text/html`
 
 #### Benefits of Using HTML as Your Hypermedia Format
 
