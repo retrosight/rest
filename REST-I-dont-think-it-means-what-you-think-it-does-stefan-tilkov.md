@@ -79,10 +79,10 @@ http://example.com/customers/13/edit
 
 You should not care about URIs -- the hypermedia context is the important piece.
 
-```
+```json
 {
   "customer": {
-      ^   "name: "John Doe",
+      |   "name: "John Doe",
       |   "orders": "http://----------"
   }   |      ^
 }     |      |
@@ -168,7 +168,7 @@ Ignore unknown content|Support older formats
 
 `GET /order/123`
 
-```
+```json
 {
   "order": {
     "date": "2017-07-02",
@@ -203,14 +203,14 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
                                             -------------
 ```
 
-```
+```json
 {
   "order": {
     "state": "received",
     "links": [
       { "rel": "cancel", "href": "http://..." },
       { "rel": "accept", "href": "http://..." },
-      { "rel": "reject", "href": "http://..." },
+      { "rel": "reject", "href": "http://..." }
     ]
   }
 }
@@ -222,26 +222,28 @@ Rule #1; Don't have clients build URIs using string concatenation
 
 Provide recipes
 
-```
+```html
 <form action='http://example.com/search' method='GET'>
   Search for: <input type='text' name='query'>
               <input type='submit'
 </form>
-
+```
+```json
 {
   "rel": "search",
   "template": "http://example.com/search?q={query}"
 }
 ```
 
-```
+```html
 <form action='http://example.com/add' method='POST'>
   First:    <input type='text' name='first'>
   Last:     <input type='text' name='last'>
   Birthday: <input type='text' name='bdate'>
             <input type='submit'
 </form>
-
+```
+```json
 {
   "target": "http://example.com/add",
   "rel": "add",
