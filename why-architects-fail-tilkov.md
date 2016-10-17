@@ -244,7 +244,7 @@ complex   hard
 35%  |  Try to be involved
 30%  |  Act as salespeople
 30%  |  Defend architecture
-5%  |  Do technical stuff
+5%   |  Do technical stuff
 ```
 
 ## I don't have an answer...
