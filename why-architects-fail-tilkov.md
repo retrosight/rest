@@ -1,5 +1,7 @@
 # Why Architects Fail
 
+https://speakerdeck.com/stilkov/why-architects-fail
+
 10 Diseases You Should Know About
 
 Stefan Tilkov, innoQ
