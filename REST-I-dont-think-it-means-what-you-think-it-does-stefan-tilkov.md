@@ -1,5 +1,4 @@
-https://www.youtube.com/watch?v=pspy1H6A3FM @ 27:30
-
+https://www.youtube.com/watch?v=pspy1H6A3FM
 
 ## Identification of resources
 
