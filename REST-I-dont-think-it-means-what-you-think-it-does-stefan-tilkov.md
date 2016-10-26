@@ -135,15 +135,15 @@ others. ~ https://tools.ietf.org/html/rfc761
 ```
 
 ```
-Strict, Critical, Draconian
-             |
-             V
+Strict, Critical, Draconian (Output)
+             |            |
+             V            V
       |-----|      |-----|
 ----->|     |----->|     |
       |-----|      |-----|
      ^            ^
      |            |
-Liberal, Loose, Tolerant
+Liberal, Loose, Tolerant (Input)
 ```
 
 * Be kind to each other.
