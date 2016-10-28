@@ -1,4 +1,10 @@
+#GOTO 2014 • REST: I don't Think it Means What You Think it Does
+
+by Stefan Tilkov
+
 https://www.youtube.com/watch?v=pspy1H6A3FM
+
+This is a summary of the slides used by Stefan Tilkov in his excellent talk on REST.
 
 ## Identification of resources
 
@@ -105,6 +111,8 @@ http://example.com/v1/customers{id}/orders|GET|Get list of customer orders
 * Versions in URIs cause change for no good reason
 
 ## What are you 'versioning'?
+
+@27:50
 
 ```
 Data          <-- Yes
