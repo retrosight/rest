@@ -1,0 +1,41 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"href": "https://example.com/schemas/base.schema.json",
+	"title": "Base Schema",
+	"description": "The base schema provides a starting point for all documents, is the default schema for all documents and is the schema used for metadata.",
+	"type": "object",
+	"properties": {
+		"href": { "type": "string" },
+		"id": { "type": "string" },
+		"template": { "type": "string" },
+		"schema": { "type": "string" },
+		"data": { "type": "array" },
+		"operations": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"rel":  { "type": "string" },
+					"href": { "type": "string" },
+					"method": { "type": "string" }
+				},
+				"required": ["rel", "href"]
+			}
+		},
+		"errors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"errorCode":  { "type": "string" },
+					"errorMessage":  { "type": "string" },
+					"dataPath":  { "type": "string" },
+					"schemaPath":  { "type": "string" },
+					"errors": { "type": "array"	}
+				},
+				"required": ["errorCode", "errorMessage"]
+			}
+		}
+	},
+	"required": ["href", "schema"]
+}

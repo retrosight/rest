@@ -1,0 +1,125 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"href": "https://example.com/schemas/template.schema.json",
+	"title": "Template Schema",
+	"description": "This template contains many of the major JSON schema types and keywords - use for building other schemas.",
+	
+	"type": "object",
+
+	"allOf": [{
+		"$ref": "base.schema.json"
+	}],
+
+	"anyOf": [{
+		"$ref": "base.schema.json"
+	}],
+
+	"oneOf": [{
+		"$ref": "base.schema.json"
+	}],
+
+	"not": {
+		"$ref": "base.schema.json"
+	},
+
+	"comment": "`default` and `enum` are available for all instance types.",
+
+	"default": "value",
+
+	"comment": "`enum` can be of any type, including null.",
+
+	"enum": [1, 2, 3],
+
+	"properties": {
+
+		"keyNameString": { "type": "string" },
+
+		"keyNameStringAll": {
+			"type": "string",
+			"maxLength": 1,
+			"minLength": 1,
+			"pattern": "^[a-zA-Z]{4}$"
+		},
+
+		"keyNameNumber": { "type": "number" },
+
+		"keyNameNumberAll": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 0,
+			"exclusiveMinimum": true,
+			"exclusiveMaximum": true,
+			"multipleOf": 1
+		},
+
+		"keyNameBoolean": { "type": "boolean" },
+
+		"keyNameInteger": {"type": "integer"},
+
+		"keyNameIntegerAll": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 0,
+			"exclusiveMinimum": true,
+			"exclusiveMaximum": true,
+			"multipleOf": 1
+		},
+
+		"keyNameWithDefinitionInternal": { "$ref": "#/definitions/keyNameDefinition" },
+
+		"keyNameWithDefinitionExternal": { "$ref": "common.schema.json#/definitions/dateTime" },
+
+		"keyNameArray": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"keyNameString": { "type": "string" }
+				},
+				"required": ["keyNameString"]
+			},
+			"additionalItems": false,
+			"maxItems": 1,
+			"minItems": 1,
+			"uniqueItems": false
+		},
+
+		"keyNameArrayReference": {
+			"type": "array",
+            "items": { "$ref": "base.schema.json" }
+		},
+
+		"keyNameObject": { "type": "object" },
+
+		"comment": "object: additionalProperties must be a boolean or an object.",
+
+		"keyNameObjectAll": {
+			"type": "object",
+			"maxProperties": 0,
+			"minProperties": 0,
+			"required": ["string1", "string2"],
+			"additionalProperties": true,
+			"properties": {},
+			"patternProperties": {}
+		},
+		"keyNameNull": { "type": "null" },
+		"keyNameNull": {
+			"type": "null"
+		},
+	},
+	"required": ["keyNameString", "keyNameNumber"],
+	"definitions": {
+        "keyNameDefinition": {
+            "type": "string",
+            "pattern": "^[a-zA-Z]{4}$"
+        },
+		"keyNameDefinitionProps": {
+			"type": "object",
+			"properties": {
+				"keyNameString": { "type": "string" }
+			},
+			"required": ["keyNameString"],
+			"additionalProperties": false
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"href": "https://example.com/schemas/aisle.v1.schema.json",
+	"title": "Aisle v1 Schema",
+	"description": "An individual aisle within a store.",
+	"type": "object",
+	"properties": {
+		"schema": { "type": "string" },
+		"store": { "type": "string" },
+		"name": { "type": "string" },
+		"number": { "type": "integer" },
+	},
+	"required": ["schema", "store", "name", "number"]
+}

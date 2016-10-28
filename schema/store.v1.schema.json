@@ -1,0 +1,13 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"href": "https://example.com/schemas/store.v1.schema.json",
+	"title": "Store v1 Schema",
+	"description": "A single store for example: grocery store.",
+	"type": "object",
+	"properties": {
+		"schema": { "type": "string" },
+		"name": { "type": "string" },
+		"phone": { "type": "string" },
+	},
+	"required": ["schema", "name", "phone"]
+}

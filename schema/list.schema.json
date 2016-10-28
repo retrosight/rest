@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"href": "https://example.com/schemas/list.schema.json",
+	"title": "List Schema",
+	"description": "This schema is used for listing out related data.",
+	"type": "object",
+	"properties": {
+		"schema": { "type": "string" },
+		"rel":  { "type": "string" },
+		"method": { "type": "string" },
+		"itemsSchema": { "type": "string" },
+		"items": {
+			"type": "array",
+			"items": {
+				"properties": {
+					"href": { "type": "string" },
+				},
+				"required": ["href"]
+			}
+		}
+	},
+	"required": ["schema", "rel", "itemsSchema", "items"]
+}
