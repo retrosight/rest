@@ -162,7 +162,7 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 
 Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 
-```
+```json
 {
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   "id": "76cc758e256c438b8e49546e0102b8c8",
@@ -185,7 +185,7 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 
 Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone`
 
-```
+```json
 {
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
@@ -200,7 +200,7 @@ Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/pho
 
 Collection: `https://example.com/stores/all`
 
-```
+```json
 [
   {
   	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
@@ -290,9 +290,9 @@ In the following example:
 * `aisles` is an array of aisles for the store.
 * `map` is a hyperlink to the location for the store within a external domain.
 
-```
-Contents of https://example.com/stores/abc
+Contents of https://example.com/stores/abc:
 
+```json
 {
 	"name":"Example",
 	"inventory": "https://example.com/inventory/123",
@@ -314,7 +314,7 @@ Name | Type | Format | Description
 `customDataUri`|`string`|-|[RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986)
 -|`object`|-|Any valid JSON.
 
-```
+```json
 {
 	"https://example.com": {
 		"alpha": {
@@ -342,7 +342,7 @@ An index leverages the Hypermedia as the Engine of Application State [`operation
 
 #### Example
 
-```
+```json
 {
 	"operations": [
 		{
@@ -378,8 +378,8 @@ An index leverages the Hypermedia as the Engine of Application State [`operation
 
 Pagination leverages the hypermedia [`operations`](#hypermedia-operations) schema.
 
-
 #### Example
+
 ```json
 {
 	"data": [
