@@ -200,14 +200,14 @@ Name | Type | Format | Description
 `storeIdentifier`|`string`|-|**Required** Note required when applicable.
 `requestDate`|`string`|[`dateTime`](#dateTime)|This parameter isn't required. Link to format using anchor tags when applicable.
 
-####Entity
+####Payload
 
-Generally speaking these entity documents will be described in much detail with a Schema section.
+Generally speaking these payloads will be described in much detail with a Schema section.
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`theRequestDocument`|`type`|JSON|**Required** The entity body.
-`theOtherRequestDocument`|`type`|JSON|It is possible to have multiple entity documents when a multi-part post.
+`theRequestDocument`|`type`|JSON|**Required** The payload.
+`theOtherRequestDocument`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
 
 ###Response
 
@@ -220,11 +220,11 @@ Name | Type | Format | Description
 
 * [RFC 7231 Location](https://tools.ietf.org/html/rfc7231#section-7.1.2)
 
-####Entity
+####Payload
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`theResponseDocument`|`type`|JSON|Just an example -- you won't normally have a response document for POST unless there are errors.
+`theResponseDocument`|`type`|JSON|Just an example -- you won't normally have a response payload for POST unless there are errors.
 
 ###Example
 
@@ -235,7 +235,7 @@ Showing developers exactly what they can expect when using [curl](https://curl.h
 `curl -v http://example.com/?storeIdentifier=abc`
 
 ####Response
-Ensure the headers are kept separate as a code block from the entity document for ease of reading.
+Ensure the headers are kept separate as a code block from the payload for ease of reading.
 
 ```
 HTTP/1.1 200 OK
