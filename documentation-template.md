@@ -240,12 +240,11 @@ Ensure the headers are kept separate as a code block from the payload for ease o
 ```
 HTTP/1.1 200 OK
 Cache-Control: max-age=604800
-Content-Type: text/html
-Date: Wed, 06 Jul 2016 17:33:03 GMT
+Content-Type: application/json
+Date: Wed, 06 Jul 2018 17:33:03 GMT
 Etag: "359670651+ident"
 Expires: Wed, 13 Jul 2016 17:33:03 GMT
-Last-Modified: Fri, 09 Aug 2013 23:54:35 GMT
-Vary: Accept-Encoding
+Last-Modified: Fri, 09 Aug 2017 23:54:35 GMT
 Content-Length: 1270
 ```
 
