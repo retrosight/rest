@@ -211,7 +211,7 @@ Collection: `https://example.com/stores/all`
     "phone": "(425) 555-1212"
   },
   {
-    ...another store...
+    "comment": "...another store..."
   }
 ]
 ```
