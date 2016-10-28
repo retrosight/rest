@@ -118,10 +118,9 @@ scheme     authority       path        query   fragment
 	* `/aisles`
 * Services SHOULD NOT share paths.
 	* Examples:
-		* `/stores/reports` and `/stores/locations`
+		* `/stores/aisles` and `/stores/aisles`
 	* Reasons:
 		* Service(s) would have to implement a reverse proxy at each hop.
-		* Service(s) would have to manage top level disaster recovery; The API Gateway handles.
 		* It breaks the consistency model of service/version/resource/representation.
 
 ####<a name="collection-item-pattern"></a>Collection and Item Pattern
@@ -153,7 +152,7 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 
 ####<a name="creating-resources"></a>Creation of Resources and Representations
 
-* Services MAY create as many resources and representations as is needed.
+* Services MAY create as many representations as is needed.
 	* Services are encouraged to do so in order to logically order the resources and representations.
 	* Services are encouraged to do so to avoid overcomplicating paths.
 * Services MAY make the same resource or representation available via multiple paths.
@@ -165,19 +164,19 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 
 ```
 {
-	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
-	"id": "76cc758e256c438b8e49546e0102b8c8",
-	"template": "https://example.com/stores/{id}",
+  "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
+  "id": "76cc758e256c438b8e49546e0102b8c8",
+  "template": "https://example.com/stores/{id}",
   "schema": "https://example.com/schemas/store.v1.schema.json",
   "name": "Alpha",
   "phone": "(425) 555-1212",
-	"operations": [
-		{
-			"rel": "add-aisle",
-			"href": "https://example.com/stores/aisles",
-			"method": "POST"
-		}
-	]
+  "operations": [
+    {
+      "rel": "add-aisle",
+      "href": "https://example.com/stores/aisles",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -188,9 +187,9 @@ Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/pho
 
 ```
 {
-	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
-	"id": "76cc758e256c438b8e49546e0102b8c8",
-	"template": "https://example.com/stores/{id}/phone",
+  "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
+  "id": "76cc758e256c438b8e49546e0102b8c8",
+  "template": "https://example.com/stores/{id}/phone",
   "schema": "https://example.com/schemas/store.v1.schema.json",
   "phone": "(425) 555-1212"
 }
@@ -381,7 +380,7 @@ Pagination leverages the hypermedia [`operations`](#hypermedia-operations) schem
 
 
 #### Example
-```
+```json
 {
 	"data": [
 		{ "id": "Alpha" },
@@ -391,19 +390,19 @@ Pagination leverages the hypermedia [`operations`](#hypermedia-operations) schem
 	"operations": [
 		{
 			"rel": "next",
-			"href": "https://example.com/service/data/page4"
+			"href": "https://example.com/service/page4"
 		},
 		{
 			"rel": "prev",
-			"href": "https://example.com/service/data/page2"
+			"href": "https://example.com/service/page2"
 		},
 		{
 			"rel": "first",
-			"href": "https://example.com/service/data/first"
+			"href": "https://example.com/service/first"
 		}
 		{
 			"rel": "last",
-			"href": "https://example.com/service/data/last"
+			"href": "https://example.com/service/last"
 		}
 	]
 }
@@ -424,7 +423,7 @@ Pagination leverages the hypermedia [`operations`](#hypermedia-operations) schem
 
 #####Example
 
-```
+```json
 {
 	"href": "http://example.com/service/ae7d9679708f48e2951bbefd478b3d16",
 	"id": "ae7d9679708f48e2951bbefd478b3d16",
@@ -536,7 +535,8 @@ Name | Type | Format | Description
 HTTP/1.1 400 Bad Request
 Date: Tue, 19 Jul 2016 18:23:16 GMT
 ```
-```
+
+```json
 {
 	"errors": [
 		{
@@ -553,7 +553,8 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 HTTP/1.1 400 Bad Request
 Date: Tue, 19 Jul 2016 18:23:16 GMT
 ```
-```
+
+```json
 {
 	"errors": [
 		{
@@ -576,7 +577,8 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 HTTP/1.1 400 Bad Request
 Date: Tue, 19 Jul 2016 18:23:16 GMT
 ```
-```
+
+```json
 {
 	"errors": [
 		{
