@@ -173,13 +173,13 @@ Payload
 #Service v10
 Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
 
-* [Sample for posting a document](#post-a-document)
+* [Sample for posting a payload](#post-a-dpayload)
 * [Sample Schema](#schema)
 	* [Sample Common](#schema-common)
 
-##<a name="post-a-document"></a>Sample for posting a document
+##<a name="post-a-payload"></a>Sample for posting a payload
 
-Posting a document is among the most common tasks for client code. Use this opening paragraph to explain at a high level what business activity is achieved when doing this task. Use a bulleted list to make it easier for the reader to follow. When the service receives a request:
+Posting a payload is among the most common tasks for client code. Use this opening paragraph to explain at a high level what business activity is achieved when doing this task. Use a bulleted list to make it easier for the reader to follow. When the service receives a request:
 
 * It will do this first.
 * Then it will do this second.
@@ -206,8 +206,8 @@ Generally speaking these payloads will be described in much detail with a Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`theRequestDocument`|`type`|JSON|**Required** The payload.
-`theOtherRequestDocument`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
+`theRequestPayload`|`type`|JSON|**Required** The payload.
+`theOtherRequestPayload`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
 
 ###Response
 
@@ -224,7 +224,7 @@ Name | Type | Format | Description
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`theResponseDocument`|`type`|JSON|Just an example -- you won't normally have a response payload for POST unless there are errors.
+`theResponsePayload`|`type`|JSON|Just an example -- you won't normally have a response payload for POST unless there are errors.
 
 ###Example
 
