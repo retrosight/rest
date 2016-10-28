@@ -173,7 +173,7 @@ Payload
 #Service v10
 Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
 
-* [Sample for posting a payload](#post-a-dpayload)
+* [Sample for posting a payload](#post-a-payload)
 * [Sample Schema](#schema)
 	* [Sample Common](#schema-common)
 
