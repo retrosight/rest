@@ -4,11 +4,13 @@
 	"title": "Aisle v1 Schema",
 	"description": "An individual aisle within a store.",
 	"type": "object",
+	"anyOf": [{
+		"$ref": "https://example.com/schemas/base.schema.json"
+	}],
 	"properties": {
-		"schema": { "type": "string" },
 		"store": { "type": "string" },
 		"name": { "type": "string" },
 		"number": { "type": "integer" },
 	},
-	"required": ["schema", "store", "name", "number"]
+	"required": ["store", "name", "number"]
 }

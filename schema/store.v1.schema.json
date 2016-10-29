@@ -4,10 +4,12 @@
 	"title": "Store v1 Schema",
 	"description": "A single store for example: grocery store.",
 	"type": "object",
+	"anyOf": [{
+		"$ref": "https://example.com/schemas/base.schema.json"
+	}],
 	"properties": {
-		"schema": { "type": "string" },
 		"name": { "type": "string" },
-		"phone": { "type": "string" },
+		"phone": { "type": "string" }
 	},
-	"required": ["schema", "name", "phone"]
+	"required": ["name", "phone"]
 }

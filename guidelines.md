@@ -268,7 +268,7 @@ Name | Type | Format | Description
 Name | Type | Format | Description
 -----|------|--------|------------
 `rel`|`string`|[RFC 5988 Relation Type](https://tools.ietf.org/html/rfc5988#section-4)|**Required** Relation type as defined by the server. There are registered relation types listed in [RFC 5988 6.2.2. Initial Registry Contents](https://tools.ietf.org/html/rfc5988#section-6.2.2) including pagination relation types of `next`, `prev`, `first` and `last`.
-`href`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** Hyperlink to the resource. This key name is borrowed from the HTML5 `href` element and behaves similarly.
+`href`|`string`|[RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986)|**Required** Hyperlink to the resource. This key name is borrowed from the HTML5 `href` element and behaves similarly.
 `method`|`string`|[RFC 7231 Methods](https://tools.ietf.org/html/rfc7231#section-4.3)|Default is GET when `method` is not specified. Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH.
 
 ####Example
@@ -376,7 +376,7 @@ An index leverages the Hypermedia as the Engine of Application State [`operation
 
 ####Schema
 
-Pagination leverages the hypermedia [`operations`](#hypermedia-operations) schema.
+Pagination leverages the [Hypermedia as the Engine of Application State](#hypermedia) [`operations`](#hypermedia-operations) schema.
 
 #### Example
 
@@ -431,14 +431,26 @@ Pagination leverages the hypermedia [`operations`](#hypermedia-operations) schem
 }
 ```
 
-#### <a name="data-date-time"></a>Dates and Times
+####<a name="data-self-describing"></a>Self-describing Data
+
+* Representations SHOULD be self-describing through the use of a `schema` key in the root of all payloads.
+* The `schema` value SHOULD be in the form of a [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986).
+* Examples of schema illustrating the paradigms found in this document can be found in [schema](https://github.com/retrosight/rest/tree/master/schema).
+
+```json
+{
+	"schema": "http://example.com/schema/base.schema.json"
+}
+```
+
+####<a name="data-date-time"></a>Dates and Times
 
 * Services SHOULD choose from the following formats to accept and represent dates and timestamps:
   * **Preferred**: [RFC 3339 Date and Time on the Internet: Timestamps](#RFC-3339): `YYYY-MM-DDThh:mm:ss.nnn-hh:mmZ`
   * [ISO 8601:2004](#ISO-8601) UTC + Offset: `YYYY-MM-DDThh:mm:ss.nnn-hhmmZ`
   * [Unix Time](https://en.wikipedia.org/wiki/Unix_time) also known as `POSIX` and `Epoch` time.
 
-##### Examples
+#####Examples
 
 ```json
 RFC 3339

@@ -6,18 +6,10 @@
 	"type": "object",
 	"properties": {
 		"schema": { "type": "string" },
-		"rel":  { "type": "string" },
-		"method": { "type": "string" },
-		"itemsSchema": { "type": "string" },
-		"items": {
+		"listItems": {
 			"type": "array",
-			"items": {
-				"properties": {
-					"href": { "type": "string" },
-				},
-				"required": ["href"]
-			}
-		}
-	},
-	"required": ["schema", "rel", "itemsSchema", "items"]
+			"items": { "type": "string" }
+			},
+		"required": ["schema", "listItems"]
+	}
 }
