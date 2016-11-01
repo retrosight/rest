@@ -1,5 +1,7 @@
 # Hypermedia as the Engine of Application State Model Example
 
+> Based upon an original flowchart by Stefan Tilkov https://twitter.com/stilkov
+
 * Consider this model of an product order going through a system.
 * The states shown are server state of the resource (an order): `received`, `accepted`, `rejected`, `cancelled`, `fulfilled`.
 
