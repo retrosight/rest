@@ -28,10 +28,10 @@ Following the prior example of a `pageSize` parameter:
 One of the features of [RFC 5988 Web Linking](https://tools.ietf.org/html/rfc5988) is the defined [`Link`](https://tools.ietf.org/html/rfc5988#section-5) header field which allows for the creation of pagination links via HTTP header as in this example:
 
 ```
-Link: <https://example.com/service/v1/data/page4>; rel="next",
-	  <https://example.com/service/v1/data/page2>; rel="prev",
-	  <https://example.com/service/v1/data/first>; rel="first",
-	  <https://example.com/service/v1/data/last>; rel="last";
+Link: <https://example.com/people/page4>; rel="next",
+	  <https://example.com/people/page2>; rel="prev",
+	  <https://example.com/people/first>; rel="first",
+	  <https://example.com/people/last>; rel="last";
 ```
 
 The reason the guidelines place the links in the payload body is:
@@ -50,7 +50,7 @@ The reason the guidelines place the links in the payload body is:
 * This is one paradigm that is difficult to achieve with pagination in the `Link` header.
 * In the example the client can page through the `data` and the `relateddata`.
 
-```
+```json
 {
 	"data": [
 		{
@@ -63,7 +63,7 @@ The reason the guidelines place the links in the payload body is:
 			"operations": [
 				{
 					"rel": "next",
-					"href": "https://example.com/service/v1/relateddata/page2"
+					"href": "https://example.com/service/relateddata/page2"
 				}
 			]
 		},
@@ -73,7 +73,7 @@ The reason the guidelines place the links in the payload body is:
 	"operations": [
 		{
 			"rel": "next",
-			"href": "https://example.com/service/v1/data/page4"
+			"href": "https://example.com/service/data/page4"
 		}
 	]
 
