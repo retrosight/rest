@@ -5,14 +5,18 @@
 	"description": "The base schema provides a starting point for all documents, is the default schema for all documents and is the schema used for metadata.",
 	"type": "object",
 	"properties": {
+		"schema": { "type": "string" },
 		"href": { "type": "string" },
 		"id": { "type": "string" },
 		"template": { "type": "string" },
-		"schema": { "type": "string" },
-		"data": { "type": "array" },
-		"lists": {
+		"relatedData": { "type": "array" },
+		"relatedLists": {
 			"type": "array",
 			"items": { "$ref": "https://example.com/schemas/list.schema.json" }
+		},
+		"alternates": {
+			"type": "array",
+			"items": { "$ref": "https://example.com/schemas/operation.schema.json" }
 		},
 		"operations": {
 			"type": "array",

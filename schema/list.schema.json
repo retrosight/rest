@@ -4,12 +4,14 @@
 	"title": "List Schema",
 	"description": "This schema is used for listing out related data.",
 	"type": "object",
+	"anyOf": [{
+		"$ref": "https://example.com/schemas/base.schema.json"
+	}],
 	"properties": {
-		"schema": { "type": "string" },
 		"listItems": {
 			"type": "array",
 			"items": { "type": "string" }
 			},
-		"required": ["schema", "listItems"]
+		"required": ["listItems"]
 	}
 }
