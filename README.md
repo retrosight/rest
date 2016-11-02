@@ -13,7 +13,7 @@ This is a set of guidelines for building a RESTful server.
 * Also in the repository:
   * [Design Thoughts](/design-thoughts.md) - A collection of mostly readings from folks who influenced the overall design you find here.
   * [Documentation Template](/documentation-template.md) - Lists out all the basics an API should cover within its documentation and it includes all of the HTTP headers and status codes as hyperlinks to the various RFCs that cover same.
-  * JSON Web Tokens are becoming more commonplace for access tokens included in an Authorization Header -- this is a TL;dr summary of a JWT.
+  * JSON Web Tokens are becoming more commonplace for access tokens included in an Authorization Header -- find a `TL;dr` explanation within [JWT Summary](/jwt-summary.md).
 
 MIT License
 
