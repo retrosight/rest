@@ -28,11 +28,12 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
 ## Start
 
 * For the example the client code is authorized for all operations.
-* Client code gets the service index which it knows from documentation.
+* Client code gets the service index URI which it knows from documentation.
 * The examples which follow do not show the `href` values for any other operations because:
   * The server is always in control of building the entire URI.
   * URIs are completely opaque strings to the client code.
   * Client code follows links in `href` as the result of binding to the `rel` value.
+* For completeness an endpoint for `"rel": "orders-all"` is provided to demonstrate the difference between the service itself and resources contained therein.
 
 ### Request
 
@@ -49,7 +50,10 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
 	"operations": [
 		{
 			"rel": "order-post", "href": "https://...", "method": "post"
-		}
+		},
+    {
+      "rel": "orders-all", "href": "https://..."
+    }
 	]
 }
 ```
@@ -87,7 +91,7 @@ Location: https://...
   "id": "https://...",
   "operations": [
     { "rel": "order-cancel", "href": "https://...", "method": "delete" },
-    { "rel": "order-accept", "href": "https://...", "method": "post"},
+    { "rel": "order-accept", "href": "https://...", "method": "post" },
     { "rel": "order-reject", "href": "https://...", "method": "post" },
     { "rel": "order-update", "href": "https://...", "method": "post" }
   ]
