@@ -121,7 +121,7 @@ scheme     authority       path        query   fragment
 		* `/stores/aisles` and `/stores/aisles`
 	* Reasons:
 		* Service(s) would have to implement a reverse proxy at each hop.
-		* It breaks the consistency model of service/version/resource/representation.
+		* It breaks the consistency model of service/resource/representation.
 
 ####<a name="collection-item-pattern"></a>Collection and Item Pattern
 
@@ -151,6 +151,8 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 	* This pattern MUST NOT be a substitute for proper handling of [Hypermedia as the Engine of Application State](#links-hateoas) or [Related Data](#related-data).
 
 ####<a name="creating-resources"></a>Creation of Resources and Representations
+
+> A more in-depth example of this principle can be found in [resource-and-representation.md](/resource-and-representation.md).
 
 * Services MAY create as many representations as is needed.
 	* Services are encouraged to do so in order to logically order the resources and representations.
