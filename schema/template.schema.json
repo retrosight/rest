@@ -1,125 +1,153 @@
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"href": "https://example.com/schemas/template.schema.json",
-	"title": "Template Schema",
-	"description": "This template contains many of the major JSON schema types and keywords - use for building other schemas.",
-	
-	"type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "href": "https://example.com/schemas/template.schema.json",
+  "title": "Template Schema",
+  "description": "This template contains many of the major JSON schema types and keywords - use for building other schemas.",
 
-	"allOf": [{
-		"$ref": "base.schema.json"
-	}],
+  "type": "object",
 
-	"anyOf": [{
-		"$ref": "base.schema.json"
-	}],
+  "allOf": [{
+    "$ref": "base.schema.json"
+  }],
 
-	"oneOf": [{
-		"$ref": "base.schema.json"
-	}],
+  "anyOf": [{
+    "$ref": "base.schema.json"
+  }],
 
-	"not": {
-		"$ref": "base.schema.json"
-	},
+  "oneOf": [{
+    "$ref": "base.schema.json"
+  }],
 
-	"comment": "`default` and `enum` are available for all instance types.",
+  "not": {
+    "$ref": "base.schema.json"
+  },
 
-	"default": "value",
+  "comment": "`default` and `enum` are available for all instance types.",
 
-	"comment": "`enum` can be of any type, including null.",
+  "default": "value",
 
-	"enum": [1, 2, 3],
+  "comment": "`enum` can be of any type, including null.",
 
-	"properties": {
+  "enum": [1, 2, 3],
 
-		"keyNameString": { "type": "string" },
+  "properties": {
 
-		"keyNameStringAll": {
-			"type": "string",
-			"maxLength": 1,
-			"minLength": 1,
-			"pattern": "^[a-zA-Z]{4}$"
-		},
+    "keyNameString": {
+      "type": "string",
+      "description": ""
+    },
 
-		"keyNameNumber": { "type": "number" },
+    "keyNameStringAll": {
+      "type": "string",
+      "maxLength": 1,
+      "minLength": 1,
+      "pattern": "^[a-zA-Z]{4}$"
+    },
 
-		"keyNameNumberAll": {
-			"type": "number",
-			"minimum": 0,
-			"maximum": 0,
-			"exclusiveMinimum": true,
-			"exclusiveMaximum": true,
-			"multipleOf": 1
-		},
+    "keyNameNumber": { "type": "number" },
 
-		"keyNameBoolean": { "type": "boolean" },
+    "keyNameNumberAll": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 0,
+      "exclusiveMinimum": true,
+      "exclusiveMaximum": true,
+      "multipleOf": 1
+    },
 
-		"keyNameInteger": {"type": "integer"},
+    "keyNameBoolean": {
+      "type": "boolean",
+      "description": ""
+    },
 
-		"keyNameIntegerAll": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 0,
-			"exclusiveMinimum": true,
-			"exclusiveMaximum": true,
-			"multipleOf": 1
-		},
+    "keyNameInteger": {
+      "type": "integer",
+      "description": ""
+    },
 
-		"keyNameWithDefinitionInternal": { "$ref": "#/definitions/keyNameDefinition" },
+    "keyNameIntegerAll": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 0,
+      "exclusiveMinimum": true,
+      "exclusiveMaximum": true,
+      "multipleOf": 1
+    },
 
-		"keyNameWithDefinitionExternal": { "$ref": "common.schema.json#/definitions/dateTime" },
+    "keyNameWithDefinitionInternal": { "$ref": "#/definitions/keyNameDefinition" },
 
-		"keyNameArray": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"keyNameString": { "type": "string" }
-				},
-				"required": ["keyNameString"]
-			},
-			"additionalItems": false,
-			"maxItems": 1,
-			"minItems": 1,
-			"uniqueItems": false
-		},
+    "keyNameWithDefinitionExternal": { "$ref": "common.schema.json#/definitions/dateTime" },
 
-		"keyNameArrayReference": {
-			"type": "array",
-            "items": { "$ref": "base.schema.json" }
-		},
+    "keyNameArraySingleItems": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": ""
+    },
 
-		"keyNameObject": { "type": "object" },
-
-		"comment": "object: additionalProperties must be a boolean or an object.",
-
-		"keyNameObjectAll": {
-			"type": "object",
-			"maxProperties": 0,
-			"minProperties": 0,
-			"required": ["string1", "string2"],
-			"additionalProperties": true,
-			"properties": {},
-			"patternProperties": {}
-		},
-		"keyNameNull": { "type": "null" },
-		"keyNameNull": {
-			"type": "null"
-		},
-	},
-	"required": ["keyNameString", "keyNameNumber"],
-	"definitions": {
-        "keyNameDefinition": {
+    "keyNameArrayOfObjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "keyNameString": {
             "type": "string",
-            "pattern": "^[a-zA-Z]{4}$"
+             "description": ""
+          }
         },
-		"keyNameDefinitionProps": {
-			"type": "object",
-			"properties": {
-				"keyNameString": { "type": "string" }
-			},
-			"required": ["keyNameString"],
-			"additionalProperties": false
+        "required": ["keyNameString"]
+      },
+      "additionalItems": false,
+      "maxItems": 1,
+      "minItems": 1,
+      "uniqueItems": false
+    },
+
+    "keyNameArrayReference": {
+      "type": "array",
+      "items": { "$ref": "base.schema.json" }
+    },
+
+    "keyNameObject": { "type": "object" },
+
+    "comment": "object: additionalProperties must be a boolean or an object.",
+
+    "keyNameObjectAll": {
+      "type": "object",
+      "maxProperties": 0,
+      "minProperties": 0,
+      "required": ["string1", "string2"],
+      "additionalProperties": true,
+      "properties": {},
+      "patternProperties": {}
+    },
+
+    "keyNameNull": { "type": "null" },
+
+    "keyNameNull": {
+      "type": "null"
+    },
+
+  },
+
+  "required": ["keyNameString", "keyNameNumber"],
+
+  "definitions": {
+    "keyNameDefinition": {
+      "type": "string",
+      "description": "",
+      "pattern": "^[a-zA-Z]{4}$"
+    },
+
+    "keyNameDefinitionProps": {
+      "type": "object",
+      "properties": {
+        "keyNameString": {
+          "type": "string",
+           "description": ""
+        }
+      },
+      "required": ["keyNameString"],
+      "additionalProperties": false
         }
     }
 }

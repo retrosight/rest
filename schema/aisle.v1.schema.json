@@ -1,16 +1,23 @@
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"href": "https://example.com/schemas/aisle.v1.schema.json",
-	"title": "Aisle v1 Schema",
-	"description": "An individual aisle within a store.",
-	"type": "object",
-	"anyOf": [{
-		"$ref": "https://example.com/schemas/base.schema.json"
-	}],
-	"properties": {
-		"store": { "type": "string" },
-		"name": { "type": "string" },
-		"number": { "type": "integer" },
-	},
-	"required": ["store", "name", "number"]
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "href": "https://example.com/schemas/aisle.v1.schema.json",
+  "title": "Aisle v1 Schema",
+  "description": "An individual aisle within a store.",
+  "type": "object",
+  "anyOf": [ { "$ref": "https://example.com/schemas/base.v1.schema.json" } ],
+  "properties": {
+    "storeId": {
+      "type": "string",
+      "description": "Hyperlink to the store where this aisle is located."
+    },
+    "aisleName": {
+      "type": "string",
+      "description": "Aisle name. Examples: `Baking` and `Dairy`"
+    },
+    "aisleNumber": {
+      "type": "integer",
+      "description": "Aisle number. Examples: `1` and `2`"
+    },
+  },
+  "required": [ "storeId", "aisleName" ]
 }

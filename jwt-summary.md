@@ -20,7 +20,7 @@ JSON Web Token (JWT) is a compact claims representation format intended for spac
 
 ##Anatomy of a JWT
 
-![Anatomy of a JWT Image](https://github.com/retrosight/rest/blob/master/jwt-summary-anatomy.png)
+![Anatomy of a JWT Image](./jwt-summary-anatomy.png)
 
 ##Usage Examples
 

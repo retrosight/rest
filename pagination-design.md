@@ -76,6 +76,5 @@ The reason the guidelines place the links in the payload body is:
 			"href": "https://example.com/service/data/page4"
 		}
 	]
-
 }
 ```

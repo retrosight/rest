@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "href": "https://example.com/schemas/error.v1.schema.json",
+  "title": "Error Schema",
+  "description": "The error schema provides a way for servers to convey error conditions to clients in the case of HTTP status codes 4xx.",
+  "type": "object",
+  "properties": {
+    "errorCode":  {
+      "type": "string",
+      "description": "Machine readable code associated with the error. Examples: `dateTimeMissing`, `OutOfMem` and `invalidUser`. Contextual strings are recommended over numbers or UUID4 values."
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Human readable error message for the developer."
+    },
+    "dataPath": {
+      "type": "string",
+      "description": "Relative data path resulting from validation."
+    },
+    "schemaPath": {
+      "type": "string",
+      "description": "Relative schema path resulting from validation."
+    },
+    "errors": {
+      "type": "array",
+      "description": "An array of errors. Note: this points to this schema as errors can nest.",
+      "items": { "$ref": "https://example.com/schemas/error.schema.json" }}
+  },
+  "required": [ "errorCode", "errorMessage" ]
+}

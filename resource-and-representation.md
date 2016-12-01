@@ -6,7 +6,7 @@ The following design and examples are intended to provide a starting point for s
 
 * [Schema](#schema)
 	* [Base](#schema-base)
-	* [List](#schema-list)
+	* [Links](#schema-links)
 	* [Operation](#schema-operation)
 	* [Store](#schema-store)
 	* [Aisle](#schema-aisle)
@@ -16,51 +16,65 @@ The following design and examples are intended to provide a starting point for s
 	* [Create a store](#service-create-store)
 	* [Create some aisles](#service-create-aisles)
 	* [Retrieve the store](#service-retrieve-store)
-	* [Get a store and list of aisles](#service-retrieve-store-aisle-list)
-	* [Get a store with aisles data](service-retrieve-store-aisle-data)
+	* [Retrieve a store and list of links to aisles](#service-retrieve-store-aisle-data-links)
+	* [Retrieve a store with aisles data](#service-retrieve-store-aisle-data)
 
 ##<a name="schema"></a>Schema
 
 * This overall data model describes stores and their aisles.
 
+***
+
 ###<a name="schema-base"></a>Base
 
-* [base.schema.json](./schema/base.schema.json)
+* [base.v1.schema.json](./schema/base.v1.schema.json)
 * The base schema provides a starting point for all representations.
 * It is the default schema for all representations.
-* It is the schema used for: metadata, HATEOAS operations and errors (should the occur).
+* It is the schema used for:
+  * Metadata
+  * Hypermedia as the Engine of Application State (HATEOAS) operations
+  * Related data
+  * Related data links
+  * Alternative representations
+  * Conveying errors (should they occur).
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`schema`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** Hyperlink to the schema describing this representation to fulfill the self-describing portion of the uniform interface.
+`schema`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** Hyperlink to the schema describing this resource to fulfill the self-describing portion of the uniform interface.
 `href`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|Hyperlink to this representation, matches the URI the client code used.
 `id`|`string`|-|For relational database systems to save the identifier separate from the URI template. When combined with the `template` key results in the `href` key value.
 `template`|`string`|[URI Template](https://tools.ietf.org/html/rfc6570)|For relational database systems to save the template separate from the identifier.
 `relatedData`|`array`|-|Inline representations of related data.
-`relatedLists`|`array`|[`list`](#schema-list)|List of hyperlinks to related data representations. There can be multiple lists, each with their own schema.
+`relatedDataLinks`|`array`|[`links`](#schema-links)|List of hyperlinks to related data representations. There can be multiple lists, each with their own schema.
 `alternates`|`array`|[`operation`](#schema-base-operation)|Alternate representations of the same resource.
 `operations`|`array`|[`operation`](#schema-base-operation)|The hypermedia as the engine of application state (HATEOAS) information.
 `errors`|`array`|[`error`](#schema-base-error)|The errors collection for when the response code is 4xx.
 
-###<a name="schema-list"></a>List
+***
 
-* [list.schema.json](./schema/list.schema.json)
-* A list allows related data to be provided to the client which can optionally `GET` same.
+###<a name="schema-links"></a>Links
+
+* [links.v1.schema.json](./schema/links.v1.schema.json)
+* A list of links allows related data to be provided to the client which can optionally `GET` each item as so desired.
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`schema`|`string`|-|**Required** The schema used to describe all of the items in the list, from [base](#schema-base).
-`listItems`|`array` of `string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** Hyperlinks to the related representations which all match the `schema`.
+`schema`|`string`|-|**Required** The schema used to describe all of the items in the array of `hrefs`. From [base](#schema-base).
+`hrefs`|`array` of `string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** Hyperlinks to the related representations which all match the `schema`.
 
-###<a name="schema-base-operation"></a>Operation
+***
 
-* [operation.schema.json](./schema/operation.schema.json)
+###<a name="schema-operation"></a>Operation
+
+* [operation.v1.schema.json](./schema/operation.v1.schema.json)
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `rel`|`string`|[RFC 5988 Relation Type](https://tools.ietf.org/html/rfc5988#section-4)|**Required** Relation type as defined by the server. There are registered relation types listed in [RFC 5988 6.2.2. Initial Registry Contents](https://tools.ietf.org/html/rfc5988#section-6.2.2) including pagination relation types of `next`, `prev`, `first` and `last`.
 `href`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** Hyperlink to the resource. This key name is borrowed from the HTML `href` element and behaves similarly.
 `method`|`string`|[RFC 7231 Methods](https://tools.ietf.org/html/rfc7231#section-4.3)|Default is GET -  (GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE) + RFC 5789 PATCH method.
+
+***
 
 ###<a name="schema-store"></a>Store
 
@@ -71,9 +85,11 @@ Name | Type | Format | Description
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`schema`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** - Hyperlink to the schema describing this representation, from [base](#schema-base).
-`name`|`string`|-|**Required** - Store name. Examples: `Piggly Wiggly`, `Safeway` and `Albertsons`.
-`phone`|`string`|-|Phone number of the store.
+`schema`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** - Hyperlink to the schema describing this representation. From [base](#schema-base).
+`storeName`|`string`|-|**Required** - Store name. Examples: `Piggly Wiggly`, `Safeway` and `Albertsons`.
+`storePhone`|`string`|-|Phone number of the store.
+
+***
 
 ###<a name="schema-aisle"></a>Aisle
 
@@ -83,13 +99,15 @@ Name | Type | Format | Description
 Name | Type | Format | Description
 -----|------|--------|------------
 `schema`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** - Hyperlink to the schema describing this representation, from [base](#schema-base).
-`store`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** - Hyperlink to the store where this aisle is located.
-`name`|`string`|-|**Required** - Aisle name. Examples: `Baking` and `Dairy`.
-`number`|`integer`|-|Aisle number. Examples: `1` and `2`.
+`storeId`|`string`|[RFC 3986 URI](https://www.ietf.org/rfc/rfc3986.txt)|**Required** - Hyperlink to the store where this aisle is located.
+`aisleName`|`string`|-|**Required** - Aisle name. Examples: `Baking` and `Dairy`.
+`aisleNumber`|`integer`|-|Aisle number. Examples: `1` and `2`.
+
+***
 
 ###<a name="schema-error"></a>Error
 
-* [error.schema.json](./schema/error.schema.json)
+* [error.v1.schema.json](./schema/error.v1.schema.json)
 * Included here for completeness of the resource model but not currently used in the examples.
 
 Name | Type | Format | Description
@@ -99,6 +117,8 @@ Name | Type | Format | Description
 `dataPath`|`string`|-|Relative data path.
 `schemaPath`|`string`|-|Relative schema path.
 `errors`|`array`|[`error`](#schema-base-error)|An array of errors. Note: this points to this schema as errors can nest.
+
+***
 
 ##<a name="service"></a>Service
 
@@ -124,14 +144,12 @@ Name | Type | Format | Description
 ```json
 {
 	"href": "https://example.com/stores",
-	"schema": "https://example.com/schemas/base.schema.json",
-	"alternates": [
-		{
-			"rel": "all-stores",
-			"href": "https://example.com/stores/all"
-		}
-	],
+	"schema": "https://example.com/schemas/base.v1.schema.json",
 	"operations": [
+    {
+      "rel": "all-stores",
+      "href": "https://example.com/stores/all"
+    },
 		{
 			"rel": "create-store",
 			"href": "https://example.com/stores",
@@ -141,13 +159,15 @@ Name | Type | Format | Description
 }
 ```
 
+***
+
 ###<a name="service-create-store"></a>Create a store
 
 * Client code is creating the data.
 * The URI for where to POST comes from the service index: `create-store`.
 * The schema is defined by the server and is used by the client code to specify the data being sent by the client.
-	* `schema` key comes from `base.schema.json`.
-	* `name` and `phone` comes from `store.v1.schema.json`
+	* `schema` key comes from `base.v1.schema.json`.
+	* `storeName` and `storePhone` comes from `store.v1.schema.json`
 
 ### Request
 
@@ -156,31 +176,33 @@ Name | Type | Format | Description
 ```json
 {
 	"schema": "https://example.com/schemas/store.v1.schema.json",
-	"name": "Alpha",
-	"phone": "(425) 555-1212"
+	"storeName": "Alpha",
+	"storePhone": "(425) 555-1212"
 }
 ```
 
 ### Response
 
-* Note the additional metadata leveraging `base.schema.json`: `href`, `id` and `template`.
-* The client is given the hyperllink for an `operation` on the store for adding an aisle.
+* Note the additional metadata leveraging `base.v1.schema.json`: `href`, `id` and `template`.
+* The client is given the hyperlink for an `operation` on the store for adding an aisle.
 	* This hyperlink is at the heart of Hypermedia as the Engine of Application State.
-	* `operations` is part of `base.schema.json` and defined in `operation.schema.json`.
+	* `operations` is part of `base.v1.schema.json` and defined in `operation.v1.schema.json`.
+* The `POST` occurs on the collection (plural: `stores`).
+* The location of a store is individual (singular: `store`).
 
 ```
 201 Created
-Location: https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b
+Location: https://example.com/store/97b83a735620465cb8a01bf82392336b
 ```
 
 ```json
 {
 	"schema": "https://example.com/schemas/store.v1.schema.json",
-	"name": "Alpha",
-	"phone": "(425) 555-1212",
-	"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-	"id": "97b83a73-5620-465c-b8a0-1bf82392336b",
-	"template": "https://example.com/stores/{id}",
+	"storeName": "Alpha",
+	"storePhone": "(425) 555-1212",
+	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+	"id": "97b83a735620465cb8a01bf82392336b",
+	"template": "https://example.com/store/{id}",
 	"operations": [
 		{
 			"rel": "add-aisle",
@@ -190,12 +212,15 @@ Location: https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b
 	]
 }
 ```
+
+***
 
 ###<a name="service-create-aisles"></a>Create some aisles
 
 * Relationships between resources are established.
 * The URI to accomplish the task was provided by the response to creating a store with `"rel": "add-aisle"`.
 * The response contains an operation link to update the aisle data using a `POST`.
+* Same collection (plural) and item (singluar) pattern as a store.
 
 ### Request
 
@@ -204,9 +229,9 @@ Location: https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b
 ```json
 {
 	"schema": "https://example.com/schemas/aisle.v1.schema.json",
-	"store": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-	"name": "Dairy",
-	"number": "10"
+	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+	"aisleName": "Dairy",
+	"aisleNumber": 10
 }
 ```
 
@@ -214,22 +239,22 @@ Location: https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b
 
 ```
 201 Created
-Location: https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d
+Location: https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d
 ```
 
 ```json
 {
 	"schema": "https://example.com/schemas/aisle.v1.schema.json",
-	"store": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-	"name": "Dairy",
-	"number": "10",
-	"href": "https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d",
-	"id": "b29e4945-2ebf-4625-b44d-e3034ad99e4d",
-	"template": "https://example.com/aisles/{id}",
+	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+	"aisleName": "Dairy",
+	"aisleNumber": 10,
+	"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+	"id": "b29e49452ebf4625b44de3034ad99e4d",
+	"template": "https://example.com/aisle/{id}",
 	"operations": [
 		{
 			"rel": "update-aisle",
-			"href": "https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d",
+			"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
 			"method": "POST"
 		}
 	]
@@ -243,9 +268,9 @@ Location: https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d
 ```json
 {
 	"schema": "https://example.com/schemas/aisle.v1.schema.json",
-	"store": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-	"name": "Baking",
-	"number": "11"
+	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+	"aisleName": "Baking",
+	"aisleNumber": 11
 }
 ```
 
@@ -253,39 +278,41 @@ Location: https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d
 
 ```
 201 Created
-Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
+Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 ```
 
 ```json
 {
 	"schema": "https://example.com/schemas/aisle.v1.schema.json",
-	"store": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-	"name": "Baking",
-	"number": "11",
-	"href": "https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d",
-	"id": "a256aabd-e988-4b37-9f1f-99222ebdfe3d",
-	"template": "https://example.com/aisles/{id}",
+	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+	"aisleName": "Baking",
+	"aisleNumber": 11,
+	"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
+	"id": "a256aabde9884b379f1f99222ebdfe3d",
+	"template": "https://example.com/aisle/{id}",
 	"operations": [
 		{
 			"rel": "update-aisle",
-			"href": "https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d",
+			"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
 			"method": "POST"
 		}
 	]
 }
 ```
+
+***
 
 ###<a name="service-retrieve-store"></a>Retrieve the store
 
 * Using the value in the `Location` header or the data in the response payload from creating a store perform a `GET` operation.
 * The server has made additional `alternates` available because now there are aisles:
-	* GET the store with a list of aisles using `"rel": "store-aisle-list"`
+	* GET the store with a list of links to aisles using `"rel": "store-aisle-data-links"`
 	* GET the store with aisles data using `"rel": "store-aisle-data"`.
 	* Not listed is the relation type for the store itself (because that's what we have here).
 
 ### Request
 
-`GET https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b`
+`GET https://example.com/store/97b83a735620465cb8a01bf82392336b`
 
 ### Response
 
@@ -296,19 +323,19 @@ Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
 ```json
 {
 	"schema": "https://example.com/schemas/store.v1.schema.json",
-	"name": "Alpha",
-	"phone": "(425) 555-1212",
-	"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-	"id": "a",
-	"template": "https://example.com/stores/{id}",
+	"storeName": "Alpha",
+	"storePhone": "(425) 555-1212",
+	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+	"id": "97b83a735620465cb8a01bf82392336b",
+	"template": "https://example.com/store/{id}",
 	"alternates": [
 		{
-			"rel": "store-aisle-list",
-			"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aislelist"
+			"rel": "store-aisle-data-links",
+			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks"
 		},
 		{
 			"rel": "store-aisle-data",
-			"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aisledata"
+			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata"
 		}
 	],
 	"operations": [
@@ -321,18 +348,20 @@ Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
 }
 ```
 
-###<a name="service-retrieve-store-aisle-list"></a>Get a store and list of aisles
+***
+
+###<a name="service-retrieve-store-aisle-data-links"></a>Retrieve a store and list of links to aisles
 
 * This representation can be helpful if the related data for each item in the array is really large, infrequently accessed or accessed individually.
 * This representation may also help mobile clients potentially keep data usage levels lower.
 * Note the change within `alternates`:
 	* GET the store using `"rel": "store"`.
 	* GET the store with aisles data using `"rel": "store-aisle-data"`.
-	* There is no store with list of aisles (because that is the representation we now have).
+	* There is no store with list of links to aisles (because that is the representation we now have).
 
 ### Request
 
-`GET https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aislelist`
+`GET https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks`
 
 ### Response
 
@@ -343,28 +372,28 @@ Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
 ```json
 {
 	"schema": "https://example.com/schemas/store.v1.schema.json",
-	"name": "Alpha",
-	"phone": "(425) 555-1212",
-	"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aislelist",
-	"id": "97b83a73-5620-465c-b8a0-1bf82392336b",
-	"template": "https://example.com/stores/{id}/aislelist",
-	"lists": [
+	"storeName": "Alpha",
+	"storePhone": "(425) 555-1212",
+	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks",
+	"id": "97b83a735620465cb8a01bf82392336b",
+	"template": "https://example.com/store/{id}/aisledatalinks",
+	"relatedDataLinks": [
 		{
 			"schema": "https://example.com/schemas/aisle.v1.schema.json",
-			"listItems": [
-				"https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d",
-				"https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d"
+			"hrefs": [
+				"https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+				"https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d"
 			]
 		}
 	],
 	"alternates": [
 		{
 			"rel": "store",
-			"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b"
+			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b"
 		},
 		{
 			"rel": "store-aisle-data",
-			"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aisledata"
+			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata"
 		}
 	],
 	"operations": [
@@ -377,55 +406,57 @@ Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
 }
 ```
 
-###<a name="service-retrieve-store-aisle-data"></a>Get a store with aisles data
+***
+
+###<a name="service-retrieve-store-aisle-data"></a>Retrieve a store with aisles data
 
 * Note the full aisle data is included inline with the stores, complete with operations.
 * Note the change within `alternates`:
 	* GET the store using `"rel": "store"`.
-	* GET the store with a list of aisles using `"rel": "store-aisle-list"`
+	* GET the store with a list of links to aisles using `"rel": "store-aisle-data-links"`
 	* There is no store with aisles data (because that is the representation we now have).
 
 ### Request
 
-`GET https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aisledata`
+`GET https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata`
 
 ```json
 {
 	"schema": "https://example.com/schemas/store.v1.schema.json",
-	"name": "Alpha",
-	"phone": "(425) 555-1212",
-	"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aisledata",
-	"id": "97b83a73-5620-465c-b8a0-1bf82392336b",
-	"template": "https://example.com/stores/{id}/aisledata",
+	"storeName": "Alpha",
+	"storePhone": "(425) 555-1212",
+	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata",
+	"id": "97b83a735620465cb8a01bf82392336b",
+	"template": "https://example.com/store/{id}/aisledata",
 	"data": [
 		{
 			"schema": "https://example.com/schemas/aisles.v1.schema.json",
-			"store": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-			"name": "Dairy",
-			"number": "10",
-			"href": "https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d",
-			"id": "b29e4945-2ebf-4625-b44d-e3034ad99e4d",
-			"template": "https://example.com/aisles/{id}",
+			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+			"aisleName": "Dairy",
+			"aisleNumber": 10,
+			"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+			"id": "b29e49452ebf4625b44de3034ad99e4d",
+			"template": "https://example.com/aisle/{id}",
 			"operations": [
 				{
 					"rel": "update",
-					"href": "https://example.com/aisles/b29e4945-2ebf-4625-b44d-e3034ad99e4d",
+					"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
 					"method": "PUT"
 				}
 			]
 		},
 		{
 			"schema": "https://example.com/schemas/aisles.v1.schema.json",
-			"store": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b",
-			"name": "Baking",
-			"number": "11",
-			"href": "https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d",
-			"id": "a256aabd-e988-4b37-9f1f-99222ebdfe3d",
-			"template": "https://example.com/aisles/{id}",
+			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+			"aisleName": "Baking",
+			"aisleNumber": 11,
+			"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
+			"id": "a256aabde9884b379f1f99222ebdfe3d",
+			"template": "https://example.com/aisle/{id}",
 			"operations": [
 				{
 					"rel": "update",
-					"href": "https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d",
+					"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
 					"method": "PUT"
 				}
 			]
@@ -434,11 +465,11 @@ Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
 	"alternates": [
 		{
 			"rel": "store",
-			"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b"
+			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b"
 		},
 		{
-			"rel": "store-aisle-list",
-			"href": "https://example.com/stores/97b83a73-5620-465c-b8a0-1bf82392336b/aislelist"
+			"rel": "store-aisle-data-links",
+			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks"
 		}
 	],
   "operations": [
@@ -450,3 +481,4 @@ Location: https://example.com/aisles/a256aabd-e988-4b37-9f1f-99222ebdfe3d
   ]
 }
 ```
+***

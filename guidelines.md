@@ -56,6 +56,11 @@
 
 * Services SHOULD provide the [RFC 7231 Date](https://tools.ietf.org/html/rfc7231#section-7.1.1.2) response header field.
 
+####<a name="header-location"></a>Location
+
+* Services SHOULD provide the [RFC 7231 7.1.2. Location](https://tools.ietf.org/html/rfc7231#section-7.1.2) response header field with the value expressed as a fully qualified domain name (FQDN) [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) for all operations which use the `POST` HTTP method.
+* Services MAY provide the Location header as a relative value noting this requires client code to build URIs which should generally be avoided.
+
 ####<a name="header-cache"></a>Cache Headers
 
 For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (HTTP/1.1): Caching](https://tools.ietf.org/html/rfc7234). This section along with the [Last-Modified](#header-last-modified), [ETag](#header-etag) and [Precondition](#header-precondition) sections cover the caching responsibilities for a service.
@@ -152,7 +157,7 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 
 ####<a name="creating-resources"></a>Creation of Resources and Representations
 
-> A more in-depth example of this principle can be found in [resource-and-representation.md](/resource-and-representation.md).
+> One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
 * Services MAY create as many representations as is needed.
 	* Services are encouraged to do so in order to logically order the resources and representations.
@@ -248,9 +253,9 @@ https://example.com/stores/{collection}/{identifier}/{representation}  // Repres
 
 ###<a name="hypermedia"></a>Hypermedia as the Engine of Application State
 
-> One example (of many approaches) can be found [here](https://github.com/retrosight/rest/blob/master/hateoas-model-example.md).
+> A primer on Hypermedia as the Engine of Application State can be found [here](./hateoas-model-example.md).
 
-> The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](https://github.com/retrosight/rest/blob/master/id-related-data-hateoas.md).
+> The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
 
 * Services SHOULD make links available only when they are valid for the state of the service at the time of the response.
 * Hypermedia as the Engine of Application State describes what client code can do with the server.
@@ -279,7 +284,9 @@ Name | Type | Format | Description
 
 ###<a name="related-data"></a>Related Data
 
-> The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](https://github.com/retrosight/rest/blob/master/id-related-data-hateoas.md).
+> The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
+
+> One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
 * All relationships to data outside of the document SHOULD be described by fully qualified domain name (FQDN) `URI` resource links.
 * It is acceptable for data to reference other data which does not have a corresponding reference back; In the example given it would be fine if the inventory did not have a link to the store.
@@ -414,7 +421,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ####<a name="data-identifiers"></a>Identifiers
 
-> The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](https://github.com/retrosight/rest/blob/master/id-related-data-hateoas.md).
+> The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
 
 * Services SHOULD identify unique resources with a string in the format of a [RFC 4122 A Universally Unique IDentifier (UUID) URN Namespace](#RFC-4122) UUID4 without dashes in a key named `id`.
 	* This value SHOULD be separate from database key values (i.e., primary key) to avoid leaking implementation details.
@@ -437,7 +444,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 * Representations SHOULD be self-describing through the use of a `schema` key in the root of all payloads.
 * The `schema` value SHOULD be in the form of a [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986).
-* Examples of schema illustrating the paradigms found in this document can be found in [schema](https://github.com/retrosight/rest/tree/master/schema).
+* Examples of schema illustrating the paradigms found in this document can be found in [schema](./schema).
 
 ```json
 {
@@ -713,9 +720,13 @@ Links to claims within the RFC:
 
 ####Additional Resources
 
-* [JWT Summary](https://github.com/retrosight/rest/blob/master/jwt-summary.md)
+* [JWT Summary](./jwt-summary.md)
 * [https://jwt.io](https://jwt.io)
 * [Public Claim Names](http://www.iana.org/assignments/jwt/jwt.txt)
+
+###<a name="RFC-3339"></a>RFC 3339 Date and Time on the Internet: Timestamps
+
+* [https://tools.ietf.org/html/rfc3339](https://tools.ietf.org/html/rfc3339)
 
 ###<a name="RFC-5280"></a>RFC 5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile
 

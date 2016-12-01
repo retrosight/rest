@@ -33,7 +33,8 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
   * The server is always in control of building the entire URI.
   * URIs are completely opaque strings to the client code.
   * Client code follows links in `href` as the result of binding to the `rel` value.
-* For completeness an endpoint for `"rel": "orders-all"` is provided to demonstrate the difference between the service itself and resources contained therein.
+* The example shows the availability of an endpoint for retrieving all orders to discriminate between the service itself and a representation within.
+  * The default method when none is specified is `GET`.
 
 ### Request
 
@@ -49,7 +50,7 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
 {
 	"operations": [
 		{
-			"rel": "order-post", "href": "https://...", "method": "post"
+      "rel": "order-post", "href": "https://...", "method": "post"
 		},
     {
       "rel": "orders-all", "href": "https://..."
@@ -81,14 +82,14 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
 
 ```
 201 Created
-Location: https://...
+Location: https://.../{id}
 ```
 
 ```json
 {
   "product": "widget",
   "quantity": 100,
-  "id": "https://...",
+  "id": "https://.../{id}",
   "operations": [
     { "rel": "order-cancel", "href": "https://...", "method": "delete" },
     { "rel": "order-accept", "href": "https://...", "method": "post" },
@@ -106,7 +107,7 @@ Location: https://...
 
 ### Request
 
-`GET https://.../order123`
+`GET https://.../{id}`
 
 ### Response
 

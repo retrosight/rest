@@ -1,15 +1,13 @@
 {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"href": "https://example.com/schemas/store.v1.schema.json",
-	"title": "Store v1 Schema",
-	"description": "A single store for example: grocery store.",
-	"type": "object",
-	"anyOf": [{
-		"$ref": "https://example.com/schemas/base.schema.json"
-	}],
-	"properties": {
-		"name": { "type": "string" },
-		"phone": { "type": "string" }
-	},
-	"required": ["name", "phone"]
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "href": "https://example.com/schemas/store.v1.schema.json",
+  "title": "Store v1 Schema",
+  "description": "A single store for example: grocery store.",
+  "type": "object",
+  "anyOf": [ { "$ref": "https://example.com/schemas/base.schema.json" } ],
+  "properties": {
+    "storeName": { "type": "string" },
+    "storePhone": { "type": "string" }
+  },
+  "required": [ "storeName" ]
 }
