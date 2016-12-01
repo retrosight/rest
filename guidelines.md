@@ -345,6 +345,8 @@ The service index is one of the keys to evolvability of services, allowing clien
 * Reference an abstracted name rather than a link directly which allows service links to change without requiring client code changes.
 * Simply follow given links rather than using `string` builders or concatenation to craft service links.
 
+Something to consider for indexes: [Home Documents for HTTP APIs](https://mnot.github.io/I-D/json-home/).
+
 ####Schema
 
 An index leverages the Hypermedia as the Engine of Application State [`operations`](#hypermedia-operations) schema.
