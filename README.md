@@ -2,7 +2,7 @@
 
 Welcome...!
 
-This is a set of guidelines for building a RESTful server.
+This is a set of guidelines and resources for building a server that can participate in a RESTful paradigm.
 
 * **Start Here -->** The [Guidelines](/guidelines.md) attempt to address the first five constraints from the Representational State Transfer (REST) dissertation by Fielding: Starting with the Null Style, Client-Server (CS), Stateless, Cache and Uniform Interface. Included in the guidelines are pointers to additional items:
   * The [Hypermedia as the Engine of Application State model](/hateoas-model-example.md) builds out the work of [Stefan Tilkov](https://twitter.com/stilkov) from his excellent talk [GOTO 2014 • REST: I don't Think it Means What You Think it Does](https://www.youtube.com/watch?v=pspy1H6A3FM). You can find my summary of his slides [here](https://github.com/retrosight/learning/blob/master/REST-I-dont-think-it-means-what-you-think-it-does-stefan-tilkov.md).
