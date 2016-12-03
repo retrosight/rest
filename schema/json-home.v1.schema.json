@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "href": "https://example.com/schemas/json-home.v1.schema.json",
+  "title": "JSON-Home Schema",
+  "description": "The schema which describes JSON home documents outlined in https://mnot.github.io/I-D/json-home/#RFC7159",
+  "type": "object",
+	"properties": {
+    "api": { "$ref": "#/definitions/apiDefinition" },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+          "rel": { "$ref": "#/definitions/relDefinition" },
+          "href": { "$ref": "#/definitions/hrefDefinition" },
+          "hrefTemplate": {
+            "type": "string",
+             "description": "Link to a resource using RFC6570"
+          },
+          "hrefVars": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "varName": {
+                  "type": "string",
+                   "description": "The variable name"
+                },
+                "varDefinition": {
+                  "type": "string",
+                   "description": "Link to a definition for the variable using RFC3986"
+                }
+              },
+              "required": [ "varName", "varDefinition" ]
+            }
+          },
+          "hints": { "$ref": "#/definitions/hintsDefinition" }
+        },
+        "required": [ "rel" ]
+      }
+
+  },
+  "required": [ "resources" ],
+  "definitions": {
+    "relDefinition": {
+      "type": "string",
+      "description": "link relation types RFC5988. Examples: author, describedBy"
+    },
+    "hrefDefinition": {
+      "type": "string",
+      "description": "Link to a resource using RFC3986."
+    },
+    "apiDefinition": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+           "description": "The title of the API."
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rel": { "$ref": "#/definitions/relDefinition" },
+              "href": { "$ref": "#/definitions/hrefDefinition" },
+            },
+            "required": [ "rel", "href" ]
+          }
+        }
+      },
+      "required": [ "title" ]
+    },
+    "hintsDefinition": {
+      "type": "object",
+      "properties": {
+        "allow": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH"
+        },
+        "formats": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the representation types that the resource produces and consumes, using the GET and PUT methods respectively, subject to the ‘allow’ hint"
+        },
+        "acceptPatch": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the PATCH [RFC5789] request formats accepted by the resource for this client; equivalent to the Accept-Patch HTTP response header."
+        },
+        "acceptPost": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the POST request formats accepted by the resource for this client."
+        },
+        "acceptRanges": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the Accept-Ranges HTTP response header [RFC7233]"
+        },
+        "acceptPrefer": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the preferences [RFC7240] supported by the resource. Note that, as per that specifications, a preference can be ignored by the server."
+        },
+        "docs": {
+          "type": "string",
+          "description": "Hints the location for human-readable documentation for the relation type of the resource, an absolute-URI [RFC3986] referring to documentation that SHOULD be in HTML format."
+        },
+        "preconditionRequired": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) to include a precondition, as per [RFC7232], to avoid conflicts due to concurrent updates. Examples: etag, last-modified"
+        },
+        "authSchemes": {
+          "type": "array",
+          "description": "Hints that the resource requires authentication using the HTTP Authentication Framework [RFC7235]",
+          "items": {
+            "type": "object",
+            "properties": {
+              "scheme": {
+                "type": "string",
+                 "description": "An HTTP authentication scheme"
+              },
+              "realms": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "an array of zero to many strings that identify protection spaces that the resource is a member of."
+              },
+            },
+            "required": [ "scheme" ]
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Hints the status of the resource: deprecated - indicates that use of the resource is not recommended, but it is still available, gone - indicates that the resource is no longer available; i.e., it will return a 404 (Not Found) or 410 (Gone) HTTP status code if accessed."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "api": {
+    "title": "Example API",
+    "links": [
+      {
+        "rel": "author",
+        "href": "mailto:api-admin@example.com"
+      },
+      {
+        "rel": "describedBy",
+        "href": "https://example.com/api-docs/"
+      }
+    ]
+  },
+  "resources": [
+    {
+      "rel": "tag:me@example.com,2016:widgets",
+      "href": "/widgets/"
+    },
+    {
+      "rel": "tag:me@example.com,2016:widget",
+      "hrefTemplate": "/widgets/{widget_id}",
+      "hrefVars": [
+        {
+          "varName": "widget_id",
+          "varDefinition": "https://example.org/param/widget"
+        }
+      ],
+      "hints": {
+        "allow": [ "GET", "PUT", "DELETE", "PATCH" ],
+        "formats": [ "application/json" ],
+        "acceptPatch": [ "application/json-patch+json" ],
+        "acceptRanges": [ "bytes" ]
+      }
+    },
+    {
+      "rel": "tag:me@example.com,2016:search-by-id",
+      "hrefTemplate": "/search?id={widget_id}",
+      "hrefVars": [
+        {
+          "varName": "widget_id",
+          "varDefinition": "https://example.org/param/widget_id"
+        }
+      ]
+    },
+    {
+      "rel": "tag:me@example.com,2016:search-by-name",
+      "hrefTemplate": "/search?name={widget_name}",
+      "hrefVars": [
+        {
+          "varName": "widget_name",
+          "varDefinition": "https://example.org/param/widget_name"
+        }
+      ]
+    },
+    {
+      "rel": "https://example.org/rel/widget",
+      "hrefTemplate": "/widgets/{widget_id}",
+      "hrefVars": [
+        {
+          "varName": "widget_id",
+          "varDefinition": "https://example.org/param/widget"
+        }
+      ],
+      "hints": {
+        "allow": [ "GET", "PUT", "DELETE", "PATCH" ],
+        "formats": [ "application/json" ],
+        "acceptPatch": [ "application/json-patch+json" ],
+        "acceptRanges": [ "bytes" ]
+      }
+    },
+    {
+      "rel": "tag:examplesForAllOfThekeys",
+      "href": "/widgets/",
+      "hrefTemplate": "/widgets/{widget_id}",
+      "hrefVars": [
+        {
+          "varName": "widget_id",
+          "varDefinition": "https://example.org/param/widget"
+        }
+      ],
+      "hints": {
+        "allow": [ "GET", "PUT", "DELETE", "PATCH" ],
+        "formats": [ "application/json", "application/xml" ],
+        "acceptPatch": [ "application/json-patch+json" ],
+        "acceptPost": [ "application/json", "application/xml" ],
+        "acceptRanges": [ "bytes" ],
+        "acceptPrefer": [ "application/json", "application/xml" ],
+        "docs": "https://example.com/docs/widget",
+        "preconditionRequired": [ "etag", "last-modified" ],
+        "authSchemes": [
+          {
+            "scheme": "basic",
+            "realms": [ "private" ]
+          }
+        ],
+        "status": "deprecated"
+      }
+    }
+  ]
+}
