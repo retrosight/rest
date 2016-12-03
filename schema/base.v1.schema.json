@@ -7,7 +7,7 @@
   "properties": {
     "schema": {
       "type": "string",
-      "description": "Provides the self documentating feature for the resource / representation."
+      "description": "Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking"
     },
     "href": {
       "type": "string",
