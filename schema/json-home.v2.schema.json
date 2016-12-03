@@ -4,14 +4,14 @@
   "title": "JSON-Home Schema",
   "description": "The schema which describes JSON home documents outlined in https://mnot.github.io/I-D/json-home/#RFC7159",
   "type": "object",
-	"properties": {
-    "profile": {
+  "properties": {
+    "schema": {
       "type": "string",
-       "description": "https://tools.ietf.org/html/rfc6906 Profile (typically JSON schema) describing the document, part of a self-descriptive message."
+       "description": "RFC 3986 Uniform Resource Identifier (URI) Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking"
     },
     "href": {
       "type": "string",
-       "description": "Hyperlink to this representation, matches the URI the client code used."
+       "description": "RFC 3986 Uniform Resource Identifier (URI) to this representation, matches the URI the client code used."
     },
     "api": { "$ref": "#/definitions/apiDefinition" },
     "resources": {
@@ -48,17 +48,16 @@
         },
         "required": [ "rel" ]
       }
-
   },
   "required": [ "resources" ],
   "definitions": {
     "relDefinition": {
       "type": "string",
-      "description": "link relation types RFC5988. Examples: author, describedBy"
+      "description": "RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy"
     },
     "hrefDefinition": {
       "type": "string",
-      "description": "Link to a resource using RFC3986."
+      "description": "RFC 3986 Uniform Resource Identifier (URI) link to a resource."
     },
     "apiDefinition": {
       "type": "object",
@@ -101,7 +100,7 @@
         "profiles": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "https://tools.ietf.org/html/rfc6906 Links to the schema(s) (typically JSON) which define payloads the endpoint will generally accept."
+          "description": "Links to the schema(s) (typically JSON) which define payloads the endpoint will generally accept. Based on RFC 6096 The 'profile' Link Relation Type https://tools.ietf.org/html/rfc6906"
         },
         "preconditionRequired": {
           "type": "array",
