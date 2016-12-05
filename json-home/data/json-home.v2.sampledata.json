@@ -1,5 +1,5 @@
 {
-  "profile": "http://example.com/schemas/json-home.v2.schema.json",
+  "schema": "http://example.com/schemas/json-home.v2.schema.json",
   "href": "http://example.com/json-home.v2.sampledata.json",
   "api": {
     "title": "Example API",
@@ -26,7 +26,7 @@
           "profiles": [
             "http://example.com/schemas/widget.schema.json",
             "http://example.com/schemas/better-widget.schema.json" ],
-          "docs": "https://example.com/docs/widget#post",
+          "docs": "https://example.com/docs/widget#create",
         }
       ]
     },
@@ -45,7 +45,7 @@
           "formats": [ "application/json", "application/xml" ],
           "prefer": [ "application/xml" ],
           "acceptRanges": [ "bytes" ],
-          "docs": "https://example.com/docs/widget#get",
+          "docs": "https://example.com/docs/widget#retrieve",
           "authSchemes": [
             {
               "scheme": "basic",
@@ -59,7 +59,7 @@
           "formats": [ "application/json", "application/xml" ],
           "prefer": [ "application/json" ],
           "preconditionRequired": [ "etag", "last-modified" ],
-          "docs": "https://example.com/docs/widget#put",
+          "docs": "https://example.com/docs/widget#update",
           "authSchemes": [
             {
               "scheme": "basic",

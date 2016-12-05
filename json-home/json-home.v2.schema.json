@@ -1,55 +1,29 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "href": "https://example.com/schemas/json-home.v1.schema.json",
-  "title": "JSON-Home Schema",
+  "href": "https://example.com/schemas/json-home.v2.schema.json",
+  "title": "JSON-Home Schema Version 2",
   "description": "The schema which describes JSON home documents outlined in https://mnot.github.io/I-D/json-home/#RFC7159",
   "type": "object",
   "properties": {
     "schema": {
       "type": "string",
-       "description": "RFC 3986 Uniform Resource Identifier (URI) Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking"
+       "description": "RFC 3986 Uniform Resource Identifier (URI). Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking"
     },
     "href": {
-      "type": "string",
-       "description": "RFC 3986 Uniform Resource Identifier (URI) to this representation, matches the URI the client code used."
+      "$ref": "#/definitions/hrefDefinition",
+      "description": "Identifier and hyperlink for this JSON home resource."
     },
-    "api": { "$ref": "#/definitions/apiDefinition" },
+    "api": {
+      "$ref": "#/definitions/apiDefinition"
+    },
     "resources": {
       "type": "array",
       "items": {
-        "type": "object",
-          "rel": { "$ref": "#/definitions/relDefinition" },
-          "href": { "$ref": "#/definitions/hrefDefinition" },
-          "hrefTemplate": {
-            "type": "string",
-             "description": "Link to a resource using RFC6570"
-          },
-          "hrefVars": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "varName": {
-                  "type": "string",
-                   "description": "The variable name"
-                },
-                "varDefinition": {
-                  "type": "string",
-                   "description": "Link to a definition for the variable using RFC3986"
-                }
-              },
-              "required": [ "varName", "varDefinition" ]
-            }
-          },
-          "hints": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/hintsDefinition" }
-          }
-        },
-        "required": [ "rel" ]
+        "$ref": "#/definitions/resourcesDefinition"
       }
+    }
   },
-  "required": [ "resources" ],
+  "required": [  ],
   "definitions": {
     "relDefinition": {
       "type": "string",
@@ -71,14 +45,56 @@
           "items": {
             "type": "object",
             "properties": {
-              "rel": { "$ref": "#/definitions/relDefinition" },
-              "href": { "$ref": "#/definitions/hrefDefinition" },
+              "rel": {
+                "$ref": "#/definitions/relDefinition"
+              },
+              "href": {
+                "$ref": "#/definitions/hrefDefinition"
+              },
             },
             "required": [ "rel", "href" ]
           }
         }
       },
-      "required": [ "title" ]
+      "required": [  ]
+    },
+    "resourcesDefinition": {
+      "type": "object",
+      "properties": {
+        "rel": {
+          "$ref": "#/definitions/relDefinition"
+        },
+        "href": {
+          "$ref": "#/definitions/hrefDefinition"
+        },
+        "hrefTemplate": {
+          "type": "string",
+           "description": "Link to a resource using RFC6570"
+        },
+        "hrefTemplateVars": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/hrefTemplateVarsDefinition" }
+        },
+        "hints": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/hintsDefinition" }
+        }
+      },
+      "required": [  ]
+    },
+    "hrefTemplateVarsDefinition": {
+      "type": "object",
+      "properties": {
+        "varName": {
+          "type": "string",
+           "description": "The variable name"
+        },
+        "varDefinition": {
+          "type": "string",
+           "description": "Link to a definition for the variable using RFC3986"
+        }
+      },
+      "required": [  ]
     },
     "hintsDefinition": {
       "type": "object",
@@ -95,7 +111,7 @@
         "prefer": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints the preferences [RFC7240] supported by the resource. Note that, as per that specifications, a preference can be ignored by the server."
+          "description": "Hints the preferences RFC 7240 supported by the resource. Note that, as per that specifications, a preference can be ignored by the server."
         },
         "profiles": {
           "type": "array",
@@ -110,7 +126,7 @@
         "acceptRanges": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the Accept-Ranges HTTP response header [RFC7233]"
+          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the Accept-Ranges HTTP response header RFC 7233."
         },
         "docs": {
           "type": "string",
@@ -140,7 +156,7 @@
           "description": "Hints the status of the resource: deprecated - indicates that use of the resource is not recommended, but it is still available, gone - indicates that the resource is no longer available; i.e., it will return a 404 (Not Found) or 410 (Gone) HTTP status code if accessed."
         }
       },
-      "required": [ "" ]
+      "required": [  ]
     }
   }
 }
