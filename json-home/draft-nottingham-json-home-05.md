@@ -77,11 +77,11 @@ This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relatin
 
 ##<a name="introduction"></a>1. Introduction
 
-It is becoming increasingly common to use HTTP [RFC7230] for applications other than traditional Web browsing.  Such "HTTP APIs" are used to integrate processes on disparate systems, make information available to machines across the Internet, and as part of the implementation of "micro-services."
+It is becoming increasingly common to use HTTP [RFC7230](http://www.rfc-editor.org/info/rfc7230) for applications other than traditional Web browsing. Such "HTTP APIs" are used to integrate processes on disparate systems, make information available to machines across the Internet, and as part of the implementation of "micro-services."
 
 By using HTTP, these applications realise a number of benefits, from message framing to caching, and well-defined semantics that are broadly understood and useful.
 
-However, one of the core architectural tenants of the Web is the use of links [RFC3986] to navigate between states; typically, these applications document static URLs that clients need to know and servers need to implement, and any interaction outside of these bounds is uncharted territory.
+However, one of the core architectural tenants of the Web is the use of links [RFC3986](http://www.rfc-editor.org/info/rfc3986) to navigate between states; typically, these applications document static URLs that clients need to know and servers need to implement, and any interaction outside of these bounds is uncharted territory.
 
 In contrast, a link-driven application discovers relevant resources at run time, using a shared vocabulary of link relations [RFC5988] and internet media types [RFC6838] to support a "follow your nose" style of interaction.
 
@@ -99,7 +99,7 @@ Whether an application ought to use links in this fashion depends on how it is d
 
 Clients need to be able to discover information about these applications to use it efficiently; just as with a human-targeted "home page" for a site, there is a need for a "home document" for a HTTP API that describes it to non-browser clients.
 
-Of course, an HTTP API might use any format to do so; however, there are advantages to having a common home document format.  This specification defines one, using the JSON format [RFC7159].
+Of course, an HTTP API might use any format to do so; however, there are advantages to having a common home document format.  This specification defines one, using the JSON format [RFC7159](http://www.rfc-editor.org/info/rfc7159).
 
 ##<a name="notational-conventions"></a>1.1. Notational Conventions
 
@@ -107,7 +107,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ##<a name="api-home-documents"></a>2. API Home Documents
 
-An API Home Document (or, interchangeably, "home document") uses the format described in [RFC7159] and has the media type "application/json-home".
+An API Home Document (or, interchangeably, "home document") uses the format described in [RFC7159](http://www.rfc-editor.org/info/rfc7159) and has the media type "application/json-home".
 
 Its content consists of a root object with:
 
@@ -160,7 +160,7 @@ Connection: close
 
 Here, we have a home document for the API "Example API", whose author can be contacted at the e-mail address "api-admin@example.com", and whose documentation is at "https://example.com/api-docs/".
 
-It links to a resource "/widgets/" with the relation "tag:me@example.com,2016:widgets".  It also links to an unknown number of resources with the relation type "tag:me@example.com,2016:widget" using a URI Template [RFC6570], along with a mapping of identifiers to a variable for use in that template.
+It links to a resource "/widgets/" with the relation "tag:me@example.com,2016:widgets".  It also links to an unknown number of resources with the relation type "tag:me@example.com,2016:widget" using a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570), along with a mapping of identifiers to a variable for use in that template.
 
 It also gives several hints about interacting with the latter "widget" resources, including the HTTP methods usable with them, the PATCH and POST formats they accept, and the fact that they support partial requests [RFC7233] using the "bytes" range-specifier.
 
@@ -187,7 +187,7 @@ Effectively, this names a set of behaviors, as described by a resource object, w
 }
 ```
 
-Note that the examples above use both tag [RFC4151] and https [RFC7230] URIs; any URI scheme can be used to identify link relations and other artefacts in home documents.
+Note that the examples above use both tag [RFC4151](http://www.rfc-editor.org/info/rfc4151) and https [RFC7230](http://www.rfc-editor.org/info/rfc7230) URIs; any URI scheme can be used to identify link relations and other artefacts in home documents.
 
 ##<a name="api-objects"></a>3. API Objects
 
@@ -196,7 +196,7 @@ An API Object contains links to information about the API itself.
 Two members are defined:
 
 * "title" has a string value indicating the name of the API;
-* "links" has an object value, whose member names are link relation types [RFC5988], and values are URLs [RFC3986].  The context of these links is the API home document as a whole.
+* "links" has an object value, whose member names are link relation types [RFC5988], and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986).  The context of these links is the API home document as a whole.
 
 Future members MAY be defined by specifications that update this document.
 
@@ -204,19 +204,19 @@ Future members MAY be defined by specifications that update this document.
 
 A Resource Object links to resources of the defined type using one of two mechanisms; either a direct link (in which case there is exactly one resource of that relation type associated with the API), or a templated link, in which case there are zero to many such resources.
 
-Direct links are indicated with an "href" property, whose value is a URI [RFC3986].
+Direct links are indicated with an "href" property, whose value is a URI [RFC3986](http://www.rfc-editor.org/info/rfc3986).
 
-Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570].  When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
+Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570).  When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
 
 Resource Objects MUST have exactly one of the "href" and "href-vars" properties.
 
-In both forms, the links that "href" and "hrefTemplate" refer to are URI-references [RFC3986] whose base URI is that of the API Home Document itself.
+In both forms, the links that "href" and "hrefTemplate" refer to are URI-references [RFC3986](http://www.rfc-editor.org/info/rfc3986) whose base URI is that of the API Home Document itself.
 
 Resource Objects MAY also have a "hints" property, whose value is an object that uses named Resource Hints (see Section 5) as its properties.
 
 ###<a name="resolving-templated-links"></a>4.1. Resolving Templated Links
 
-A URI can be derived from a Templated Link by treating the "hrefTemplate" value as a Level 3 URI Template [RFC6570], using the "hrefVars" property to fill the template.
+A URI can be derived from a Templated Link by treating the "hrefTemplate" value as a Level 3 URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570), using the "hrefVars" property to fill the template.
 
 The "hrefVars" property, in turn, is an object that acts as a mapping between variable names available to the template and absolute URIs that are used as global identifiers for the semantics and syntax of those variables.
 
@@ -309,12 +309,12 @@ Content MUST be an array of strings, containing preferences.
 * Description: Hints the location for human-readable documentation for the relation type of the resource.
 * Specification: [this document]
 
-Content MUST be a string containing an absolute-URI [RFC3986] referring to documentation that SHOULD be in HTML format.
+Content MUST be a string containing an absolute-URI [RFC3986](http://www.rfc-editor.org/info/rfc3986) referring to documentation that SHOULD be in HTML format.
 
 ###<a name="resource-hints-preconditionrequired"></a>5.8. preconditionRequired
 
 * Resource Hint Name: preconditionRequired
-* Description: Hints that the resource requires state-changing requests (e.g., PUT, PATCH) to include a precondition, as per [RFC7232], to avoid conflicts due to concurrent updates.
+* Description: Hints that the resource requires state-changing requests (e.g., PUT, PATCH) to include a precondition, as per [RFC7232](http://www.rfc-editor.org/info/rfc7232), to avoid conflicts due to concurrent updates.
 * Specification: [this document]
 
 Content MUST be an array of strings, with possible values "etag" and "last-modified" indicating type of precondition expected.
@@ -322,7 +322,7 @@ Content MUST be an array of strings, with possible values "etag" and "last-modif
 ###<a name="resource-hints-authschemes"></a>5.9. authSchemes
 
 * Resource Hint Name: authSchemes
-* Description: Hints that the resource requires authentication using the HTTP Authentication Framework [RFC7235].
+* Description: Hints that the resource requires authentication using the HTTP Authentication Framework [RFC7235](http://www.rfc-editor.org/info/rfc7235).
 * Specification: [this document]
 
 Content MUST be an array of objects, each with a "scheme" property containing a string that corresponds to a HTTP authentication scheme, and optionally a "realms" property containing an array of zero to many strings that identify protection spaces that the resource is a member of.
@@ -365,7 +365,7 @@ In particular, resource hints are generic; that is, they are potentially applica
 
 Hint names MUST be composed of the lowercase letters (a-z), digits (0-9), underscores (`_`) and hyphens (`-`), and MUST begin with a lowercase letter.
 
-Hint content SHOULD be described in terms of JSON [RFC7159] constructs.
+Hint content SHOULD be described in terms of JSON [RFC7159](http://www.rfc-editor.org/info/rfc7159) constructs.
 
 New hints are registered using the Expert Review process described in [RFC5226] to enforce the criteria above.  Requests for registration of new resource hints are to use the following template:
 
