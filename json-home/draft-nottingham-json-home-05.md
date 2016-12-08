@@ -1,10 +1,10 @@
 #Home Documents for HTTP APIs
 
-Network Working Group
-Internet-Draft
-Intended status: Informational
-November 24, 2016
-M. Nottingham
+Network Working Group  
+Internet-Draft  
+Intended status: Informational  
+November 24, 2016  
+M. Nottingham  
 Expires: May 28, 2017
 
 ##<a name="abstract"></a>Abstract
@@ -83,7 +83,7 @@ By using HTTP, these applications realise a number of benefits, from message fra
 
 However, one of the core architectural tenants of the Web is the use of links [RFC3986](http://www.rfc-editor.org/info/rfc3986) to navigate between states; typically, these applications document static URLs that clients need to know and servers need to implement, and any interaction outside of these bounds is uncharted territory.
 
-In contrast, a link-driven application discovers relevant resources at run time, using a shared vocabulary of link relations [RFC5988] and internet media types [RFC6838] to support a "follow your nose" style of interaction.
+In contrast, a link-driven application discovers relevant resources at run time, using a shared vocabulary of link relations [RFC5988](http://www.rfc-editor.org/info/rfc5988) and internet media types [RFC6838](http://www.rfc-editor.org/info/rfc6838) to support a "follow your nose" style of interaction.
 
 A client can then decide which resources to interact with "on the fly" based upon its capabilities (as described by link relations), and the server can safely add new resources and formats without disturbing clients that are not yet aware of them.
 
@@ -111,7 +111,7 @@ An API Home Document (or, interchangeably, "home document") uses the format desc
 
 Its content consists of a root object with:
 
-* A "resources" member, whose value is an object that describes the resources associated with the API.  Its member names are link relation types (as defined by [RFC5988]), and their values are Resource Objects (Section 4).
+* A "resources" member, whose value is an object that describes the resources associated with the API.  Its member names are link relation types (as defined by [RFC5988](http://www.rfc-editor.org/info/rfc5988)), and their values are Resource Objects (Section 4).
 * Optionally, a "api" member, whose value is an API Object (Section 3) that contains information about the API as a whole.
 
 For example:
@@ -196,7 +196,7 @@ An API Object contains links to information about the API itself.
 Two members are defined:
 
 * "title" has a string value indicating the name of the API;
-* "links" has an object value, whose member names are link relation types [RFC5988], and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986).  The context of these links is the API home document as a whole.
+* "links" has an object value, whose member names are link relation types [RFC5988](http://www.rfc-editor.org/info/rfc5988), and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986).  The context of these links is the API home document as a whole.
 
 Future members MAY be defined by specifications that update this document.
 
