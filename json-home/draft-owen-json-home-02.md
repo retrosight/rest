@@ -50,14 +50,31 @@ In contrast, a link-driven application discovers relevant resources at run time,
 
 A client can then decide which resources to interact with "on the fly" based upon its capabilities (as described by link relations), and the server can safely add new resources and formats without disturbing clients that are not yet aware of them.
 
+> Owen: One of the most important parts of the JSON Home format seems to be in providing an abstraction layer between the actual URL where a resource is located and the value client code binds to for same -- this would seem to be a key pivot for the concept of 'independent evolvability'. In this paradigm the client code never concerns itself at all with URLs -- it binds only to the link relation.
+
+> I would drop Customisation, Flexible deployment and API mixing as concerns which are orhogonal to the goals of JSON Home.
+
+> Consider:
+
+```
+* Server independence from client - Server interfaces can independently evolve without breaking client code through the addition of:
+  * New link relations (Extensibility)
+  * New metadata for existing link relations. (Evolvability)
+* Abstraction of implementation details - The server can choose the URLs associated with a given link relation without breaking client code which is bound to relation descriptions which rarely, if ever, change.
+* JSON Home aligns nicely with RESTful uniform interface constraints:
+  * Identification of resources - JSON Home documents can start to identify all of the types of resources available at a given root URL.
+  * Hypermedia as the engine of application state - Home documents can be tailored for client code. Examples: providing different features per client or emitting authorization boundaries.
+  * Self describing - JSON Home allows the server to be wholly self-describing starting at the root URL.
+  * Manipulation of resources through representations - JSON Home documents provide excellent hints to client code on how to manipulate resources and reprentations to achieve objectives.
+```
+
 Doing so can provide any of a number of benefits, including:
 
-* Extensibility - New API features can be added without affecting current API features; May help APIs avoid versioning information in the URL.
-* Evolvability - Server interfaces can independently evolve without breaking client code through the addition of:
-  * New link relations.
-  * New metadata for existing link relations.
-* Hypermedia as the engine of application state - Home documents can be tailored for client code.
-* Flexible deployment - Since URLs aren't baked into documentation, the server can choose the URLs associated with a given link relation without breaking client code.
+* Extensibility - Because new server capabilities can be expressed as link relations, new features can be layered in without introducing a new API version; clients will discover them in the home document.  This promotes loose coupling between clients and servers.
+* Evolvability - Likewise, interfaces can change gradually by introducing a new link relation and/or format while still supporting the old ones.
+* Customisation - Home documents can be tailored for the client, allowing diffrent classes of service or different client permissions to be exposed naturally.
+* Flexible deployment - Since URLs aren't baked into documentation, the server can choose what URLs to use for a given service.
+* API mixing - Likewise, more than one API can be deployed on a given server, without fear of collisions.
 
 Whether an application ought to use links in this fashion depends on how it is deployed; generally, the most benefit will be received when multiple instances of the service are deployed, possibly with different versions, and they are consumed by clients with different capabilities.  In particular, Internet Standards that use HTTP as a substrate are likely to require the attributes described above.
 
