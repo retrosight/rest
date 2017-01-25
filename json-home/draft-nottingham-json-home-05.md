@@ -1,3 +1,5 @@
+Note: This is a Markdown formatted copy of https://tools.ietf.org/html/draft-nottingham-json-home-05.
+
 #Home Documents for HTTP APIs
 
 Network Working Group  

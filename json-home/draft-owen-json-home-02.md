@@ -38,9 +38,13 @@
 
 ##<a name="introduction"></a>1. Introduction
 
+> Owen: In general these first two paragraphs feel a bit unecessary; Both seem like widely and generally accepted stipulations: APIs leveraging HTTP are common and using HTTP has benefits.
+
 It is becoming increasingly common to use HTTP [RFC7230](http://www.rfc-editor.org/info/rfc7230) for applications other than traditional Web browsing. Such "HTTP APIs" are used to integrate processes on disparate systems, make information available to machines across the Internet, and as part of the implementation of "micro-services."
 
 By using HTTP, these applications realise a number of benefits, from message framing to caching, and well-defined semantics that are broadly understood and useful.
+
+> Owen: "However?"" Probably more like 'In addition' noting this is pure HATEOAS. Typically speaking, many of the URLs in HTTP APIs are templated in some way, requiring client code to build strings -- making client code brittle.
 
 However, one of the core architectural tenants of the Web is the use of links [RFC3986](http://www.rfc-editor.org/info/rfc3986) to navigate between states; typically, these applications document static URLs that clients need to know and servers need to implement, and any interaction outside of these bounds is uncharted territory.
 
@@ -52,7 +56,7 @@ A client can then decide which resources to interact with "on the fly" based upo
 
 > Owen: One of the most important parts of the JSON Home format seems to be in providing an abstraction layer between the actual URL where a resource is located and the value client code binds to for same -- this would seem to be a key pivot for the concept of 'independent evolvability'. In this paradigm the client code never concerns itself at all with URLs -- it binds only to the link relation.
 
-> I would drop Customisation, Flexible deployment and API mixing as concerns which are orhogonal to the goals of JSON Home.
+> I would drop Customisation, Flexible deployment and API mixing as concerns which are orthogonal to the goals of JSON Home.
 
 > Consider:
 
@@ -76,7 +80,18 @@ Doing so can provide any of a number of benefits, including:
 * Flexible deployment - Since URLs aren't baked into documentation, the server can choose what URLs to use for a given service.
 * API mixing - Likewise, more than one API can be deployed on a given server, without fear of collisions.
 
+> Owen: This paragraph is a bit confusing as one of the central premises of JSON Home is an application (meaning client or server code) should use links in this fashion. Deployment, instances, versions (server and client) are separate topics.
+
 Whether an application ought to use links in this fashion depends on how it is deployed; generally, the most benefit will be received when multiple instances of the service are deployed, possibly with different versions, and they are consumed by clients with different capabilities.  In particular, Internet Standards that use HTTP as a substrate are likely to require the attributes described above.
+
+> Owen: See note above about discovery. I believe JSON Home can be used to describe an API to both code and humans.
+
+```
+* Humans use the server's JSON Home document to write client code.
+* Client code uses the JSON Home document:
+  * To interact with the server.
+  * To react to changes within the server.
+```
 
 Clients need to be able to discover information about these applications to use it efficiently; just as with a human-targeted "home page" for a site, there is a need for a "home document" for a HTTP API that describes it to non-browser clients.
 
