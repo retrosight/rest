@@ -112,6 +112,8 @@ Its content consists of a root object with:
 
 For example:
 
+> Owen: Verbose HTTP request / response information probably doesn't add value here.
+
 ```
 GET / HTTP/1.1
 Host: example.org
@@ -122,6 +124,8 @@ Content-Type: application/json-home
 Cache-Control: max-age=3600
 Connection: close
 ```
+
+> Owen: This is invalid JSON as there is a comma missing between the "api" and "resources" objects.
 
 ```json
 {
@@ -154,7 +158,11 @@ Connection: close
 }
 ```
 
+> Owen: Move this above the example. Also, there is likely value in talking about the schema of a JSON Home document in the entirety before any examples are given.
+
 Here, we have a home document for the API "Example API", whose author can be contacted at the e-mail address "api-admin@example.com", and whose documentation is at "https://example.com/api-docs/".
+
+> Owen: Having the object / key name be the relation name presents a rather large hurdle (blocker) for client code: It makes it difficult at best to create shared client libraries and tends to result in 'hard coding' of any client code to a specific API. Generally speaking, keys are static and values are dynamic. Suggest a `"rel"="tag:me@example.com,2016:widget"` approach instead.
 
 It links to a resource "/widgets/" with the relation "tag:me@example.com,2016:widgets".  It also links to an unknown number of resources with the relation type "tag:me@example.com,2016:widget" using a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570), along with a mapping of identifiers to a variable for use in that template.
 
