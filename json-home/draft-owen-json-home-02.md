@@ -90,7 +90,7 @@ Whether an application ought to use links in this fashion depends on how it is d
 * Humans use the server's JSON Home document to write client code.
 * Client code uses the JSON Home document:
   * To interact with the server.
-  * To react to changes within the server.
+  * To note and or react to changes within the server.
 ```
 
 Clients need to be able to discover information about these applications to use it efficiently; just as with a human-targeted "home page" for a site, there is a need for a "home document" for a HTTP API that describes it to non-browser clients.
@@ -168,7 +168,11 @@ It links to a resource "/widgets/" with the relation "tag:me@example.com,2016:wi
 
 It also gives several hints about interacting with the latter "widget" resources, including the HTTP methods usable with them, the PATCH and POST formats they accept, and the fact that they support partial requests [RFC7233] using the "bytes" range-specifier.
 
+> Owen: It is perhaps interesting to note JSON Home documents can be pointers to other JSON Home documents -- so that likely should be called out as one of the examples.
+
 It gives no such hints about the "widgets" resource.  This does not mean that it (for example) doesn't support any HTTP methods; it means that the client will need to discover this by interacting with the resource, and/or examining the documentation for its link relation type.
+
+> Owen: Should probably investigate the use of n-number of key value pairs to allow for the URI templating to be explicity addressed. Also note the `base` keyword in JSON Schema: http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.4.1. In the current examples you can have only one common base URL which might be limiting in describing a graph of APIs.
 
 Effectively, this names a set of behaviors, as described by a resource object, with a link relation type.  This means that several link relations might apply to a common base URL; e.g.:
 
@@ -195,22 +199,30 @@ Note that the examples above use both tag [RFC4151](http://www.rfc-editor.org/in
 
 ##<a name="api-objects"></a>3. API Objects
 
+> Owen: In reality, links in the context of the examples are simply additional resources (perhaps more accurately, representations of resources). Suggest these simply be documented as such according to Section 4. Resource Objects and move `title` into the root of the JSON document, effectively eliminating this key from the vocabulary.
+
 An API Object contains links to information about the API itself.
 
 Two members are defined:
 
 * "title" has a string value indicating the name of the API;
-* "links" has an object value, whose member names are link relation types [RFC5988](http://www.rfc-editor.org/info/rfc5988), and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986).  The context of these links is the API home document as a whole.
+* "links" has an object value, whose member names are link relation types [RFC5988](http://www.rfc-editor.org/info/rfc5988), and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986). The context of these links is the API home document as a whole.
 
 Future members MAY be defined by specifications that update this document.
 
 ##<a name="resource-objects"></a>4. Resource Objects
 
+> Owen: It does not seem like a direct link will automatically imply exactly one resource, if for no other reason than from a data perspective, a resource can be an array of multiple resources. An example following the POST to /widgets is a GET from /widgets which returns an array of widgets, each one of which can be referenced as a separate resource. Likewise, a templated link may not imply multiple resources. In summary, the RFC should remain agnostic to the definition of a resource, but simply explain how to get to resources for a given relation.
+
 A Resource Object links to resources of the defined type using one of two mechanisms; either a direct link (in which case there is exactly one resource of that relation type associated with the API), or a templated link, in which case there are zero to many such resources.
 
 Direct links are indicated with an "href" property, whose value is a URI [RFC3986](http://www.rfc-editor.org/info/rfc3986).
 
-Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570).  When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
+> Owen: Suggest moving the `hrefVars` into the root of the document so they can be leveraged across mulitple relation types (aka end points).
+
+Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570). When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
+
+> Owen: Suggest only having `href` which can be either a direct URI or a templated URI. I am a little confused about why they must have exactly one of the `href-vars` because variables are very powerful for templates and APIs may require multiple variables to identify resources.
 
 Resource Objects MUST have exactly one of the "href" and "href-vars" properties.
 
@@ -219,6 +231,8 @@ In both forms, the links that "href" and "hrefTemplate" refer to are URI-referen
 Resource Objects MAY also have a "hints" property, whose value is an object that uses named Resource Hints (see Section 5) as its properties.
 
 ###<a name="resolving-templated-links"></a>4.1. Resolving Templated Links
+
+> Owen: Suggest RFC 6570 does a sufficient job at explaining templated URIs and it is probably best to allow that RFC to address the topic fully than oversimplify.
 
 A URI can be derived from a Templated Link by treating the "hrefTemplate" value as a Level 3 URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570), using the "hrefVars" property to fill the template.
 
@@ -243,7 +257,7 @@ For example, given the following Resource Object:
 }
   ```
 
-If you understand that "https://example.org/param/widget" is an numeric identifier for a widget, you can then find the resource corresponding to widget number 12345 at "https://example.org/ widgets/12345" (assuming that the Home Document is located at "https://example.org/").
+If you understand that "https://example.org/param/widget" is an numeric identifier for a widget, you can then find the resource corresponding to widget number 12345 at "https://example.org/widgets/12345" (assuming that the Home Document is located at "https://example.org/").
 
 ##<a name="resource-hints"></a>5. Resource Hints
 

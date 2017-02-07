@@ -198,7 +198,7 @@ An API Object contains links to information about the API itself.
 Two members are defined:
 
 * "title" has a string value indicating the name of the API;
-* "links" has an object value, whose member names are link relation types [RFC5988](http://www.rfc-editor.org/info/rfc5988), and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986).  The context of these links is the API home document as a whole.
+* "links" has an object value, whose member names are link relation types [RFC5988](http://www.rfc-editor.org/info/rfc5988), and values are URLs [RFC3986](http://www.rfc-editor.org/info/rfc3986). The context of these links is the API home document as a whole.
 
 Future members MAY be defined by specifications that update this document.
 
@@ -208,7 +208,7 @@ A Resource Object links to resources of the defined type using one of two mechan
 
 Direct links are indicated with an "href" property, whose value is a URI [RFC3986](http://www.rfc-editor.org/info/rfc3986).
 
-Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570).  When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
+Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570). When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
 
 Resource Objects MUST have exactly one of the "href" and "href-vars" properties.
 

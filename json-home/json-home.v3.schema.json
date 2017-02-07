@@ -11,10 +11,15 @@
     },
     "href": {
       "$ref": "#/definitions/hrefDefinition",
-      "description": "Identifier and hyperlink for this JSON home resource."
+      "description": "Identifier and hyperlink (aka 'self') for this JSON home resource."
     },
-    "api": {
-      "$ref": "#/definitions/apiDefinition"
+    "title": {
+      "type": "string",
+      "description": "The human readable title of the API described by this JSON Home resource. http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.5.3"
+    },
+    "hrefTemplateVars": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/hrefTemplateVarsDefinition" }
     },
     "resources": {
       "type": "array",
@@ -23,64 +28,28 @@
       }
     }
   },
-  "required": [  ],
+  "required": [ "schema", "href" ],
   "definitions": {
-    "relDefinition": {
-      "type": "string",
-      "description": "RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy"
-    },
     "hrefDefinition": {
       "type": "string",
-      "description": "RFC 3986 Uniform Resource Identifier (URI) link to a resource."
-    },
-    "apiDefinition": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-           "description": "The title of the API."
-        },
-        "links": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "rel": {
-                "$ref": "#/definitions/relDefinition"
-              },
-              "href": {
-                "$ref": "#/definitions/hrefDefinition"
-              },
-            },
-            "required": [ "rel", "href" ]
-          }
-        }
-      },
-      "required": [  ]
+      "description": "Link to a resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt OR RFC6570 URI Template https://tools.ietf.org/html/rfc6570."
     },
     "resourcesDefinition": {
       "type": "object",
       "properties": {
         "rel": {
-          "$ref": "#/definitions/relDefinition"
+          "type": "string",
+          "description": "RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy"
         },
         "href": {
           "$ref": "#/definitions/hrefDefinition"
-        },
-        "hrefTemplate": {
-          "type": "string",
-           "description": "Link to a resource using RFC6570"
-        },
-        "hrefTemplateVars": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/hrefTemplateVarsDefinition" }
         },
         "hints": {
           "type": "array",
           "items": { "$ref": "#/definitions/hintsDefinition" }
         }
       },
-      "required": [  ]
+      "required": [ "rel", "href" ]
     },
     "hrefTemplateVarsDefinition": {
       "type": "object",
@@ -92,6 +61,10 @@
         "varDefinition": {
           "type": "string",
            "description": "Link to a definition for the variable using RFC3986"
+        },
+        "varValue": {
+          "type": "string",
+           "description": "The variable value."
         }
       },
       "required": [  ]
@@ -111,7 +84,7 @@
         "prefer": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints the preferences RFC 7240 supported by the resource. Note that, as per that specifications, a preference can be ignored by the server."
+          "description": "Hints the RFC 7240 Prefer Header for HTTP https://tools.ietf.org/html/rfc7240 supported by the resource. Note that, as per this RFC, a preference can be ignored by the server."
         },
         "profiles": {
           "type": "array",
@@ -121,20 +94,20 @@
         "preconditionRequired": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) to include a precondition, as per [RFC7232], to avoid conflicts due to concurrent updates. Examples: etag, last-modified"
+          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests https://tools.ietf.org/html/rfc7232 to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`"
         },
         "acceptRanges": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the Accept-Ranges HTTP response header RFC 7233."
+          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the Accept-Ranges HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
         },
         "docs": {
           "type": "string",
-          "description": "Hints the location for human-readable documentation for the relation type of the resource, an absolute-URI [RFC3986] referring to documentation that SHOULD be in HTML format."
+          "description": "Hints the location for human-readable documentation for the relation type of the resource, a RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt referring to documentation that SHOULD be in HTML format."
         },
         "authSchemes": {
           "type": "array",
-          "description": "Hints that the resource requires authentication using the HTTP Authentication Framework [RFC7235]",
+          "description": "Hints that the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication https://tools.ietf.org/html/rfc7235",
           "items": {
             "type": "object",
             "properties": {
