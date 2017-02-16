@@ -212,7 +212,7 @@ Future members MAY be defined by specifications that update this document.
 
 ##<a name="resource-objects"></a>4. Resource Objects
 
-> Owen: It does not seem like a direct link will automatically imply exactly one resource, if for no other reason than from a data perspective, a resource can be an array of multiple resources. An example following the POST to /widgets is a GET from /widgets which returns an array of widgets, each one of which can be referenced as a separate resource. Likewise, a templated link may not imply multiple resources. In summary, the RFC should remain agnostic to the definition of a resource, but simply explain how to get to resources for a given relation.
+> Owen: It does not seem like a direct link will automatically imply exactly one resource, if for no other reason than from a data perspective, a resource can be an array of multiple resources / representations. An example following the POST to /widgets is a GET from /widgets which returns an array of widgets, each one of which can be referenced as a separate resource. Likewise, a templated link may not imply multiple resources. In summary, the RFC should remain agnostic to the definition of a resource, but simply explain how to get to resources for a given link relation.
 
 A Resource Object links to resources of the defined type using one of two mechanisms; either a direct link (in which case there is exactly one resource of that relation type associated with the API), or a templated link, in which case there are zero to many such resources.
 
@@ -222,7 +222,7 @@ Direct links are indicated with an "href" property, whose value is a URI [RFC398
 
 Templated links are indicated with an "hrefTemplate" property, whose value is a URI Template [RFC6570](http://www.rfc-editor.org/info/rfc6570). When "hrefTemplate" is present, the Resource Object MUST have a "hrefVars" property; see "Resolving Templated Links".
 
-> Owen: Suggest only having `href` which can be either a direct URI or a templated URI. I am a little confused about why they must have exactly one of the `href-vars` because variables are very powerful for templates and APIs may require multiple variables to identify resources.
+> Owen: Suggest only having `href` which can be either a direct URI or a templated URI. I am a little confused about why they must have `exactly one` of the `href-vars` because variables are very powerful for templates and APIs may require multiple variables to identify resources.
 
 Resource Objects MUST have exactly one of the "href" and "href-vars" properties.
 
@@ -261,15 +261,23 @@ If you understand that "https://example.org/param/widget" is an numeric identifi
 
 ##<a name="resource-hints"></a>5. Resource Hints
 
+> Owen: Following an earlier comment, suggest making a clear distinction between human discovery and client code -- both will use hints, so it's a good idea to explicity document use cases.
+
 Resource hints allow clients to find relevant information about interacting with a resource beforehand, as a means of optimizing communications, as well as advertising available behaviors (e.g., to aid in laying out a user interface for consuming the API).
 
+> Owen: Hints not being a contract: client code will very likely bind to hints if for no other reason than to note when things change or are added to alert a human; If client code is meant to use them they are part of the runtime behavior. The runtime behavior of a resource should ALWAYS match the entire definition of a JSON Home document.
+
 Hints are just that - they are not a "contract", and are to only be taken as advisory.  The runtime behavior of the resource always overrides hinted information.
+
+> Owen: Is this describing hints at all or is it defining how the server is always in control? Feels like the latter so probably extraneous information best left out of the RFC.
 
 For example, a resource might hint that the PUT method is allowed on all "widget" resources.  This means that generally, the user has the ability to PUT to a particular resource, but a specific resource might reject a PUT based upon access control or other considerations. More fine-grained information might be gathered by interacting with the resource (e.g., via a GET), or by another resource "containing" it (such as a "widgets" collection) or describing it (e.g., one linked to it with a "describedBy" link relation).
 
 This specification defines a set of common hints, based upon information that's discoverable by directly interacting with resources.  See Section 7.1 for information on defining new hints.
 
 ###<a name="resource-hints-allow"></a>5.1. allow
+
+> Owen: The challenge here is the actions can be vastly different between methods -- merely advertising the methods according to https://tools.ietf.org/html/rfc7231#section-7.4.1 does not appear to get granular enough for the human or client code to know what other hints can be used with each method; basically creating a cartesian product of sorts. Using this approach means hints can really only be used as documentation rather than during runtime.
 
 * Resource Hint Name: allow
 * Description: Hints the HTTP methods that the current client will be able to use to interact with the resource; equivalent to the Allow HTTP response header.
@@ -279,6 +287,8 @@ Content MUST be an array of strings, containing HTTP methods.
 
 ###<a name="resource-hints-formats"></a>5.2. formats
 
+> Owen: Some APIs allow for multiple responses for GET yet limit for POST / PUT and vice versa -- in others words this isn't always 1:1 and often is not by design. I'd like to understand the approach where keys are media types and what objects are envisioned.
+
 * Resource Hint Name: formats
 * Description: Hints the representation types that the resource produces and consumes, using the GET and PUT methods respectively, subject to the 'allow' hint.
 * Specification: [this document]
@@ -286,6 +296,7 @@ Content MUST be an array of strings, containing HTTP methods.
 Content MUST be an object, whose keys are media types, and values are objects, currently empty.
 
 ###<a name="resource-hints-acceptpatch"></a>5.3. acceptPatch
+
 
 * Resource Hint Name: accept-Patch
 * Description: Hints the PATCH [RFC5789] request formats accepted by the resource for this client; equivalent to the Accept-Patch HTTP response header.
