@@ -17,9 +17,9 @@
       "type": "string",
       "description": "The human readable title of the API described by this JSON Home resource. http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.5.3"
     },
-    "hrefTemplateVars": {
+    "vars": {
       "type": "array",
-      "items": { "$ref": "#/definitions/hrefTemplateVarsDefinition" }
+      "items": { "$ref": "#/definitions/varsDefinition" }
     },
     "resources": {
       "type": "array",
@@ -51,7 +51,7 @@
       },
       "required": [ "rel", "href" ]
     },
-    "hrefTemplateVarsDefinition": {
+    "varsDefinition": {
       "type": "object",
       "properties": {
         "varName": {
