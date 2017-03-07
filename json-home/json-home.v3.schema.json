@@ -79,7 +79,7 @@
         "formats": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints the representation types that the resource produces and consumes, using the GET and PUT methods respectively, subject to the ‘method’ hint"
+          "description": "Hints the representation types that the resource produces and consumes, aligned with the ‘method’ hint."
         },
         "prefer": {
           "type": "array",
@@ -122,7 +122,7 @@
               "realms": {
                 "type": "array",
                 "items": { "type": "string" },
-                "description": "an array of zero to many strings that identify protection spaces that the resource is a member of."
+                "description": "An array of zero to many strings that identify protection spaces that the resource is a member of."
               },
             },
             "required": [ "scheme" ]

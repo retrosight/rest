@@ -297,6 +297,7 @@ Content MUST be an object, whose keys are media types, and values are objects, c
 
 ###<a name="resource-hints-acceptpatch"></a>5.3. acceptPatch
 
+> Owen: This design makes assumptions about the use of the different methods (`PUT, GET, POST...etc`) and effectively hard codes certain methods within the schema, such as `accept-Patch` and `acceptPost` yet these are functionally identical to the `formats` hint. Suggest a grouping by methods, each of which has `formats` and `prefers`.
 
 * Resource Hint Name: accept-Patch
 * Description: Hints the PATCH [RFC5789] request formats accepted by the resource for this client; equivalent to the Accept-Patch HTTP response header.
@@ -307,6 +308,8 @@ Content MUST be an array of strings, containing media types.
 When this hint is present, "PATCH" SHOULD be listed in the "allow" hint.
 
 ###<a name="resource-hints-acceptpost"></a>5.4. acceptPost
+
+> Owen: See note on acceptPatch.
 
 * Resource Hint Name: acceptPost
 * Description: Hints the POST request formats accepted by the resource for this client.
@@ -325,6 +328,8 @@ When this hint is present, "POST" SHOULD be listed in the "allow" hint.
 Content MUST be an array of strings, containing HTTP range-specifiers (typically, "bytes").
 
 ###<a name="resource-hints-acceptprefer"></a>5.6. acceptPrefer
+
+> Owen: Suggest shortening to simply `prefer` to match with the RFC.
 
 * Resource Hint Name: acceptPrefer
 * Description: Hints the preferences [RFC7240] supported by the resource.  Note that, as per that specifications, a preference can be ignored by the server.
