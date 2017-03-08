@@ -772,11 +772,11 @@ Links to claims within the RFC:
 
 ###<a name="ISO-4217"></a>ISO 4217:2015 Codes for the representation of currencies
 
-* [ISO 4217:2015 Codes for the representation of currencies](https://github..com/developer/api/tree/master/standards/ISO_4217_2015_en.PDF)
+* [ISO 4217:2015 Codes for the representation of currencies](https://www.iso.org/standard/64758.html)
 
-###<a name="ISO-8601"></a>ISO 8601:2004 Data elements and interchange formats - Information interchange - Representation of dates and times
+###<a name="ISO-8601"></a>ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times
 
-* [http://www.iso.org/iso/catalogue_detail?csnumber=40874](http://www.iso.org/iso/catalogue_detail?csnumber=40874)
+* [ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times](https://www.iso.org/standard/40874.html)
 
 ###<a name="RFC-2119"></a>RFC 2119 Key words for use in RFCs to Indicate Requirement Levels
 
