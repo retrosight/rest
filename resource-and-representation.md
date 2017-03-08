@@ -428,7 +428,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata",
 	"id": "97b83a735620465cb8a01bf82392336b",
 	"template": "https://example.com/store/{id}/aisledata",
-	"data": [
+	"relatedData": [
 		{
 			"schema": "https://example.com/schemas/aisles.v1.schema.json",
 			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",

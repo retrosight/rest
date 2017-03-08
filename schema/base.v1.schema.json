@@ -27,8 +27,8 @@
     },
     "relatedDataLinks": {
       "type": "array",
-      "description": "An array for providing hyperlines to related data in a parent response.",
-      "items": { "$ref": "https://example.com/schemas/list.v1.schema.json" }
+      "description": "An array for providing hyperlinks to related data in a parent response.",
+      "items": { "$ref": "https://example.com/schemas/links.v1.schema.json" }
     },
     "alternates": {
       "type": "array",
