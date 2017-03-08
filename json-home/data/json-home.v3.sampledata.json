@@ -32,7 +32,7 @@
         {
           "method": "POST",
           "formats": [ "application/json", "application/xml" ],
-          "prefer": [ "application/json" ],
+          "prefer": [ "handling=lenient", "wait=100", "respond-async" ],
           "profiles": [
             "http://example.com/schemas/widget.schema.json",
             "http://example.com/schemas/better-widget.schema.json" ],
@@ -61,7 +61,7 @@
         {
           "method": "PUT",
           "formats": [ "application/json", "application/xml" ],
-          "prefer": [ "application/json" ],
+          "prefer": [ "priority=5" ],
           "preconditionRequired": [ "etag", "last-modified" ],
           "docs": "https://example.com/docs/widget#update",
           "authSchemes": [

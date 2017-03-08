@@ -34,23 +34,6 @@
       "type": "string",
       "description": "Link to a resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt OR RFC6570 URI Template https://tools.ietf.org/html/rfc6570."
     },
-    "resourcesDefinition": {
-      "type": "object",
-      "properties": {
-        "rel": {
-          "type": "string",
-          "description": "RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy"
-        },
-        "href": {
-          "$ref": "#/definitions/hrefDefinition"
-        },
-        "hints": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/hintsDefinition" }
-        }
-      },
-      "required": [ "rel", "href" ]
-    },
     "varsDefinition": {
       "type": "object",
       "properties": {
@@ -68,6 +51,23 @@
         }
       },
       "required": [  ]
+    },
+    "resourcesDefinition": {
+      "type": "object",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy"
+        },
+        "href": {
+          "$ref": "#/definitions/hrefDefinition"
+        },
+        "hints": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/hintsDefinition" }
+        }
+      },
+      "required": [ "rel", "href" ]
     },
     "hintsDefinition": {
       "type": "object",

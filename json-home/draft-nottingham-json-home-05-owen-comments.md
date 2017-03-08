@@ -287,7 +287,7 @@ Content MUST be an array of strings, containing HTTP methods.
 
 ###<a name="resource-hints-formats"></a>5.2. formats
 
-> Owen: Some APIs allow for multiple responses for GET yet limit for POST / PUT and vice versa -- in others words this isn't always 1:1 and often is not by design. I'd like to understand the approach where keys are media types and what objects are envisioned.
+> Owen: Some APIs allow for multiple responses for GET yet limit for POST / PUT and vice versa -- in others words this isn't always 1:1 and often is not by design. I'd like to understand the approach where keys are media types and what objects are envisioned. I suspect they would eventually be links to schemas describing the documents the service accepts, which is currently missing from the design.
 
 * Resource Hint Name: formats
 * Description: Hints the representation types that the resource produces and consumes, using the GET and PUT methods respectively, subject to the 'allow' hint.
