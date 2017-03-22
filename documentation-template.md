@@ -200,7 +200,7 @@ Name | Type | Format | Description
 `storeIdentifier`|`string`|-|**Required** Note required when applicable.
 `requestDate`|`string`|[`dateTime`](#dateTime)|This parameter isn't required. Link to format using anchor tags when applicable.
 
-####Payload
+####Payload Body
 
 Generally speaking these payloads will be described in much detail with a Schema section.
 

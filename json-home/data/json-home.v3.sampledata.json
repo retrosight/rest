@@ -2,7 +2,7 @@
   "schema": "http://example.com/schemas/json-home.v3.schema.json",
   "href": "http://example.com/json-home.v3.sampledata.json",
   "title": "Example API",
-  "hrefVars": [
+  "vars": [
     {
       "varName": "widgetId",
       "varDefinition": "https://example.org/param/widget"
@@ -47,7 +47,6 @@
         {
           "method": "GET",
           "formats": [ "application/json", "application/xml" ],
-          "prefer": [ "application/xml" ],
           "acceptRanges": [ "bytes" ],
           "docs": "https://example.com/docs/widget#retrieve",
           "authSchemes": [
