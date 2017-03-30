@@ -11,7 +11,7 @@
     },
     "href": {
       "$ref": "#/definitions/hrefDefinition",
-      "description": "Identifier and hyperlink (aka 'self') for this JSON home resource."
+      "description": "Identifier and hyperlink (aka 'self') for this JSON home resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt."
     },
     "title": {
       "type": "string",
@@ -19,13 +19,13 @@
     },
     "vars": {
       "type": "array",
-      "items": { "$ref": "#/definitions/varsDefinition" }
+      "items": { "$ref": "#/definitions/varsDefinition" },
+      "description": "An array of variables to be used with hyperlink templates given in the document."
     },
     "resources": {
       "type": "array",
-      "items": {
-        "$ref": "#/definitions/resourcesDefinition"
-      }
+      "items": { "$ref": "#/definitions/resourcesDefinition" },
+      "description": "An array of resources and hints about the resources used by humans writing client code and the client code itself."
     }
   },
   "required": [ "schema", "href" ],
@@ -39,7 +39,7 @@
       "properties": {
         "varName": {
           "type": "string",
-           "description": "The variable name"
+           "description": "The variable name."
         },
         "varDefinition": {
           "type": "string",
@@ -50,7 +50,7 @@
            "description": "The variable value."
         }
       },
-      "required": [  ]
+      "required": [ "varName" ]
     },
     "resourcesDefinition": {
       "type": "object",
@@ -64,7 +64,8 @@
         },
         "hints": {
           "type": "array",
-          "items": { "$ref": "#/definitions/hintsDefinition" }
+          "items": { "$ref": "#/definitions/hintsDefinition" },
+          "description": "Hints provided to both humans writing the client code and the client code itself, describing the resource and activities available for a given link relation."
         }
       },
       "required": [ "rel", "href" ]
@@ -74,7 +75,7 @@
       "properties": {
         "method": {
           "type": "string",
-           "description": "Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH"
+           "description": "Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH."
         },
         "formats": {
           "type": "array",
@@ -89,25 +90,36 @@
         "profiles": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Links to the schema(s) (typically JSON) which define payloads the endpoint will generally accept. Based on RFC 6096 The 'profile' Link Relation Type https://tools.ietf.org/html/rfc6906"
+          "description": "Links to the schema(s) (typically JSON schema) which define payloads the endpoint will generally accept. Based on RFC 6096 The 'profile' Link Relation Type https://tools.ietf.org/html/rfc6906"
         },
         "preconditionRequired": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests https://tools.ietf.org/html/rfc7232 to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`"
+          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests https://tools.ietf.org/html/rfc7232 to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`."
         },
         "acceptRanges": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the Accept-Ranges HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
+          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
         },
         "docs": {
           "type": "string",
           "description": "Hints the location for human-readable documentation for the relation type of the resource, a RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt referring to documentation that SHOULD be in HTML format."
         },
         "status": {
-          "type": "string",
-          "description": "Hints the status of the resource: deprecated - indicates that use of the resource is not recommended, but it is still available, gone - indicates that the resource is no longer available; i.e., it will return a 404 (Not Found) or 410 (Gone) HTTP status code if accessed."
+          "type": "object",
+          "description": "Hints the status of the resource.",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "The document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint)."
+            },
+            "rels": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "When the code is `301 Moved Permanently` or `308 Permanent Redirect` the `rel` points the consumer of this document to the alternative resource(s)."
+            }
+          }
         },
         "authSchemes": {
           "type": "array",
@@ -117,7 +129,7 @@
             "properties": {
               "scheme": {
                 "type": "string",
-                 "description": "An HTTP authentication scheme"
+                 "description": "An HTTP authentication scheme."
               },
               "realms": {
                 "type": "array",

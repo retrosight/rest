@@ -2,8 +2,8 @@
 
 * [1. Introduction](#introduction)
   * [1.1. Notational Conventions](#notational-conventions)
-* [2. API Home Documents](#api-home-documents)
-* [3. API Objects](#api-objects)
+* [2. JSON Home Documents](#json-home-documents)
+* [3. Schema](#schema)
 * [4. Resource Objects](#resource-objects)
   * [4.1. Resolving Templated Links](#resolving-templated-links)
 * [5. Resource Hints](#resource-hints)
@@ -38,64 +38,95 @@
 
 ##<a name="introduction"></a>1. Introduction
 
-One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](http://www.rfc-editor.org/info/rfc3986) hyperlinks to navigate between resources. Traditionally, client code (including a web browser with a human) typically make use of documented static URLs as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
+One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](http://www.rfc-editor.org/info/rfc3986) hyperlinks to navigate between resources. Traditionally, client code (including a human using a web browser) typically make use of documented static URLs (E.g., http://example.com) as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
 
-> Owen: 'Discovery', 'run time' and 'on the fly' seem to be the hallmarks of a hypermedia driven application as described in this draft RFC. This challenge has been tackled multiple times so far with WSDL, SOAP, OpenAPI / Swagger, RAML and others. It would seem the reality is humans always do the discovery -- so perhaps there is something to be gained from simply choosing to NOT try and solve this problem with JSON-home documents.
+JSON-Home documents provide a fundamental starting place for the programmable internet like home pages at root URLs for the World Wide Web, used by humand with browsers.
 
-Hyperlink driven client code discovers relevant resources at run time, using a shared vocabulary of [RFC 5988 Web Linking](https://www.rfc-editor.org/info/rfc5988) link relations and [RFC 6838Media Type Specifications and Registration Procedures](https://www.rfc-editor.org/info/rfc6838) media types to support a "follow your nose" style of interaction.
+* Humans use the server's JSON Home document to learn about a server, write client code and help debug issues when they arise.
+* Client code uses the JSON Home document:
+  * To interact with the server, navigate the resources and activities made available by the server.
+  * To note and / or react to changes within the server.
 
-A client can then decide which resources to interact with "on the fly" based upon its capabilities (as described by link relations), and the server can safely add new resources and formats without disturbing clients that are not yet aware of them.
+JSON-Home documents embrace and dovetail nicely with the HTTP protocol and REST principles:
 
-> Owen: One of the most important parts of the JSON Home format seems to be in providing an abstraction layer between the actual URL where a resource is located and the value client code binds to for same -- this would seem to be a key pivot for the concept of 'independent evolvability'. In this paradigm the client code never concerns itself at all with URLs -- it binds only to the link relation.
-
-> I would drop Customisation, Flexible deployment and API mixing as concerns which are orthogonal to the goals of JSON Home.
-
-> Consider:
-
-```
 * Server independence from client - Server interfaces can independently evolve without breaking client code through the addition of:
   * New link relations (Extensibility)
   * New metadata for existing link relations. (Evolvability)
 * Abstraction of implementation details - The server can choose the URLs associated with a given link relation without breaking client code which is bound to relation descriptions which rarely, if ever, change.
 * JSON Home aligns nicely with RESTful uniform interface constraints:
-  * Identification of resources - JSON Home documents can start to identify all of the types of resources available at a given root URL.
-  * Hypermedia as the engine of application state - Home documents can be tailored for client code. Examples: providing different features per client or emitting authorization boundaries.
+  * Identification of resources - JSON Home documents define the starter set of all of the resources available at a given root URL.
+  * Hypermedia as the engine of application state (HATEOAS) - Home documents are the first place the server can define its state for the client, for example: emitting authorization boundaries by making only the resources / methods available as appropriate for the caller.
   * Self describing - JSON Home allows the server to be wholly self-describing starting at the root URL.
   * Manipulation of resources through representations - JSON Home documents provide excellent hints to client code on how to manipulate resources and reprentations to achieve objectives.
-```
-
-Doing so can provide any of a number of benefits, including:
-
-* Extensibility - Because new server capabilities can be expressed as link relations, new features can be layered in without introducing a new API version; clients will discover them in the home document.  This promotes loose coupling between clients and servers.
-* Evolvability - Likewise, interfaces can change gradually by introducing a new link relation and/or format while still supporting the old ones.
-* Customisation - Home documents can be tailored for the client, allowing diffrent classes of service or different client permissions to be exposed naturally.
-* Flexible deployment - Since URLs aren't baked into documentation, the server can choose what URLs to use for a given service.
-* API mixing - Likewise, more than one API can be deployed on a given server, without fear of collisions.
-
-> Owen: This paragraph is a bit confusing as one of the central premises of JSON Home is an application (meaning client or server code) should use links in this fashion. Deployment, instances, versions (server and client) are separate topics.
-
-Whether an application ought to use links in this fashion depends on how it is deployed; generally, the most benefit will be received when multiple instances of the service are deployed, possibly with different versions, and they are consumed by clients with different capabilities.  In particular, Internet Standards that use HTTP as a substrate are likely to require the attributes described above.
-
-> Owen: See note above about discovery. I believe JSON Home can be used to describe an API to both code and humans.
-
-```
-* Humans use the server's JSON Home document to write client code.
-* Client code uses the JSON Home document:
-  * To interact with the server.
-  * To note and or react to changes within the server.
-```
-
-Clients need to be able to discover information about these applications to use it efficiently; just as with a human-targeted "home page" for a site, there is a need for a "home document" for a HTTP API that describes it to non-browser clients.
-
-Of course, an HTTP API might use any format to do so; however, there are advantages to having a common home document format.  This specification defines one, using the JSON format [RFC7159](http://www.rfc-editor.org/info/rfc7159).
 
 ##<a name="notational-conventions"></a>1.1. Notational Conventions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119].
 
-##<a name="api-home-documents"></a>2. API Home Documents
+##<a name="json-home-documents"></a>2. JSON Home Documents
 
-An API Home Document (or, interchangeably, "home document") uses the format described in [RFC7159](http://www.rfc-editor.org/info/rfc7159) and has the media type "application/json-home".
+A JSON Home Document uses the format described in [RFC7159 The JavaScript Object Notation (JSON) Data Interchange Format](http://www.rfc-editor.org/info/rfc7159) and has the media type "application/json-home".
+
+##<a name="schema"></a>2. Schema
+
+[JSON Schema](http://json-schema.org/) describing this schema can be found [here](./json-home.v3.schema.json).
+
+##<a name="schema-root"></a>2.1 Root
+
+Name | Type | Format | Description
+-----|------|--------|------------
+`schema`|`string`|-|**Required** RFC 3986 Uniform Resource Identifier (URI). Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking.
+`href`|`string`|-|**Required** Identifier and hyperlink (aka 'self') for this JSON home resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt.
+`title`|`type`|-|The human readable title of the API described by this JSON Home resource. http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.5.3
+`vars`|`array`|[`vars`](#schema-vars)|An array of variables to be used with hyperlink templates given in the document.
+`resources`|`array`|[`resources`](#schema-resources)|An array of resources and hints about the resources used by humans writing client code and the client code itself.
+
+###<a name="schema-vars"></a>2.2 vars
+
+* `varName` + either `varDefinition` or `varValue` is required noting this cannot be described using JSON schema.
+* Servers should avoid having client code build strings for URIs except in response to the JSON Home Document in order to maintain REST principles.
+
+Name | Type | Format | Description
+-----|------|--------|------------
+`varName`|`string`|-|**Required** The variable name.
+`varDefinition`|`string`|-|Link to a definition for the variable using RFC3986.
+`varValue`|`string`|-|The variable value.
+
+###<a name="schema-resources"></a>2.3 resources
+
+Name | Type | Format | Description
+-----|------|--------|------------
+`rel`|`string`|-|RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy
+`href`|`string`|-|Link to a resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt OR RFC6570 URI Template https://tools.ietf.org/html/rfc6570.
+`hints`|`array`|[hints]()|Hints provided to both humans writing the client code and the client code itself, describing the resource and activities available for a given link relation.
+
+###<a name="schema-resources"></a>2.4 hints
+
+Name | Type | Format | Description
+-----|------|--------|------------
+`method`|`string`|-|Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH.
+`formats`|`array`|`string`|Hints the representation types that the resource produces and consumes, aligned with the ‘method’ hint.
+`prefer`|`array`|`string`|Hints the RFC 7240 Prefer Header for HTTP https://tools.ietf.org/html/rfc7240 supported by the resource. Note that, as per the RFC, a preference can be ignored by the server.
+`profiles`|`array`|`string`|Links to the schema(s) (typically JSON schema) which define payloads the endpoint will generally accept. Based on RFC 6096 The 'profile' Link Relation Type https://tools.ietf.org/html/rfc6906
+`preconditionRequired`|`array`|`string`|Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests https://tools.ietf.org/html/rfc7232 to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`.
+`acceptRanges`|`array`|`string`|Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests.
+`docs`|`string`|-|Hints the location for human-readable documentation for the relation type of the resource, a RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt referring to documentation that SHOULD be in HTML format.
+`status`|`object`|[`status`](#schema-status)|Hints the status of the resource.
+`authSchemes`|`array`|`authschemes`|Hints that the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication https://tools.ietf.org/html/rfc7235
+
+###<a name="schema-status"></a>2.5 status
+
+Name | Type | Format | Description
+-----|------|--------|------------
+`code`|`string`|-|The document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint).
+`rels`|`array`|`string`|When the code is `301 Moved Permanently` or `308 Permanent Redirect` the `rel` points the consumer of this document to the alternative resource(s)."
+
+###<a name="schema-authSchemes"></a>2.6 authSchemes
+
+Name | Type | Format | Description
+-----|------|--------|------------
+`scheme`|`string`|-|**Required** An HTTP authentication scheme
+`realms`|`array`|`string`|An array of zero to many strings that identify protection spaces that the resource is a member of.
 
 Its content consists of a root object with:
 

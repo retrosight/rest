@@ -376,6 +376,8 @@ For example, a Resource Object might contain the following hint:
 
 ###<a name="resource-hints-status"></a>5.10. status
 
+> Owen: Instead of inventing new strings perhaps use the existing HTTP status codes as is: 410 Gone, 301 Moved Permanently, 308 Permanent Redirect. etc.
+
 * Resource Hint Name: status
 * Description: Hints the status of the resource.
 * Specification: [this document]
