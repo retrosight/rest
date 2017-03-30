@@ -36,7 +36,7 @@
   * [D.4.  How do I express complex query arguments?](#appendix-d-complex-query)
 * [Author's Address](#author-address)
 
-##<a name="introduction"></a>1. Introduction
+## <a name="introduction"></a>1. Introduction
 
 One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](http://www.rfc-editor.org/info/rfc3986) hyperlinks to navigate between resources. Traditionally, client code (including a human using a web browser) typically make use of documented static URLs (E.g., http://example.com) as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
 
