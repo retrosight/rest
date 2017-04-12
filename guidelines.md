@@ -165,7 +165,7 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 * Services MAY make the same resource or representation available via multiple paths.
 * Services MAY make subsets of resources available in representations.
 
-#### # <a name="creating-resources-example"></a>Examples
+##### <a name="creating-resources-example"></a>Examples
 
 Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 
@@ -461,7 +461,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
   * [ISO 8601:2004](#ISO-8601) UTC + Offset: `YYYY-MM-DDThh:mm:ss.nnn-hhmmZ`
   * [Unix Time](https://en.wikipedia.org/wiki/Unix_time) also known as `POSIX` and `Epoch` time.
 
-#### #Examples
+##### Examples
 
 ```json
 RFC 3339
