@@ -19,13 +19,13 @@ The following design and examples are intended to provide a starting point for s
 	* [Retrieve a store and list of links to aisles](#service-retrieve-store-aisle-data-links)
 	* [Retrieve a store with aisles data](#service-retrieve-store-aisle-data)
 
-##<a name="schema"></a>Schema
+## <a name="schema"></a>Schema
 
 * This overall data model describes stores and their aisles.
 
 ***
 
-###<a name="schema-base"></a>Base
+### <a name="schema-base"></a>Base
 
 * [base.v1.schema.json](./schema/base.v1.schema.json)
 * The base schema provides a starting point for all representations.
@@ -52,7 +52,7 @@ Name | Type | Format | Description
 
 ***
 
-###<a name="schema-links"></a>Links
+### <a name="schema-links"></a>Links
 
 * [links.v1.schema.json](./schema/links.v1.schema.json)
 * A list of links allows related data to be provided to the client which can optionally `GET` each item as so desired.
@@ -64,7 +64,7 @@ Name | Type | Format | Description
 
 ***
 
-###<a name="schema-operation"></a>Operation
+### <a name="schema-operation"></a>Operation
 
 * [operation.v1.schema.json](./schema/operation.v1.schema.json)
 
@@ -76,7 +76,7 @@ Name | Type | Format | Description
 
 ***
 
-###<a name="schema-store"></a>Store
+### <a name="schema-store"></a>Store
 
 * [store.v1.schema.json](./schema/store.v1.schema.json)
 * Versioning in the schema name allows the service to revise schema with versioning.
@@ -91,7 +91,7 @@ Name | Type | Format | Description
 
 ***
 
-###<a name="schema-aisle"></a>Aisle
+### <a name="schema-aisle"></a>Aisle
 
 * [aisle.v1.schema.json](./schema/aisle.v1.schema.json)
 * See notes on versioning schema in the [store schema](#schema-store).
@@ -105,7 +105,7 @@ Name | Type | Format | Description
 
 ***
 
-###<a name="schema-error"></a>Error
+### <a name="schema-error"></a>Error
 
 * [error.v1.schema.json](./schema/error.v1.schema.json)
 * Included here for completeness of the resource model but not currently used in the examples.
@@ -120,9 +120,9 @@ Name | Type | Format | Description
 
 ***
 
-##<a name="service"></a>Service
+## <a name="service"></a>Service
 
-###<a name="service-retrieve-index"></a>Retrieve the service index
+### <a name="service-retrieve-index"></a>Retrieve the service index
 
 * This is the only URI the client code must know about ahead of time.
 * The llustration starts with no data.
@@ -161,7 +161,7 @@ Name | Type | Format | Description
 
 ***
 
-###<a name="service-create-store"></a>Create a store
+### <a name="service-create-store"></a>Create a store
 
 * Client code is creating the data.
 * The URI for where to POST comes from the service index: `create-store`.
@@ -215,7 +215,7 @@ Location: https://example.com/store/97b83a735620465cb8a01bf82392336b
 
 ***
 
-###<a name="service-create-aisles"></a>Create some aisles
+### <a name="service-create-aisles"></a>Create some aisles
 
 * Relationships between resources are established.
 * The URI to accomplish the task was provided by the response to creating a store with `"rel": "add-aisle"`.
@@ -302,7 +302,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ***
 
-###<a name="service-retrieve-store"></a>Retrieve the store
+### <a name="service-retrieve-store"></a>Retrieve the store
 
 * Using the value in the `Location` header or the data in the response payload from creating a store perform a `GET` operation.
 * The server has made additional `alternates` available because now there are aisles:
@@ -350,7 +350,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ***
 
-###<a name="service-retrieve-store-aisle-data-links"></a>Retrieve a store and list of links to aisles
+### <a name="service-retrieve-store-aisle-data-links"></a>Retrieve a store and list of links to aisles
 
 * This representation can be helpful if the related data for each item in the array is really large, infrequently accessed or accessed individually.
 * This representation may also help mobile clients potentially keep data usage levels lower.
@@ -408,7 +408,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ***
 
-###<a name="service-retrieve-store-aisle-data"></a>Retrieve a store with aisles data
+### <a name="service-retrieve-store-aisle-data"></a>Retrieve a store with aisles data
 
 * Note the full aisle data is included inline with the stores, complete with operations.
 * Note the change within `alternates`:

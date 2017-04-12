@@ -1,4 +1,4 @@
-#RESTful API Server Design
+# RESTful API Server Design
 
 * [Guidelines](#guidelines)
 	* [Headers](#headers)
@@ -28,23 +28,23 @@
 		* [Errors when HTTP Status Code is 4xx](#errors-when-4xx)
 * [Works Cited](#works-cited)
 
-##<a name="guidelines"></a>Guidelines
+## <a name="guidelines"></a>Guidelines
 
-###<a name="headers"></a>Headers
+### <a name="headers"></a>Headers
 
 * Services SHOULD limit themselves to standards based HTTP headers as defined in the [Internet Assigned Numbers Authority (IANA) Message Headers](http://www.iana.org/assignments/message-headers/message-headers.xhtml) (Protocol=HTTP, Status=Standard)
 
-####<a name="header-content-type"></a>Content-Type
+####  <a name="header-content-type"></a>Content-Type
 
 * Services SHOULD always provide the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header field in all responses.
 
-####<a name="header-accept"></a>Accept
+####  <a name="header-accept"></a>Accept
 
 * Services SHOULD respect the [RFC 7231 Accept](https://tools.ietf.org/html/rfc7231#section-5.3.2) request header field whenever possible.
 * Services SHOULD provide a [406 Not Acceptable](https://tools.ietf.org/html/rfc7231#section-6.5.6) HTTP status code when unable to respect the Accept header field.
 * Services MAY disregard the Accept header field and treat the response as if it is not subject to content negotiation provided the [Content-Type](#header-content-type) header is present in the response.
 
-####<a name="header-accept-language"></a>Accept-Language
+####  <a name="header-accept-language"></a>Accept-Language
 
 * Services SHOULD respect the [RFC 7231 Accept-Language](https://tools.ietf.org/html/rfc7231#section-5.3.5) request header field and respond with the appropriately localized data when applicable.
 * The Accept-Language request header field uses [RFC 5646 Tags for Identifying Languages](#RFC-5646). Simplest examples are:
@@ -52,16 +52,16 @@
 	* de-DE
 * Services MAY default to US English (en-US) in the absence of the Accept-Language request header field.
 
-####<a name="header-date"></a>Date
+####  <a name="header-date"></a>Date
 
 * Services SHOULD provide the [RFC 7231 Date](https://tools.ietf.org/html/rfc7231#section-7.1.1.2) response header field.
 
-####<a name="header-location"></a>Location
+####  <a name="header-location"></a>Location
 
 * Services SHOULD provide the [RFC 7231 7.1.2. Location](https://tools.ietf.org/html/rfc7231#section-7.1.2) response header field with the value expressed as a fully qualified domain name (FQDN) [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) for all operations which use the `POST` HTTP method.
 * Services MAY provide the Location header as a relative value noting this requires client code to build URIs which should generally be avoided.
 
-####<a name="header-cache"></a>Cache Headers
+####  <a name="header-cache"></a>Cache Headers
 
 For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (HTTP/1.1): Caching](https://tools.ietf.org/html/rfc7234). This section along with the [Last-Modified](#header-last-modified), [ETag](#header-etag) and [Precondition](#header-precondition) sections cover the caching responsibilities for a service.
 
@@ -73,15 +73,15 @@ For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (H
 	* [RFC 7234 Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)
 	* [RFC 7234 Warning](https://tools.ietf.org/html/rfc7234#section-5.5)
 
-####<a name="header-last-modified"></a>Last-Modified
+####  <a name="header-last-modified"></a>Last-Modified
 
 * Services SHOULD provide the [RFC 7232 Last-Modified](https://tools.ietf.org/html/rfc7232#section-2.2) header in all responses.
 
-####<a name="header-etag"></a>ETag
+####  <a name="header-etag"></a>ETag
 
 * Services SHOULD provide the [RFC 7232 ETag](https://tools.ietf.org/html/rfc7232#section-2.3) header in all responses.
 
-####<a name="header-precondition"></a>Precondition Headers
+####  <a name="header-precondition"></a>Precondition Headers
 
 * Services SHOULD support the following request header fields:
 	* [RFC 7232 If-Match](https://tools.ietf.org/html/rfc7232#section-3.1)
@@ -93,7 +93,7 @@ For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (H
 	* [304 Not Modified](https://tools.ietf.org/html/rfc7232#section-4.1)
 	* [412 Precondition Failed](https://tools.ietf.org/html/rfc7232#section-4.2)
 
-###<a name="resource-naming"></a>Resource Naming
+### <a name="resource-naming"></a>Resource Naming
 
 The following is a direct copy+paste from [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) as a baseline for the balance of this section.
 
@@ -128,7 +128,7 @@ scheme     authority       path        query   fragment
 		* Service(s) would have to implement a reverse proxy at each hop.
 		* It breaks the consistency model of service/resource/representation.
 
-####<a name="collection-item-pattern"></a>Collection and Item Pattern
+####  <a name="collection-item-pattern"></a>Collection and Item Pattern
 
 * Services SHOULD arrange and name resources according to a `/collection/item` paradigm.
   * `collection` name is plural.
@@ -155,7 +155,7 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 	* This pattern usually duplicates data which should be found in the resource itself.
 	* This pattern MUST NOT be a substitute for proper handling of [Hypermedia as the Engine of Application State](#links-hateoas) or [Related Data](#related-data).
 
-####<a name="creating-resources"></a>Creation of Resources and Representations
+####  <a name="creating-resources"></a>Creation of Resources and Representations
 
 > One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
@@ -165,7 +165,7 @@ https://example.com/stores/schema/store.v1.schema.json                // A singl
 * Services MAY make the same resource or representation available via multiple paths.
 * Services MAY make subsets of resources available in representations.
 
-#####<a name="creating-resources-example"></a>Examples
+#### # <a name="creating-resources-example"></a>Examples
 
 Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 
@@ -223,7 +223,7 @@ Collection: `https://example.com/stores/all`
 ]
 ```
 
-####<a name="resource-naming-syntax"></a>Resource Naming Syntax
+####  <a name="resource-naming-syntax"></a>Resource Naming Syntax
 
 Building upon everything in this section the following illustrates how teams should think of URIs when naming resources:
 
@@ -251,7 +251,7 @@ https://example.com/stores/{identifier}/{representation}               // Repres
 https://example.com/stores/{collection}/{identifier}/{representation}  // Representation of a single item within a collection.
 ```
 
-###<a name="hypermedia"></a>Hypermedia as the Engine of Application State
+### <a name="hypermedia"></a>Hypermedia as the Engine of Application State
 
 > A primer on Hypermedia as the Engine of Application State can be found [here](./hateoas-model-example.md).
 
@@ -264,13 +264,13 @@ https://example.com/stores/{collection}/{identifier}/{representation}  // Repres
 * Client code binds to the `rel` (relation) key and follows the link in the `href` key using the HTTP method in the `method` key.
   * This insulates against breaking changes as it allows the server to change the `href` value at any time and the client code will still work.
 
-####<a name="hypermedia-operations"></a>Operations Schema
+####  <a name="hypermedia-operations"></a>Operations Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `operations`|`array`|[`operation`](#hypermedia-operations-operation)|The hypermedia as the engine of application state (HATEOAS) information.
 
-####<a name="hypermedia-operations-operation"></a>Operation Schema
+####  <a name="hypermedia-operations-operation"></a>Operation Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -278,11 +278,11 @@ Name | Type | Format | Description
 `href`|`string`|[RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986)|**Required** Hyperlink to the resource. This key name is borrowed from the HTML5 `href` element and behaves similarly.
 `method`|`string`|[RFC 7231 Methods](https://tools.ietf.org/html/rfc7231#section-4.3)|Default is GET when `method` is not specified. Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH.
 
-####Example
+#### Example
 
 * See the [Index](#index) or [Pagination](#pagination) sections for examples.
 
-###<a name="related-data"></a>Related Data
+### <a name="related-data"></a>Related Data
 
 > The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
 
@@ -292,7 +292,7 @@ Name | Type | Format | Description
 * It is acceptable for data to reference other data which does not have a corresponding reference back; In the example given it would be fine if the inventory did not have a link to the store.
 * Related data can reference resources outside of the domain.
 
-####Example
+#### Example
 
 In the following example:
 * `inventory` is the inventory for a store.
@@ -313,7 +313,7 @@ Contents of https://example.com/stores/abc:
 }
 ```
 
-###<a name="custom-data"></a>Custom Data
+### <a name="custom-data"></a>Custom Data
 
 * Services SHOULD NOT use ambiguous key names such as `custom1`.
 * Services SHOULD use a [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986) to disambiguate data and avoid name collisions.
@@ -333,7 +333,7 @@ Name | Type | Format | Description
 }
 ```
 
-###<a name="index"></a>Index
+### <a name="index"></a>Index
 
 * Services SHOULD provide an index of links at the base URI which will be interesting to callers of the service.
 * The links SHOULD follow the [RFC 5988 Web Linking](#RFC-5988) standard.
@@ -347,11 +347,11 @@ The service index is one of the keys to evolvability of services, allowing clien
 
 Something to consider for indexes: [Home Documents for HTTP APIs](https://mnot.github.io/I-D/json-home/).
 
-####Schema
+#### Schema
 
 An index leverages the Hypermedia as the Engine of Application State [`operations`](#hypermedia-operations) schema.
 
-#### Example
+####  Example
 
 ```json
 {
@@ -373,7 +373,7 @@ An index leverages the Hypermedia as the Engine of Application State [`operation
 }
 ```
 
-###<a name="pagination"></a>Pagination
+### <a name="pagination"></a>Pagination
 
 * Services SHOULD always determine the pagination scheme rather than allowing client code to define (for example, with a query string parameter) to allow for service design and performance tuning independent of client code.
 * Services SHOULD provide pagination operations in all responses using the following relation names according to the [RFC 5988 Web Linking](#RFC-5988) standard:
@@ -385,11 +385,11 @@ An index leverages the Hypermedia as the Engine of Application State [`operation
 * Services MAY use any sort of name to denote pages of data. `page` is acceptable as would be any other name which makes sense internally to the service itself. Naming is of less importance here because client code simply follows the links rather than crafting URIs.
 * For more information see [Pagination Design](/pagination-design.md)
 
-####Schema
+#### Schema
 
 Pagination leverages the [Hypermedia as the Engine of Application State](#hypermedia) [`operations`](#hypermedia-operations) schema.
 
-#### Example
+####  Example
 
 ```json
 {
@@ -419,9 +419,9 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 }
 ```
 
-###<a name="data"></a>Data Design
+### <a name="data"></a>Data Design
 
-####<a name="data-identifiers"></a>Identifiers
+####  <a name="data-identifiers"></a>Identifiers
 
 > The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
 
@@ -432,7 +432,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 * Services SHOULD provide a [RFC 6570 URI Template](#RFC-6570) in a key named `template`.
 	* The combination of `template` + `id` = `href` allows legacy relational database systems the flexibility to store URI values minimally to avoid database bloat (mainly due to indexing) and therefore storage costs.
 
-#####Example
+#### #Example
 
 ```json
 {
@@ -442,7 +442,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 }
 ```
 
-####<a name="data-self-describing"></a>Self-describing Data
+####  <a name="data-self-describing"></a>Self-describing Data
 
 * Representations SHOULD be self-describing through the use of a `schema` key in the root of all payloads.
 * The `schema` value SHOULD be in the form of a [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986).
@@ -454,14 +454,14 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 }
 ```
 
-####<a name="data-date-time"></a>Dates and Times
+####  <a name="data-date-time"></a>Dates and Times
 
 * Services SHOULD choose from the following formats to accept and represent dates and timestamps:
   * **Preferred**: [RFC 3339 Date and Time on the Internet: Timestamps](#RFC-3339): `YYYY-MM-DDThh:mm:ss.nnn-hh:mmZ`
   * [ISO 8601:2004](#ISO-8601) UTC + Offset: `YYYY-MM-DDThh:mm:ss.nnn-hhmmZ`
   * [Unix Time](https://en.wikipedia.org/wiki/Unix_time) also known as `POSIX` and `Epoch` time.
 
-#####Examples
+#### #Examples
 
 ```json
 RFC 3339
@@ -482,7 +482,7 @@ Unix
 }
 ```
 
-####<a name="data-currency"></a>Currency
+####  <a name="data-currency"></a>Currency
 
 * All currency values SHOULD follow [ISO 4217:2015 Codes for the representation of currencies](#ISO-4217).
 * A currency value SHOULD be an JSON object with the following keys:
@@ -508,11 +508,11 @@ Unix
 }
 ```
 
-####<a name="data-key-names"></a>Key-Value Pair Names
+####  <a name="data-key-names"></a>Key-Value Pair Names
 
 * Services SHOULD use [Camel Case](https://en.wikipedia.org/wiki/CamelCase) with the first letter in lower case for all key-value pair names. Example: `total`, `currencyCode` and `createDate`.
 
-###<a name="http-status-codes"></a>HTTP Status Codes
+### <a name="http-status-codes"></a>HTTP Status Codes
 
 * Services SHOULD always use the appropriate HTTP status codes as defined in [RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](https://tools.ietf.org/html/rfc7231).
 
@@ -526,7 +526,7 @@ Status Code Range|Definition
 4xx|The 4xx (Client Error) class of status code indicates that the client seems to have erred.
 5xx|The 5xx (Server Error) class of status code indicates that the server is aware that it has erred or is incapable of performing the requested method.
 
-####<a name="errors-when-4xx"></a>Errors when HTTP Status Code is 4xx
+####  <a name="errors-when-4xx"></a>Errors when HTTP Status Code is 4xx
 
 * Services SHOULD provide additional context via JSON entity document when 4xx HTTP status code is provided in the response.
 * Generally speaking, most 4xx errors occur occur during a `PUT` or `POST` operation.
@@ -535,13 +535,13 @@ Status Code Range|Definition
 	* A 404 Not Found should be returned when the `GET` URI is dynamic and a value is wrongly formatted, or does not exist, or the user does not have permission.
 * The schema starts with an array which allows the services to expand the items within the errors without breaking the contract of the service itself. It is expected many services will only ever return a single item in the array.
 
-#####<a name="errors-when-4xx-errors"></a>Errors Schema
+#### # <a name="errors-when-4xx-errors"></a>Errors Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `errors`|`array`|[`error`](#errors-when-4xx-error)|**Required** An array of errors.
 
-#####<a name="errors-when-4xx-error"></a>Error Schema
+#### # <a name="errors-when-4xx-error"></a>Error Schema
 Name | Type | Format | Description
 -----|------|--------|------------
 `errorCode`|`string`|-|**Required** Machine readable code associated with the error. Examples: `dateTimeMissing`, `OutOfMem`, `invalidUser`. Contextual strings are recommended over numbers or UUID4 values.
@@ -550,7 +550,7 @@ Name | Type | Format | Description
 `schemaPath`|`string`|-|Relative schema path.
 `errors`|`array`|[`error`](#errors-when-4xx-error)|An array of errors. Note: this points to this schema as errors can nest.
 
-#####Examples
+#### #Examples
 
 **Minimum**
 
@@ -622,9 +622,9 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 }
 ```
 
-##<a name="works-cited"></a>Works Cited
+## <a name="works-cited"></a>Works Cited
 
-###<a name="rest"></a>Representational State Transfer (REST) Dissertation by Roy Fielding, 2000
+### <a name="rest"></a>Representational State Transfer (REST) Dissertation by Roy Fielding, 2000
 
 * [https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 
@@ -657,11 +657,11 @@ Also included inline are the references to the parts of the dissertation outside
 * [5.4 Related Work](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_4)
 * [5.5 Summary](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_5)
 
-###<a name="hateoas"></a>Hypermedia as the Engine of Application State
+### <a name="hateoas"></a>Hypermedia as the Engine of Application State
 
 * [https://en.wikipedia.org/wiki/HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
 
-###<a name="RFC-7230-7237"></a>RFC 7230-7237 Hypertext Transfer Protocol (HTTP/1.1)
+### <a name="RFC-7230-7237"></a>RFC 7230-7237 Hypertext Transfer Protocol (HTTP/1.1)
 
 * [RFC 7230 Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230)
 * [RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](https://tools.ietf.org/html/rfc7231)
@@ -683,29 +683,29 @@ Also included inline are the references to the parts of the dissertation outside
 * [RFC 7236 Initial Hypertext Transfer Protocol (HTTP) Authentication Scheme Registrations](https://tools.ietf.org/html/rfc7236)
 * [RFC 7237 Initial Hypertext Transfer Protocol (HTTP) Method Registrations](https://tools.ietf.org/html/rfc7237)
 
-###<a name="RFC-5789"></a>RFC 5789 PATCH Method for HTTP
+### <a name="RFC-5789"></a>RFC 5789 PATCH Method for HTTP
 
 * [https://tools.ietf.org/html/rfc5789](https://tools.ietf.org/html/rfc5789)
 
-###<a name="RFC-5646"></a>RFC 5646 Tags for Identifying Languages
+### <a name="RFC-5646"></a>RFC 5646 Tags for Identifying Languages
 
 * [https://tools.ietf.org/html/rfc5646](https://tools.ietf.org/html/rfc5646)
 
-###<a name="json"></a>Javascript Object Notation (JSON)
+### <a name="json"></a>Javascript Object Notation (JSON)
 
 * [http://www.json.org](http://www.json.org)
 * [http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)
 * [https://tools.ietf.org/html/rfc7159](https://tools.ietf.org/html/rfc7159)
 
-###<a name="json=patch"></a>JavaScript Object Notation (JSON) Patch
+### <a name="json=patch"></a>JavaScript Object Notation (JSON) Patch
 
 * [https://tools.ietf.org/html/rfc6902](https://tools.ietf.org/html/rfc6902)
 
-###<a name="json-schema"></a>JSON Schema
+### <a name="json-schema"></a>JSON Schema
 
 * [http://json-schema.org](http://json-schema.org)
 
-###<a name="RFC-7519"></a>RFC 7519 JSON Web Token (JWT)
+### <a name="RFC-7519"></a>RFC 7519 JSON Web Token (JWT)
 
 * [https://tools.ietf.org/html/rfc7519](https://tools.ietf.org/html/rfc7519)
 
@@ -720,65 +720,65 @@ Links to claims within the RFC:
 	* [4.1.6 "iat" (Issued At) Claim](https://tools.ietf.org/html/rfc7519#section-4.1.6)
 	* [4.1.7 "jti" (JWT ID) Claim](https://tools.ietf.org/html/rfc7519#section-4.1.7)
 
-####Additional Resources
+#### Additional Resources
 
 * [JWT Summary](./jwt-summary.md)
 * [https://jwt.io](https://jwt.io)
 * [Public Claim Names](http://www.iana.org/assignments/jwt/jwt.txt)
 
-###<a name="RFC-3339"></a>RFC 3339 Date and Time on the Internet: Timestamps
+### <a name="RFC-3339"></a>RFC 3339 Date and Time on the Internet: Timestamps
 
 * [https://tools.ietf.org/html/rfc3339](https://tools.ietf.org/html/rfc3339)
 
-###<a name="RFC-5280"></a>RFC 5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile
+### <a name="RFC-5280"></a>RFC 5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile
 
 * [https://tools.ietf.org/html/rfc5280](https://tools.ietf.org/html/rfc5280)
 
-###<a name="RFC-6749"></a>RFC 6749 OAuth 2.0 Authorization Framework
+### <a name="RFC-6749"></a>RFC 6749 OAuth 2.0 Authorization Framework
 
 * [https://tools.ietf.org/html/rfc6749](https://tools.ietf.org/html/rfc6749)
 
-###<a name="RFC-1034"></a>RFC 1034 Domain Names - Concepts and Facilities
+### <a name="RFC-1034"></a>RFC 1034 Domain Names - Concepts and Facilities
 
 * [https://tools.ietf.org/html/rfc1034](https://tools.ietf.org/html/rfc1034)
 
-###<a name="RFC-3986"></a>RFC 3986 Uniform Resource Identifier (URI): Generic Syntax
+### <a name="RFC-3986"></a>RFC 3986 Uniform Resource Identifier (URI): Generic Syntax
 
 * [https://www.ietf.org/rfc/rfc3986.txt](https://www.ietf.org/rfc/rfc3986.txt)
 
-###<a name="RFC-4122"></a>RFC 4122 A Universally Unique IDentifier (UUID) URN Namespace
+### <a name="RFC-4122"></a>RFC 4122 A Universally Unique IDentifier (UUID) URN Namespace
 
 * [https://tools.ietf.org/html/rfc4122](https://tools.ietf.org/html/rfc4122)
 * Services SHOULD use all lowercase with dashes preserved.
 	* This RFC generally recommends a lower case when producing values (while allowing for uppercase) and requires case-insensitivity when parsing.
 * For more information on UUID4 see [4.4. Algorithms for Creating a UUID from Truly Random or Pseudo-Random Numbers](https://tools.ietf.org/html/rfc4122#section-4.4).
 
-###<a name="RFC-5988"></a>RFC 5988 Web Linking
+### <a name="RFC-5988"></a>RFC 5988 Web Linking
 
 * [https://tools.ietf.org/html/rfc5988](https://tools.ietf.org/html/rfc5988)
 
-###<a name="RFC-6570"></a>RFC 6570 URI Template
+### <a name="RFC-6570"></a>RFC 6570 URI Template
 
 * [https://tools.ietf.org/html/rfc6570](https://tools.ietf.org/html/rfc6570)
 
-###<a name="IANA-headers"></a>Internet Assigned Numbers Authority (IANA) Message Headers
+### <a name="IANA-headers"></a>Internet Assigned Numbers Authority (IANA) Message Headers
 
 * [http://www.iana.org/assignments/message-headers/message-headers.xhtml](http://www.iana.org/assignments/message-headers/message-headers.xhtml)
 
-###<a name="ISO-3166"></a>ISO 3166-1 Country Codes
+### <a name="ISO-3166"></a>ISO 3166-1 Country Codes
 
 * Online Browsing Platform: [https://www.iso.org/obp/ui/#search/code/](https://www.iso.org/obp/ui/#search/code/)
 * [http://www.iso.org/iso/home/standards/country_codes.htm](http://www.iso.org/iso/home/standards/country_codes.htm)
 
-###<a name="ISO-4217"></a>ISO 4217:2015 Codes for the representation of currencies
+### <a name="ISO-4217"></a>ISO 4217:2015 Codes for the representation of currencies
 
 * [ISO 4217:2015 Codes for the representation of currencies](https://www.iso.org/standard/64758.html)
 
-###<a name="ISO-8601"></a>ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times
+### <a name="ISO-8601"></a>ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times
 
 * [ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times](https://www.iso.org/standard/40874.html)
 
-###<a name="RFC-2119"></a>RFC 2119 Key words for use in RFCs to Indicate Requirement Levels
+### <a name="RFC-2119"></a>RFC 2119 Key words for use in RFCs to Indicate Requirement Levels
 
 * [https://www.ietf.org/rfc/rfc2119.txt](https://www.ietf.org/rfc/rfc2119.txt)
 * All requirements are noted with uppercase (MUST, SHOULD) in bulleted lists to disambiguate from narrative prose using lower case (should, must).

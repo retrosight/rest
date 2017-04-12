@@ -1,17 +1,17 @@
-#Service Name
+# Service Name
 Description
 
 * [TOC1](#toc1)
 * [TOC2](#toc2)
 	* [TOC2.1](#toc2-1)
 
-##<a name="section"></a>Section
+## <a name="section"></a>Section
 
 Description
 
-###Request
+### Request
 
-####Headers
+#### Headers
 
 * [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5)
 * [RFC 7231 Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2)
@@ -43,21 +43,21 @@ Description
 * [RFC 7231 Referer](https://tools.ietf.org/html/rfc7231#section-5.5.2)
 * [RFC 7231 User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3)
 
-####Parameters
+#### Parameters
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `name`|`type`|-|**Required** The URI query parameter.
 
-####Payload Body
+#### Payload Body
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `name`|`type`|JSON|**Required** Description.
 
-###Response
+### Response
 
-####Status Codes
+#### Status Codes
 
 * [100 Continue](https://tools.ietf.org/html/rfc7231#section-6.2.1)
 * [101 Switching Protocols](https://tools.ietf.org/html/rfc7231#section-6.2.2)
@@ -119,7 +119,7 @@ Name | Type | Format | Description
 * [510 Not Extended](https://tools.ietf.org/html/rfc2774#section-7)
 * [511 Network Authentication Required](https://tools.ietf.org/html/rfc6585#section-6)
 
-####Headers
+#### Headers
 
 * [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5)
 * [RFC 7231 Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2)
@@ -146,19 +146,19 @@ Name | Type | Format | Description
 * [RFC 7231 Allow](https://tools.ietf.org/html/rfc7231#section-7.4.1)
 * [RFC 7231 Server](https://tools.ietf.org/html/rfc7231#section-7.4.2)
 
-####Payload Body
+#### Payload Body
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `name`|`type`|format|description
 
-###Example
+### Example
 
-####Request
+#### Request
 
 `curl`
 
-####Response
+#### Response
 
 ```
 Headers
@@ -170,14 +170,14 @@ Payload
 
 -------------
 
-#Service v10
+# Service v10
 Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
 
 * [Sample for posting a payload](#post-a-payload)
 * [Sample Schema](#schema)
 	* [Sample Common](#schema-common)
 
-##<a name="post-a-payload"></a>Sample for posting a payload
+## <a name="post-a-payload"></a>Sample for posting a payload
 
 Posting a payload is among the most common tasks for client code. Use this opening paragraph to explain at a high level what business activity is achieved when doing this task. Use a bulleted list to make it easier for the reader to follow. When the service receives a request:
 
@@ -185,13 +185,13 @@ Posting a payload is among the most common tasks for client code. Use this openi
 * Then it will do this second.
 * Finally it will do this thing here.
 
-###Request
+### Request
 
-####Headers
+#### Headers
 
 * [RFC 7235 Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
 
-####Parameters
+#### Parameters
 
 These are documentation examples and not API design guidelines -- you won't normally have request parameters for POST verb usage.
 
@@ -200,7 +200,7 @@ Name | Type | Format | Description
 `storeIdentifier`|`string`|-|**Required** Note required when applicable.
 `requestDate`|`string`|[`dateTime`](#dateTime)|This parameter isn't required. Link to format using anchor tags when applicable.
 
-####Payload Body
+#### Payload Body
 
 Generally speaking these payloads will be described in much detail with a Schema section.
 
@@ -209,32 +209,32 @@ Name | Type | Format | Description
 `theRequestPayload`|`type`|JSON|**Required** The payload.
 `theOtherRequestPayload`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
 
-###Response
+### Response
 
-####Status Codes
+#### Status Codes
 * [200 OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)
 * [201 Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)
 * [400 Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)
 
-####Headers
+#### Headers
 
 * [RFC 7231 Location](https://tools.ietf.org/html/rfc7231#section-7.1.2)
 
-####Payload
+#### Payload
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `theResponsePayload`|`type`|JSON|Just an example -- you won't normally have a response payload for POST unless there are errors.
 
-###Example
+### Example
 
-####Request
+#### Request
 
 Showing developers exactly what they can expect when using [curl](https://curl.haxx.se) is perhaps the simplest way to complete this portion of the documentation.
 
 `curl -v http://example.com/?storeIdentifier=abc`
 
-####Response
+#### Response
 Ensure the headers are kept separate as a code block from the payload for ease of reading.
 
 ```
@@ -257,8 +257,9 @@ Content-Length: 1270
 	}
 }
 ```
-##<a name="schema"></a>Sample Schema
-###<a name="schema-common"></a>Sample Common
+## <a name="schema"></a>Sample Schema
+
+### <a name="schema-common"></a>Sample Common
 Name | Type | Format | Description
 -----|------|--------|------------
 <a name="dateTime"></a>`dateTime`|`string`|-|DateTime of where the transaction happened in format specified in ISO 8601. While the standard regards time zone designators as optional, we highly recommend to use UTC + Offset. For example, 2016-04-22T12:20+0700 (12:20 PM in Pacific Time).

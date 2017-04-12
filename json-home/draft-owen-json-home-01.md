@@ -71,7 +71,7 @@ A JSON Home Document uses the format described in [RFC7159 The JavaScript Object
 
 [JSON Schema](http://json-schema.org/) describing this schema can be found [here](./json-home.v3.schema.json).
 
-## <a name="schema-root"></a>2.1 Root
+### <a name="schema-root"></a>2.1 Root
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -98,9 +98,9 @@ Name | Type | Format | Description
 -----|------|--------|------------
 `rel`|`string`|-|RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy
 `href`|`string`|-|Link to a resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt OR RFC6570 URI Template https://tools.ietf.org/html/rfc6570.
-`hints`|`array`|[hints]()|Hints provided to both humans writing the client code and the client code itself, describing the resource and activities available for a given link relation.
+`hints`|`array`|[hints](#schema-hints)|Hints provided to both humans writing the client code and the client code itself, describing the resource and activities available for a given link relation.
 
-### <a name="schema-resources"></a>2.4 hints
+### <a name="schema-hints"></a>2.4 hints
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -112,7 +112,7 @@ Name | Type | Format | Description
 `acceptRanges`|`array`|`string`|Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests.
 `docs`|`string`|-|Hints the location for human-readable documentation for the relation type of the resource, a RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt referring to documentation that SHOULD be in HTML format.
 `status`|`object`|[`status`](#schema-status)|Hints the status of the resource.
-`authSchemes`|`array`|`authschemes`|Hints that the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication https://tools.ietf.org/html/rfc7235
+`authSchemes`|`array`|[`authschemes`](#schema-authSchemes)|Hints that the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication https://tools.ietf.org/html/rfc7235
 
 ### <a name="schema-status"></a>2.5 status
 
@@ -128,10 +128,7 @@ Name | Type | Format | Description
 `scheme`|`string`|-|**Required** An HTTP authentication scheme
 `realms`|`array`|`string`|An array of zero to many strings that identify protection spaces that the resource is a member of.
 
-Its content consists of a root object with:
-
-* A "resources" member, whose value is an object that describes the resources associated with the API.  Its member names are link relation types (as defined by [RFC5988](http://www.rfc-editor.org/info/rfc5988)), and their values are Resource Objects (Section 4).
-* Optionally, a "api" member, whose value is an API Object (Section 3) that contains information about the API as a whole.
+## <a name="schema-authSchemes"></a>Resource Examples
 
 For example:
 

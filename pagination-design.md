@@ -1,6 +1,6 @@
-#Pagination Design
+# Pagination Design
 
-##Allowing a client to determine server behavior undermines the independent evolvability paradigm
+## Allowing a client to determine server behavior undermines the independent evolvability paradigm
 
 For example, let us examine a server accepting a `pageSize` query parameter where the maximum size is 100.
 
@@ -14,7 +14,7 @@ http://example.com/stores?pageSize=100
 
 This paradigm breaks the client-server constraint of the REST model by allowing the client to control server behavior.
 
-##Leveraging Web Linking
+## Leveraging Web Linking
 
 The pagination approach leverages the relation names for navigating an ordered series of resources from [RFC 5988 Web Linking](https://tools.ietf.org/html/rfc5988) which puts the server in charge (always) of how the data is offered to the client code and client code can maintain a durable cursor for itself to page through that data, following the provided hyperlinks to do so.
 
@@ -24,7 +24,7 @@ Following the prior example of a `pageSize` parameter:
 * The server can change the page size from 50 to 100 then to 10 and client code happily keeps working.
 * The client code cannot specify server behavior which means the server and client can both evolve independently.
 
-##Pagination in `Link` Header vs. JSON data
+## Pagination in `Link` Header vs. JSON data
 One of the features of [RFC 5988 Web Linking](https://tools.ietf.org/html/rfc5988) is the defined [`Link`](https://tools.ietf.org/html/rfc5988#section-5) header field which allows for the creation of pagination links via HTTP header as in this example:
 
 ```
@@ -45,7 +45,7 @@ The reason the guidelines place the links in the payload body is:
 * [RFC 5988 Web Linking](https://tools.ietf.org/html/rfc5988) does not require the Link header to be used for all links, from the abstract: `"This document specifies relation types for Web links, and defines a registry for them. It also defines the use of such links in HTTP headers with the Link header field."`
 * Basically, the guidelines are using the relation types from this standard but not the `Link` header.
 
-##Nested data with pagination example
+## Nested data with pagination example
 
 * This is one paradigm that is difficult to achieve with pagination in the `Link` header.
 * In the example the client can page through the `data` and the `relateddata`.

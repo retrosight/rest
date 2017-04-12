@@ -1,4 +1,4 @@
-#RFC 7519 JSON Web Token (JWT) - Summary
+# RFC 7519 JSON Web Token (JWT) - Summary
 
 * [https://tools.ietf.org/html/rfc7519](https://tools.ietf.org/html/rfc7519)
 
@@ -18,31 +18,31 @@ JSON Web Token (JWT) is a compact claims representation format intended for spac
 * JWTs are able to be replayed and forwarded.
 * Client code is able to request scopes individually: `https://example.com/authorize;scope=openid+post-data`
 
-##Anatomy of a JWT
+## Anatomy of a JWT
 
 ![Anatomy of a JWT Image](./jwt-summary-anatomy.png)
 
-##Usage Examples
+## Usage Examples
 
-###URL
+### URL
 
 ```
 http://example.com/resource/abc123?data=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDaGFybGllIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJDaGFybGllIE93ZW4iLCJodHRwOi8vZXhhbXBsZS5jb20vbWFycmllZCI6dHJ1ZX0.5AbiwFGjAHDmNnPGteUkg2aHV9l8VY5uwuDu2Ke7PYI
 ```
 
-###HTTP Header
+### HTTP Header
 
 ```
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDaGFybGllIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJDaGFybGllIE93ZW4iLCJodHRwOi8vZXhhbXBsZS5jb20vbWFycmllZCI6dHJ1ZX0.5AbiwFGjAHDmNnPGteUkg2aHV9l8VY5uwuDu2Ke7PYI
 ```
 
-##Access Tokens and Tokens
+## Access Tokens and Tokens
 
 * JWTs are tokens.
 * Not all JWTs are access tokens.
 * Not all access tokens are JWTs.
 
-##Claims and Scopes
+## Claims and Scopes
 
 * Some claims are scopes.
 	* ‘Scopes’ and ‘claims’ terminology is sometimes used interchangeably.

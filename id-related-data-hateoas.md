@@ -1,10 +1,10 @@
-#Comparing Hyperlinks: Identifiers, Related Data and Hypermedia As The Engine Of Application State
+# Comparing Hyperlinks: Identifiers, Related Data and Hypermedia As The Engine Of Application State
 
 * [Identifier](#identifier)
 * [Related Data](#related-data)
 * [Hypermedia As The Engine Of Application State (HATEOAS)](#hateoas)
 
-##a name="identifier"></a>Identifier
+## <a name="identifier"></a>Identifier
 
 * An identifier is part of the resource itself.
 * The identifier is usually determined by the server with the usage of the HTTP POST method.
@@ -45,7 +45,7 @@ POST https://example.com/people
 }
 ```
 
-##a name="related-data"></a>Related Data
+## <a name="related-data"></a>Related Data
 
 * Related data are values which point to something that is NOT the resource but is related to the resource in some way.
 
@@ -75,7 +75,7 @@ Following on the example, let's see what a family and where they live might look
 }
 ```
 
-##a name="hateoas"></a>Hypermedia As The Engine Of Application State (HATEOAS)
+## <a name="hateoas"></a>Hypermedia As The Engine Of Application State (HATEOAS)
 
 Continuing the example, the server lets the client know it can update and remove the data.
 
