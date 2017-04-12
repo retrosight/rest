@@ -432,7 +432,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 * Services SHOULD provide a [RFC 6570 URI Template](#RFC-6570) in a key named `template`.
 	* The combination of `template` + `id` = `href` allows legacy relational database systems the flexibility to store URI values minimally to avoid database bloat (mainly due to indexing) and therefore storage costs.
 
-#### #Example
+##### Example
 
 ```json
 {
@@ -535,13 +535,13 @@ Status Code Range|Definition
 	* A 404 Not Found should be returned when the `GET` URI is dynamic and a value is wrongly formatted, or does not exist, or the user does not have permission.
 * The schema starts with an array which allows the services to expand the items within the errors without breaking the contract of the service itself. It is expected many services will only ever return a single item in the array.
 
-#### # <a name="errors-when-4xx-errors"></a>Errors Schema
+##### <a name="errors-when-4xx-errors"></a>Errors Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `errors`|`array`|[`error`](#errors-when-4xx-error)|**Required** An array of errors.
 
-#### # <a name="errors-when-4xx-error"></a>Error Schema
+##### <a name="errors-when-4xx-error"></a>Error Schema
 Name | Type | Format | Description
 -----|------|--------|------------
 `errorCode`|`string`|-|**Required** Machine readable code associated with the error. Examples: `dateTimeMissing`, `OutOfMem`, `invalidUser`. Contextual strings are recommended over numbers or UUID4 values.
@@ -550,7 +550,7 @@ Name | Type | Format | Description
 `schemaPath`|`string`|-|Relative schema path.
 `errors`|`array`|[`error`](#errors-when-4xx-error)|An array of errors. Note: this points to this schema as errors can nest.
 
-#### #Examples
+##### Examples
 
 **Minimum**
 
