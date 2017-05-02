@@ -28,7 +28,7 @@
       "description": "An array of resources and hints about the resources used by humans writing client code and the client code itself."
     }
   },
-  "required": [ "schema", "href" ],
+  "required": [ "schema", "href", "resources" ],
   "definitions": {
     "hrefDefinition": {
       "type": "string",
@@ -68,7 +68,7 @@
           "description": "Hints provided to both humans writing the client code and the client code itself, describing the resource and activities available for a given link relation."
         }
       },
-      "required": [ "rel", "href" ]
+      "required": [ "rel", "href", "hints" ]
     },
     "hintsDefinition": {
       "type": "object",
@@ -82,11 +82,6 @@
           "items": { "type": "string" },
           "description": "Hints the representation types that the resource produces and consumes, aligned with the ‘method’ hint."
         },
-        "prefer": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Hints the RFC 7240 Prefer Header for HTTP https://tools.ietf.org/html/rfc7240 supported by the resource. Note that, as per this RFC, a preference can be ignored by the server."
-        },
         "profiles": {
           "type": "array",
           "items": { "type": "string" },
@@ -96,11 +91,6 @@
           "type": "array",
           "items": { "type": "string" },
           "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests https://tools.ietf.org/html/rfc7232 to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`."
-        },
-        "acceptRanges": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
         },
         "docs": {
           "type": "string",
@@ -120,6 +110,16 @@
               "description": "When the code is `301 Moved Permanently` or `308 Permanent Redirect` the `rel` points the consumer of this document to the alternative resource(s)."
             }
           }
+        },
+        "acceptRanges": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
+        },
+        "prefer": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the RFC 7240 Prefer Header for HTTP https://tools.ietf.org/html/rfc7240 supported by the resource. Note that, as per this RFC, a preference can be ignored by the server."
         },
         "authSchemes": {
           "type": "array",
@@ -141,7 +141,7 @@
           }
         }
       },
-      "required": [  ]
+      "required": [ "method" ],
     }
   }
 }
