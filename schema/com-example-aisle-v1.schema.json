@@ -1,10 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "href": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+  "href": "https://example.com/schemas/com-example-aisle-v1",
   "title": "Aisle v1 Schema",
   "description": "An individual aisle within a store.",
   "type": "object",
-  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-v1.schema.json" } ],
+  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-v1" } ],
   "properties": {
     "storeId": {
       "type": "string",

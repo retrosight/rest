@@ -1,25 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "href": "https://example.com/schemas/template.schema.json",
+  "href": "https://example.com/schemas/template",
   "title": "Template Schema",
   "description": "This template contains many of the major JSON schema types and keywords - use for building other schemas.",
 
   "type": "object",
 
   "allOf": [{
-    "$ref": "base.schema.json"
+    "$ref": "https://example.com/schemas/com-example-base-v1"
   }],
 
   "anyOf": [{
-    "$ref": "base.schema.json"
+    "$ref": "https://example.com/schemas/com-example-base-v1"
   }],
 
   "oneOf": [{
-    "$ref": "base.schema.json"
+    "$ref": "https://example.com/schemas/com-example-base-v1"
   }],
 
   "not": {
-    "$ref": "base.schema.json"
+    "$ref": "https://example.com/schemas/com-example-base-v1"
   },
 
   "comment": "`default` and `enum` are available for all instance types.",
@@ -76,7 +76,7 @@
 
     "keyNameWithDefinitionInternal": { "$ref": "#/definitions/keyNameDefinition" },
 
-    "keyNameWithDefinitionExternal": { "$ref": "common.schema.json#/definitions/dateTime" },
+    "keyNameWithDefinitionExternal": { "$ref": "https://example.com/schemas/common#/definitions/dateTime" },
 
     "keyNameArraySingleItems": {
       "type": "array",
@@ -104,7 +104,7 @@
 
     "keyNameArrayReference": {
       "type": "array",
-      "items": { "$ref": "base.schema.json" }
+      "items": { "$ref": "https://example.com/schemas/com-example-base-v1" }
     },
 
     "keyNameObject": { "type": "object" },

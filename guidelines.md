@@ -145,7 +145,7 @@ https://example.com/stores/aisles                                     // A relat
 https://example.com/stores/aisles/c66f06fdb31b4882ad995e4d19ca7aed    // A single item within the collection.
 
 https://example.com/stores/schema                                     // A schema collection within the service.
-https://example.com/stores/schema/com-example-store-v1.schema.json                // A single item within the collection.
+https://example.com/stores/schema/com-example-store-v1                            // A single item within the collection.
 
 ```
 
@@ -174,7 +174,7 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}",
-  "schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+  "schema": "https://example.com/schemas/com-example-store-v1",
   "name": "Alpha",
   "phone": "(425) 555-1212",
   "operations": [
@@ -197,7 +197,7 @@ Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/pho
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}/phone",
-  "schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+  "schema": "https://example.com/schemas/com-example-store-v1",
   "phone": "(425) 555-1212"
 }
 ```
@@ -213,7 +213,7 @@ Collection: `https://example.com/stores/all`
   	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   	"id": "76cc758e256c438b8e49546e0102b8c8",
   	"template": "https://example.com/stores/{id}",
-    "schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+    "schema": "https://example.com/schemas/com-example-store-v1",
     "name": "Alpha",
     "phone": "(425) 555-1212"
   },
@@ -250,6 +250,31 @@ https://example.com/stores/{collection}/{identifier}                   // Single
 https://example.com/stores/{identifier}/{representation}               // Representation of a single item within the base collection.
 https://example.com/stores/{collection}/{identifier}/{representation}  // Representation of a single item within a collection.
 ```
+
+##### Friendly resource name pattern
+
+There are times when resource names should have friendly names readable by humans, for example:
+
+* When the client code chooses the resource name with a `PUT` operation creating a new resource.
+* When the resource is more widely used across client code, for example: JSON Schema.
+
+In order to avoid name collisions a pattern MAY be agreed upon and it is suggested that pattern be, in part, based on how [RFC 1034 Domain Names - Concepts and Facilities](#RFC-1034) works:
+
+```
+{generic top-level domain (gTLD)}
+ -{domain}
+  -{second and lower level domains separated with a -}
+   -{schema name}
+    -{version}
+
+Examples:
+
+  com-example-baseball-equipment-glove-v1
+  org-example-soccer-worldcup-2018-39f6256e
+```
+
+* Services SHOULD refrain from using dots / periods (`.`) in resource names.
+  * Approaching friendly names from the perspective of a file based system may come a desire to append a file name to the end a resource name, for example: `com-example-baseball-equipment-glove-v1`. This may be shortsighted and may appear to be in conflict with the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header should a server decide to make multiple formats available in the future.
 
 ### <a name="hypermedia"></a>Hypermedia as the Engine of Application State
 
@@ -450,7 +475,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ```json
 {
-	"schema": "http://example.com/schema/base.schema.json"
+	"schema": "http://example.com/schema/com-example-base-v1"
 }
 ```
 

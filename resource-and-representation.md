@@ -27,7 +27,7 @@ The following design and examples are intended to provide a starting point for s
 
 ### <a name="schema-base"></a>Base
 
-* [com-example-base-v1.schema.json](./schema/com-example-base-v1.schema.json)
+* [com-example-base-v1](./schema/com-example-base-v1.schema.json)
 * The base schema provides a starting point for all representations.
 * It is the default schema for all representations.
 * It is the schema used for:
@@ -54,7 +54,7 @@ Name | Type | Format | Description
 
 ### <a name="schema-links"></a>Links
 
-* [com-example-links-v1.schema.json](./schema/com-example-links-v1.schema.json)
+* [com-example-links-v1](./schema/com-example-links-v1.schema.json)
 * A list of links allows related data to be provided to the client which can optionally `GET` each item as so desired.
 
 Name | Type | Format | Description
@@ -66,7 +66,7 @@ Name | Type | Format | Description
 
 ### <a name="schema-operation"></a>Operation
 
-* [com-example-operation-v1.schema.json](./schema/com-example-operation-v1.schema.json)
+* [com-example-operation-v1](./schema/com-example-operation-v1.schema.json)
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -78,7 +78,7 @@ Name | Type | Format | Description
 
 ### <a name="schema-store"></a>Store
 
-* [com-example-store-v1.schema.json](./schema/com-example-store-v1.schema.json)
+* [com-example-store-v1](./schema/com-example-store-v1.schema.json)
 * Versioning in the schema name allows the service to revise schema with versioning.
 	* Generally speaking, you can rather easily add new, non-required keys to existing schema without breaking clients as they should be coded in such a way as to ignore keys they don't understand. However, this type of change can be considered a breaking change.
 	* This makes it relatively easy to introduce new schema features or breaking changes (such as new and required keys) without breaking existing clients.
@@ -93,7 +93,7 @@ Name | Type | Format | Description
 
 ### <a name="schema-aisle"></a>Aisle
 
-* [com-example-aisle-v1.schema.json](./schema/com-example-aisle-v1.schema.json)
+* [com-example-aisle-v1](./schema/com-example-aisle-v1.schema.json)
 * See notes on versioning schema in the [store schema](#schema-store).
 
 Name | Type | Format | Description
@@ -107,7 +107,7 @@ Name | Type | Format | Description
 
 ### <a name="schema-error"></a>Error
 
-* [com-example-error-v1.schema.json](./schema/com-example-error-v1.schema.json)
+* [com-example-error-v1](./schema/com-example-error-v1.schema.json)
 * Included here for completeness of the resource model but not currently used in the examples.
 
 Name | Type | Format | Description
@@ -144,7 +144,7 @@ Name | Type | Format | Description
 ```json
 {
 	"href": "https://example.com/stores",
-	"schema": "https://example.com/schemas/com-example-base-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-base-v1",
 	"operations": [
     {
       "rel": "all-stores",
@@ -166,8 +166,8 @@ Name | Type | Format | Description
 * Client code is creating the data.
 * The URI for where to POST comes from the service index: `create-store`.
 * The schema is defined by the server and is used by the client code to specify the data being sent by the client.
-	* `schema` key comes from `com-example-base-v1.schema.json`.
-	* `storeName` and `storePhone` comes from `com-example-store-v1.schema.json`
+	* `schema` key comes from `com-example-base-v1`.
+	* `storeName` and `storePhone` comes from `com-example-store-v1`.
 
 ### Request
 
@@ -175,7 +175,7 @@ Name | Type | Format | Description
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-store-v1",
 	"storeName": "Alpha",
 	"storePhone": "(425) 555-1212"
 }
@@ -183,10 +183,10 @@ Name | Type | Format | Description
 
 ### Response
 
-* Note the additional metadata leveraging `com-example-base-v1.schema.json`: `href`, `id` and `template`.
+* Note the additional metadata leveraging `com-example-base-v1`: `href`, `id` and `template`.
 * The client is given the hyperlink for an `operation` on the store for adding an aisle.
 	* This hyperlink is at the heart of Hypermedia as the Engine of Application State.
-	* `operations` is part of `com-example-base-v1.schema.json` and defined in `com-example-operation-v1.schema.json`.
+	* `operations` is part of `com-example-base-v1` and defined in `com-example-operation-v1`.
 * The `POST` occurs on the collection (plural: `stores`).
 * The location of a store is individual (singular: `store`).
 
@@ -197,7 +197,7 @@ Location: https://example.com/store/97b83a735620465cb8a01bf82392336b
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-store-v1",
 	"storeName": "Alpha",
 	"storePhone": "(425) 555-1212",
 	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
@@ -228,7 +228,7 @@ Location: https://example.com/store/97b83a735620465cb8a01bf82392336b
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-aisle-v1",
 	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
 	"aisleName": "Dairy",
 	"aisleNumber": 10
@@ -244,7 +244,7 @@ Location: https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-aisle-v1",
 	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
 	"aisleName": "Dairy",
 	"aisleNumber": 10,
@@ -267,7 +267,7 @@ Location: https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-aisle-v1",
 	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
 	"aisleName": "Baking",
 	"aisleNumber": 11
@@ -283,7 +283,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-aisle-v1",
 	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
 	"aisleName": "Baking",
 	"aisleNumber": 11,
@@ -322,7 +322,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-store-v1",
 	"storeName": "Alpha",
 	"storePhone": "(425) 555-1212",
 	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
@@ -371,7 +371,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-store-v1",
 	"storeName": "Alpha",
 	"storePhone": "(425) 555-1212",
 	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks",
@@ -379,7 +379,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 	"template": "https://example.com/store/{id}/aisledatalinks",
 	"relatedDataLinks": [
 		{
-			"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+			"schema": "https://example.com/schemas/com-example-aisle-v1",
 			"hrefs": [
 				"https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
 				"https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d"
@@ -422,7 +422,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-v1.schema.json",
+	"schema": "https://example.com/schemas/com-example-store-v1",
 	"storeName": "Alpha",
 	"storePhone": "(425) 555-1212",
 	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata",
@@ -430,7 +430,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 	"template": "https://example.com/store/{id}/aisledata",
 	"relatedData": [
 		{
-			"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+			"schema": "https://example.com/schemas/com-example-aisle-v1",
 			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
 			"aisleName": "Dairy",
 			"aisleNumber": 10,
@@ -446,7 +446,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 			]
 		},
 		{
-			"schema": "https://example.com/schemas/com-example-aisle-v1.schema.json",
+			"schema": "https://example.com/schemas/com-example-aisle-v1",
 			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
 			"aisleName": "Baking",
 			"aisleNumber": 11,

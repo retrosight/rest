@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "href": "https://example.com/schemas/com-example-error-v1.schema.json",
+  "href": "https://example.com/schemas/com-example-error-v1",
   "title": "Error Schema",
   "description": "The error schema provides a way for servers to convey error conditions to clients in the case of HTTP status codes 4xx.",
   "type": "object",
@@ -24,7 +24,7 @@
     "errors": {
       "type": "array",
       "description": "An array of errors. Note: this points to this schema as errors can nest.",
-      "items": { "$ref": "https://example.com/schemas/error.schema.json" }}
+      "items": { "$ref": "https://example.com/schemas/com-example-error-v1" }}
   },
   "required": [ "errorCode", "errorMessage" ]
 }
