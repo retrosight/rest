@@ -17,7 +17,7 @@
 	* [Hypermedia as the Engine of Application State](#hypermedia)
 	* [Related Data](#related-data)
 	* [Custom Data](#custom-data)
-	* [Index](#index)
+	* [Service Index](#index)
 	* [Pagination](#pagination)
 	* [Data Design](#data)
 		* [Identifiers](#data-identifiers)
@@ -110,7 +110,7 @@ scheme     authority       path        query   fragment
 		* Service names SHOULD be alphanumeric characters only.
 		* Service names SHOULD NOT include `service` in their name.
 		* Service names SHOULD NOT include punctuation.
-		* Services SHOULD provide an [index](#index) at this root path.
+		* Services SHOULD provide a [service index](#index) at this root path.
 	* Services MAY include a version number in the URI path using the form of vX where X is a positive integer: `v1`, `v2`, ... , `v10` in the second URI path segment.
 		* Generally speaking, well designed services should never need a version number. It is included here for completeness.
 		* For an excellent talk on why "no versioning" is a good thing fast forward to 27:50 in [GOTO 2014 • REST: I don't Think it Means What You Think it Does](https://youtu.be/pspy1H6A3FM?t=1670).
@@ -133,7 +133,7 @@ scheme     authority       path        query   fragment
 * Services SHOULD arrange and name resources according to a `/collection/item` paradigm.
   * `collection` name is plural.
   * `item` name is singular.
-* Services SHOULD have a base collection, the root of which is the [index](#index) resource.
+* Services SHOULD have a base collection, the root of which is the [service index](#index) resource.
 * The base collection MAY contain individual items.
 * The base collection MAY contain additional collections.
 
@@ -305,7 +305,7 @@ Name | Type | Format | Description
 
 #### Example
 
-* See the [Index](#index) or [Pagination](#pagination) sections for examples.
+* See the [Service Index](#index) or [Pagination](#pagination) sections for examples.
 
 ### <a name="related-data"></a>Related Data
 
@@ -358,45 +358,19 @@ Name | Type | Format | Description
 }
 ```
 
-### <a name="index"></a>Index
+### <a name="index"></a>Service Index
 
-* Services SHOULD provide an index of links at the base URI which will be interesting to callers of the service.
+> More information on the service index design and schema can be found in [Service Index](./service-index.md).
+
+* Services SHOULD provide a service index of links at the base URI which will be interesting to callers of the service.
 * The links SHOULD follow the [RFC 5988 Web Linking](#RFC-5988) standard.
 * The links MAY use [RFC 6570 URI Template](#RFC-6570).
-* The index SHOULD be made available at the root of the service: `https://example.com/servicename`.
+* The service index SHOULD be made available at the root of the service: `https://example.com/{servicename}`.
 
 The service index is one of the keys to evolvability of services, allowing client code to:
 
 * Reference an abstracted name rather than a link directly which allows service links to change without requiring client code changes.
 * Simply follow given links rather than using `string` builders or concatenation to craft service links.
-
-Something to consider for indexes: [Home Documents for HTTP APIs](https://mnot.github.io/I-D/json-home/).
-
-#### Schema
-
-An index leverages the Hypermedia as the Engine of Application State [`operations`](#hypermedia-operations) schema.
-
-####  Example
-
-```json
-{
-	"operations": [
-		{
-			"rel": "data-post",
-			"href": "https://example.com/service/data/",
-			"method": "post"
-		},
-		{
-			"rel": "data-get",
-			"href": "https://example.com/service/data/"
-		},
-		{
-			"rel": "data-get-specific",
-			"href": "https://example.com/service/data/{id}"
-		}
-	]
-}
-```
 
 ### <a name="pagination"></a>Pagination
 
