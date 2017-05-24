@@ -145,7 +145,7 @@ https://example.com/stores/aisles                                     // A relat
 https://example.com/stores/aisles/c66f06fdb31b4882ad995e4d19ca7aed    // A single item within the collection.
 
 https://example.com/stores/schema                                     // A schema collection within the service.
-https://example.com/stores/schema/com-example-store-v1                            // A single item within the collection.
+https://example.com/stores/schema/com-example-store-v1                // A single item within the collection.
 
 ```
 
