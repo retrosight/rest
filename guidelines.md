@@ -145,7 +145,7 @@ https://example.com/stores/aisles                                     // A relat
 https://example.com/stores/aisles/c66f06fdb31b4882ad995e4d19ca7aed    // A single item within the collection.
 
 https://example.com/stores/schema                                     // A schema collection within the service.
-https://example.com/stores/schema/store.v1.schema.json                // A single item within the collection.
+https://example.com/stores/schema/com-example-store-v1.schema.json                // A single item within the collection.
 
 ```
 
@@ -174,7 +174,7 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}",
-  "schema": "https://example.com/schemas/store.v1.schema.json",
+  "schema": "https://example.com/schemas/com-example-store-v1.schema.json",
   "name": "Alpha",
   "phone": "(425) 555-1212",
   "operations": [
@@ -197,7 +197,7 @@ Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/pho
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}/phone",
-  "schema": "https://example.com/schemas/store.v1.schema.json",
+  "schema": "https://example.com/schemas/com-example-store-v1.schema.json",
   "phone": "(425) 555-1212"
 }
 ```
@@ -213,7 +213,7 @@ Collection: `https://example.com/stores/all`
   	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   	"id": "76cc758e256c438b8e49546e0102b8c8",
   	"template": "https://example.com/stores/{id}",
-    "schema": "https://example.com/schemas/store.v1.schema.json",
+    "schema": "https://example.com/schemas/com-example-store-v1.schema.json",
     "name": "Alpha",
     "phone": "(425) 555-1212"
   },

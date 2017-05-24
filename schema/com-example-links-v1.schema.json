@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "href": "https://example.com/schemas/links.v1.schema.json",
+  "href": "https://example.com/schemas/com-example-links-v1.schema.json",
   "title": "List Schema",
   "description": "This schema is used for listing out related data via hyperlinks.",
   "type": "object",

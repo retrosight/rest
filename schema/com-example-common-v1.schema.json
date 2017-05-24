@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "href": "https://example.com/schemas/common.v1.schema.json",
+  "href": "https://example.com/schemas/com-example-common-v1.schema.json",
   "title": "Common Schema",
   "description": "Shared types used by multiple schemas.",
   "definitions": {
