@@ -180,7 +180,42 @@ This example represents the bare minimum JSON Home document.
 
 ### <a name="examples-variables"></a>4.3 Using variables
 
-
+```json
+{
+  "schema": "http://example.com/schemas/json-home.v3.schema.json",
+  "href": "http://example.com/apis",
+  "vars": [
+    {
+      "varName": "specificPath",
+      "varValue": "accounts"
+    },
+    {
+      "varName": "accountTypeIdentifier",
+      "varDefinition": "http://example.com/apis/vars/types-of-accounts.html"
+    }
+  ],
+  "resources": [
+    {
+      "rel": "create-an-account",
+      "href": "http://example.com/{specificPath}",
+      "hints": [
+        {
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "rel": "list-accounts",
+      "href": "http://example.com/accounts/{accountTypeIdentifier}",
+      "hints": [
+        {
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ### <a name="examples-precondition"></a>4.4 Providing precondition details
 
