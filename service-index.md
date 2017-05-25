@@ -105,7 +105,7 @@ Examples:
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`method`|`string`|-|**Required** Valid method names are [RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](RFC-7231) methods `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS` and `TRACE` plus the `PATCH` method from [RFC 5789 PATCH Method for HTTP](#RFC-5789).
+`method`|`string`|-|**Required** Valid method names are [RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](#RFC-7231) methods `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS` and `TRACE` plus the `PATCH` method from [RFC 5789 PATCH Method for HTTP](#RFC-5789).
 `formats`|`array`|`string`|Hints the representation types that the resource produces and consumes, aligned with the ‘method’ hint.
 `profiles`|`array`|`string`|Links to the schema(s) (typically [JSON Schema](#json-schema)) which define payloads the endpoint will generally accept. Based on [RFC 6096 The 'profile' Link Relation Type](#RFC-6096).
 `preconditionRequired`|`array`|`string`|Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using [RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests](#RFC-7232) to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`.
@@ -120,7 +120,7 @@ Name | Type | Format | Description
 Name | Type | Format | Description
 -----|------|--------|------------
 `code`|`string`|-|The service index document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint).
-`rels`|`array`|`string`|When the code is `301 Moved Permanently` or `308 Permanent Redirect` the `rel` points the consumer of this document to the alternative resource(s)."
+`rels`|`array`|`string`|When the code is `301 Moved Permanently` or `308 Permanent Redirect` the `rel` points the consumer of this document to the alternative resource(s).
 
 ### <a name="schema-authSchemes"></a>2.6 authSchemes
 
