@@ -51,7 +51,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## <a name="schema"></a>2 Schema
 
-[JSON Schema](#json-schema) describing this schema can be found [here](./com-example-serviceindex-v1.schema.json).
+[JSON Schema](#json-schema) describing this schema can be found [here](./schema/com-example-serviceindex-v1.schema.json).
 
 ### <a name="schema-root"></a>2.1 Root
 
@@ -420,6 +420,6 @@ This example represents the bare minimum service index document.
 
 * [https://tools.ietf.org/html/rfc7240](https://tools.ietf.org/html/rfc7240)
 
-### < a name="json-schema"></a>JSON Schema
+### <a name="json-schema"></a>JSON Schema
 
 * [http://json-schema.org/](http://json-schema.org/)
