@@ -7,15 +7,15 @@
   "properties": {
     "schema": {
       "type": "string",
-       "description": "RFC 3986 Uniform Resource Identifier (URI). Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking"
+       "description": "RFC 3986 Uniform Resource Identifier (URI): Generic Syntax. Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking"
     },
     "href": {
       "$ref": "#/definitions/hrefDefinition",
-      "description": "Identifier and hyperlink (aka 'self') for this JSON home resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt."
+      "description": "Identifier and hyperlink (aka 'self') for this JSON home resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax."
     },
     "title": {
       "type": "string",
-      "description": "The human readable title of the API described by this JSON Home resource. http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.5.3"
+      "description": "The human readable title of the API described by this service index resource."
     },
     "vars": {
       "type": "array",
@@ -32,7 +32,7 @@
   "definitions": {
     "hrefDefinition": {
       "type": "string",
-      "description": "Link to a resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt OR RFC6570 URI Template https://tools.ietf.org/html/rfc6570."
+      "description": "Link to a resource using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax or RFC 6570 URI Template."
     },
     "varsDefinition": {
       "type": "object",
@@ -43,7 +43,7 @@
         },
         "varDefinition": {
           "type": "string",
-           "description": "Link to a definition for the variable using RFC3986"
+           "description": "Link to a definition for the variable using RFC 3986 Uniform Resource Identifier (URI): Generic Syntax."
         },
         "varValue": {
           "type": "string",
@@ -57,7 +57,7 @@
       "properties": {
         "rel": {
           "type": "string",
-          "description": "RFC 5988 Web Linking Link Relation Types https://tools.ietf.org/html/rfc5988#section-5.3 Examples: author, describedBy"
+          "description": "A RFC 5988 Web Linking Link: link relation type. Examples: `author`, `describedBy`."
         },
         "href": {
           "$ref": "#/definitions/hrefDefinition"
@@ -75,7 +75,7 @@
       "properties": {
         "method": {
           "type": "string",
-           "description": "Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH."
+           "description": "Valid method names are RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content methods `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS` and `TRACE` plus the `PATCH` method from RFC 5789 PATCH Method for HTTP."
         },
         "formats": {
           "type": "array",
@@ -90,11 +90,16 @@
         "preconditionRequired": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests https://tools.ietf.org/html/rfc7232 to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`."
+          "description": "Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`."
+        },
+        "acceptRanges": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
         },
         "docs": {
           "type": "string",
-          "description": "Hints the location for human-readable documentation for the relation type of the resource, a RFC 3986 Uniform Resource Identifier (URI): Generic Syntax https://www.ietf.org/rfc/rfc3986.txt referring to documentation that SHOULD be in HTML format."
+          "description": "Hints the location for human-readable documentation for the relation type of the resource, a RFC 3986 Uniform Resource Identifier (URI): Generic Syntax referring to documentation that SHOULD be in HTML format."
         },
         "status": {
           "type": "object",
@@ -102,7 +107,7 @@
           "properties": {
             "code": {
               "type": "string",
-              "description": "The document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint)."
+              "description": "The service index document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint)."
             },
             "rels": {
               "type": "array",
@@ -111,34 +116,29 @@
             }
           }
         },
-        "acceptRanges": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests."
-        },
-        "prefer": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Hints the RFC 7240 Prefer Header for HTTP https://tools.ietf.org/html/rfc7240 supported by the resource. Note that, as per this RFC, a preference can be ignored by the server."
-        },
         "authSchemes": {
           "type": "array",
-          "description": "Hints that the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication https://tools.ietf.org/html/rfc7235",
+          "description": "Hints the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication.",
           "items": {
             "type": "object",
             "properties": {
               "scheme": {
                 "type": "string",
-                 "description": "An HTTP authentication scheme."
+                 "description": "An HTTP authentication scheme according to RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication."
               },
               "realms": {
                 "type": "array",
                 "items": { "type": "string" },
-                "description": "An array of zero to many strings that identify protection spaces that the resource is a member of."
+                "description": "An array of zero to many strings that identify RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication protection spaces (realms) for the resource."
               },
             },
             "required": [ "scheme" ]
           }
+        },
+        "prefer": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Hints the RFC 7240 Prefer Header for HTTP supported by the resource. Note that, as per the RFC, a preference can be ignored by the server."
         }
       },
       "required": [ "method" ],

@@ -16,20 +16,24 @@
   * [3.2 Real World - a more realistic example an API would actually provide](#examples-real-world)
   * [3.3 Using variables](#examples-variables)
   * [3.4 Providing precondition details](#examples-precondition)
+  * [3.5 Describing status](#examples-status)
+  * [3.6 acceptRanges](#examples-accept-ranges)
+  * [3.7 Describing authorization and authentication](#examples-auth-schemes)
+  * [3.8 Expressing preferences](#examples-prefer)
 * [4 Works Cited](#works-cited)
 
 ## <a name="introduction"></a>1 Introduction
 
-One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#rfc-3986) hyperlinks to navigate between resources. Traditionally, client code (including a human using a web browser) typically make use of documented static URLs (E.g., http://example.com) as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
+One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) hyperlinks to navigate between resources. Traditionally, client code (including a human using a web browser) typically make use of documented static URLs (E.g., http://example.com) as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
 
-JSON-Home documents provide a fundamental starting place for the programmable internet like home pages at root URLs for the World Wide Web, used by humand with browsers.
+Service index documents provide a fundamental starting place for the programmable internet like home pages do at root URLs for the World Wide Web used by humans with browsers.
 
 * Humans use the service index document to learn about a server, write client code and help debug issues when they arise.
 * Client code uses the service index document:
   * To interact with the server, navigate the resources and activities made available by the server.
   * To note and / or react to changes within the server.
 
-JSON-Home documents embrace and dovetail nicely with the HTTP protocol and REST principles:
+Service index documents embrace and dovetail nicely with the HTTP protocol and REST principles:
 
 * Server independence from client - Server interfaces can independently evolve without breaking client code through the addition of:
   * New link relations (Extensibility)
@@ -37,7 +41,7 @@ JSON-Home documents embrace and dovetail nicely with the HTTP protocol and REST 
 * Abstraction of implementation details - The server can choose the URLs associated with a given link relation without breaking client code which is bound to relation descriptions which rarely, if ever, change.
 * The service index aligns nicely with RESTful uniform interface constraints:
   * Identification of resources - Service index documents define the starter set of all of the resources available at a given root URL.
-  * Hypermedia as the engine of application state (HATEOAS) - Home documents are the first place the server can define its state for the client, for example: emitting authorization boundaries by making only the resources / methods available as appropriate for the caller.
+  * Hypermedia as the engine of application state (HATEOAS) - Home documents are the first place the server can define its state for client code, for example: emitting authorization boundaries by making only the resources / methods available as appropriate for the caller.
   * Self describing - The service index allows the server to be wholly self-describing starting at the root URL.
   * Manipulation of resources through representations - Service index documents provide excellent hints to client code on how to manipulate resources and reprentations to achieve objectives.
 
@@ -47,64 +51,83 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## <a name="schema"></a>2 Schema
 
-[JSON Schema](http://json-schema.org/) describing this schema can be found [here](./com-example-serviceindex-v1.schema.json).
+[JSON Schema](#json-schema) describing this schema can be found [here](./com-example-serviceindex-v1.schema.json).
 
 ### <a name="schema-root"></a>2.1 Root
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`schema`|`string`|-|**Required** [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#rfc-3986). Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from RFC 5988 Web Linking.
-`href`|`string`|-|**Required** Identifier and hyperlink (aka 'self') for this resource using [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#rfc-3986).
-`title`|`type`|-|The human readable title of the API described by this service index resource. http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.5.3
+`schema`|`string`|-|**Required** [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986). Provides the self documentating feature for the resource / representation. Analogous to the 'describedby' relation type from [RFC 5988 Web Linking](#RFC-5988).
+`href`|`string`|-|**Required** Identifier and hyperlink (aka 'self') for this resource using [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986).
+`title`|`string`|-|The human readable title of the API described by this service index resource.
 `vars`|`array`|[`vars`](#schema-vars)|An array of variables to be used with hyperlink templates given in the document.
 `resources`|`array`|[`resources`](#schema-resources)|**Required** An array of resources and hints about the resources used by humans writing client code and the client code itself.
 
 ### <a name="schema-vars"></a>2.2 vars
 
-* `varName` + either `varDefinition` or `varValue` is required noting this either/or requirement cannot be described using JSON schema.
-* Servers should avoid having client code build strings for URIs except in response to the service index document in order to preserve REST principles.
+* `varName` + either `varDefinition` or `varValue` is required noting this either/or requirement cannot be described using [JSON Schema](#json-schema).
+* Servers SHOULD avoid having client code build strings for URIs except in response to the service index document in order to preserve REST principles.
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `varName`|`string`|-|**Required** The variable name.
-`varDefinition`|`string`|-|Link to a definition for the variable using [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#rfc-3986).
+`varDefinition`|`string`|-|Link to a definition for the variable using [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986).
 `varValue`|`string`|-|The variable value.
 
 ### <a name="schema-resources"></a>2.3 resources
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`rel`|`string`|-|**Required** [RFC 5988 Web Linking Link Relation Types](https://tools.ietf.org/html/rfc5988#section-5.3) Examples: `author`, `describedBy`.
-`href`|`string`|-|**Required** Link to a resource using [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#rfc-3986) OR [RFC 6570 URI Template](#RFC-6570).
+`rel`|`string`|-|**Required** A [RFC 5988 Web Linking Link](#RFC-5988): link relation type. Examples: `author`, `describedBy`.
+`href`|`string`|-|**Required** Link to a resource using [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) or [RFC 6570 URI Template](#RFC-6570).
 `hints`|`array`|[hints](#schema-hints)|**Required** Hints provided to both humans writing the client code and the client code itself, describing the resource and activities available for a given link relation.
+
+#### Versioning within the `rel` value
+
+* Services SHOULD come up with a version scheme in the `rel` value. It is expected services will grow in functionality over time and with this growth comes the need for changes which can (or will) break existing client code. By versioning the `rel` value a service can more clearly hint the growth.
+* Services MAY adopt the following pattern:
+
+```
+{YYYY}
+ -{MM}
+  -{DD}
+   -{activity}
+    -{target}
+
+Examples:
+
+  2017-05-25-create-hello
+  2018-12-31-create-hello
+  2017-06-07-update-flight
+```
 
 ### <a name="schema-hints"></a>2.4 hints
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`method`|`string`|-|**Required** Valid method names are RFC 7231 GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE + RFC 5789 PATCH.
+`method`|`string`|-|**Required** Valid method names are [RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](RFC-7231) methods `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS` and `TRACE` plus the `PATCH` method from [RFC 5789 PATCH Method for HTTP](#RFC-5789).
 `formats`|`array`|`string`|Hints the representation types that the resource produces and consumes, aligned with the ‘method’ hint.
-`prefer`|`array`|`string`|Hints the RFC 7240 Prefer Header for HTTP https://tools.ietf.org/html/rfc7240 supported by the resource. Note that, as per the RFC, a preference can be ignored by the server.
-`profiles`|`array`|`string`|Links to the schema(s) (typically JSON schema) which define payloads the endpoint will generally accept. Based on RFC 6096 The 'profile' Link Relation Type https://tools.ietf.org/html/rfc6906
-`preconditionRequired`|`array`|`string`|Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using [RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests](https://tools.ietf.org/html/rfc7232) to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`.
-`acceptRanges`|`array`|`string`|Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in [RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests](https://tools.ietf.org/html/rfc7233).
-`docs`|`string`|-|Hints the location for human-readable documentation for the relation type of the resource, a [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#rfc-3986) referring to documentation that SHOULD be in HTML format.
+`profiles`|`array`|`string`|Links to the schema(s) (typically [JSON Schema](#json-schema)) which define payloads the endpoint will generally accept. Based on [RFC 6096 The 'profile' Link Relation Type](#RFC-6096).
+`preconditionRequired`|`array`|`string`|Hints that the resource requires state-changing requests (e.g., PUT, PATCH) using [RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests](#RFC-7232) to avoid conflicts due to concurrent updates. Examples: `etag`, `last-modified` and `If-Match`.
+`acceptRanges`|`array`|`string`|Hints the range-specifiers available to the client for this resource; equivalent to the `Accept-Ranges` HTTP response header in [RFC 7233 Hypertext Transfer Protocol (HTTP/1.1): Range Requests](#RFC-7233).
+`docs`|`string`|-|Hints the location for human-readable documentation for the relation type of the resource, a [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) referring to documentation that SHOULD be in HTML format.
 `status`|`object`|[`status`](#schema-status)|Hints the status of the resource.
-`authSchemes`|`array`|[`authschemes`](#schema-authSchemes)|Hints that the resource requires authentication using RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication https://tools.ietf.org/html/rfc7235
+`authSchemes`|`array`|[`authschemes`](#schema-authSchemes)|Hints the resource requires authentication using [RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication](#RFC-7235).
+`prefer`|`array`|`string`|Hints the [RFC 7240 Prefer Header for HTTP](#RFC-7240) supported by the resource. Note that, as per the RFC, a preference can be ignored by the server.
 
 ### <a name="schema-status"></a>2.5 status
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`code`|`string`|-|The document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint).
+`code`|`string`|-|The service index document uses existing HTTP status codes to hint the likely outcome of using an endpoint, for example: `410 Gone` (no longer available), `301 Moved Permanently` or `308 Permanent Redirect` (choices for deprecation of an endpoint).
 `rels`|`array`|`string`|When the code is `301 Moved Permanently` or `308 Permanent Redirect` the `rel` points the consumer of this document to the alternative resource(s)."
 
 ### <a name="schema-authSchemes"></a>2.6 authSchemes
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`scheme`|`string`|-|**Required** An HTTP authentication scheme
-`realms`|`array`|`string`|An array of zero to many strings that identify protection spaces that the resource is a member of.
+`scheme`|`string`|-|**Required** An HTTP authentication scheme according to [RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication](#RFC-7235).
+`realms`|`array`|`string`|An array of zero to many strings that identify [RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication](#RFC-7235) protection spaces (realms) for the resource.
 
 ## <a name="examples"></a>3 Examples
 
@@ -126,7 +149,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "hello-world",
+      "rel": "2017-05-25-hello-world",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -147,25 +170,25 @@ This example represents the bare minimum service index document.
   "title": "The API for Example",
   "resources": [
     {
-      "rel": "create-an-account",
+      "rel": "2017-05-25-create-account",
       "href": "http://example.com/accounts",
       "hints": [
         {
           "method": "post",
           "formats": [ "application/json" ],
-          "profiles": [ "http://example.com/schemas/com-example-accountinfo.v1" ],
+          "profiles": [ "http://example.com/schemas/com-example-accountinfo-v1" ],
           "docs": "http://example.com/apis/creating-an-account.html"
         }
       ]
     },
     {
-      "rel": "list-accounts",
+      "rel": "2017-05-25-list-accounts",
       "href": "http://example.com/accounts",
       "hints": [
         {
           "method": "get",
           "formats": [ "application/json", "text/xml" ],
-          "profiles": [ "http://example.com/schemas/com-example-accountinfo.v1" ],
+          "profiles": [ "http://example.com/schemas/com-example-accountinfo-v1" ],
           "docs": "http://example.com/apis/listing-accounts.html"
         }
       ]
@@ -230,7 +253,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "hello-world",
+      "rel": "2017-05-25-hello-world",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -251,7 +274,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "hello-world",
+      "rel": "2017-05-25-hello-world",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -263,7 +286,7 @@ This example represents the bare minimum service index document.
       ]
     },
     {
-      "rel": "hello-planet",
+      "rel": "2017-05-25-hello-planet",
       "href": "http://example.com/api/helloplanet",
       "hints": [
         {
@@ -287,7 +310,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "hello-world",
+      "rel": "2017-05-25-hello-world",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -300,11 +323,52 @@ This example represents the bare minimum service index document.
 }
 ```
 
-### <a name="examples-prefer"></a>3.7 prefer
+### <a name="examples-auth-schemes"></a>3.7 Describing authorization and authentication
 
+```json
+{
+  "schema": "http://example.com/schemas/com-example-serviceindex-v1",
+  "href": "http://example.com/apis",
+  "resources": [
+    {
+      "rel": "2017-05-25-hello-world",
+      "href": "http://example.com/api/helloworld",
+      "hints": [
+        {
+          "method": "get",
+          "authSchemes": [
+            {
+             "scheme": "Basic",
+             "realms": [ "private", "example" ]
+           }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
+### <a name="examples-prefer"></a>3.8 Expressing preferences
 
-### <a name="examples-auth-schemes"></a>3.8 Describing authorization and authentication
+```json
+{
+  "schema": "http://example.com/schemas/com-example-serviceindex-v1",
+  "href": "http://example.com/apis",
+  "resources": [
+    {
+      "rel": "2017-05-25-hello-world",
+      "href": "http://example.com/api/helloworld",
+      "hints": [
+        {
+          "method": "post",
+          "prefer": [ "respond-async" "wait", "return" ]
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## <a name="works-cited"></a>4 Works Cited
 
@@ -318,11 +382,12 @@ This example represents the bare minimum service index document.
 
 ### <a name="RFC-5789"></a>RFC 5789 PATCH Method for HTTP
 
-* [https://tools.ietf.org/html/rfc7240](https://tools.ietf.org/html/rfc7240)
+* [https://tools.ietf.org/html/rfc5789](https://tools.ietf.org/html/rfc5789)
 
 ### <a name="RFC-5988"></a>RFC 5988 Web Linking
 
 * [https://tools.ietf.org/html/rfc5988](https://tools.ietf.org/html/rfc5988)
+  * [Link Relation Types](https://tools.ietf.org/html/rfc5988#section-4)
 
 ### <a name="RFC-6096"></a>RFC 6096 The 'profile' Link Relation Type
 
@@ -335,6 +400,7 @@ This example represents the bare minimum service index document.
 ### <a name="RFC-7231"></a>RFC 7231 Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content
 
 * [https://tools.ietf.org/html/rfc7231](https://tools.ietf.org/html/rfc7231)
+  * [Method Definitions](https://tools.ietf.org/html/rfc7231#section-4.3)
 
 ### <a name="RFC-7232"></a>RFC 7232 Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests
 
@@ -347,3 +413,13 @@ This example represents the bare minimum service index document.
 ### <a name="RFC-7235"></a>RFC 7235 Hypertext Transfer Protocol (HTTP/1.1): Authentication
 
 * [https://tools.ietf.org/html/rfc7235](https://tools.ietf.org/html/rfc7235)
+  * [Protection Space (Realm)](https://tools.ietf.org/html/rfc7235#section-2.2)
+  * [Authentication Scheme Registry](https://tools.ietf.org/html/rfc7235#section-5.1)
+
+### <a name="RFC-7240"></a>RFC 7240 Prefer Header for HTTP
+
+* [https://tools.ietf.org/html/rfc7240](https://tools.ietf.org/html/rfc7240)
+
+### < a name="json-schema"></a>JSON Schema
+
+* [http://json-schema.org/](http://json-schema.org/)
