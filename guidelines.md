@@ -34,17 +34,17 @@
 
 * Services SHOULD limit themselves to standards based HTTP headers as defined in the [Internet Assigned Numbers Authority (IANA) Message Headers](http://www.iana.org/assignments/message-headers/message-headers.xhtml) (Protocol=HTTP, Status=Standard)
 
-####  <a name="header-content-type"></a>Content-Type
+#### <a name="header-content-type"></a>Content-Type
 
 * Services SHOULD always provide the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header field in all responses.
 
-####  <a name="header-accept"></a>Accept
+#### <a name="header-accept"></a>Accept
 
 * Services SHOULD respect the [RFC 7231 Accept](https://tools.ietf.org/html/rfc7231#section-5.3.2) request header field whenever possible.
 * Services SHOULD provide a [406 Not Acceptable](https://tools.ietf.org/html/rfc7231#section-6.5.6) HTTP status code when unable to respect the Accept header field.
 * Services MAY disregard the Accept header field and treat the response as if it is not subject to content negotiation provided the [Content-Type](#header-content-type) header is present in the response.
 
-####  <a name="header-accept-language"></a>Accept-Language
+#### <a name="header-accept-language"></a>Accept-Language
 
 * Services SHOULD respect the [RFC 7231 Accept-Language](https://tools.ietf.org/html/rfc7231#section-5.3.5) request header field and respond with the appropriately localized data when applicable.
 * The Accept-Language request header field uses [RFC 5646 Tags for Identifying Languages](#RFC-5646). Simplest examples are:
@@ -52,16 +52,16 @@
 	* de-DE
 * Services MAY default to US English (en-US) in the absence of the Accept-Language request header field.
 
-####  <a name="header-date"></a>Date
+#### <a name="header-date"></a>Date
 
 * Services SHOULD provide the [RFC 7231 Date](https://tools.ietf.org/html/rfc7231#section-7.1.1.2) response header field.
 
-####  <a name="header-location"></a>Location
+#### <a name="header-location"></a>Location
 
 * Services SHOULD provide the [RFC 7231 7.1.2. Location](https://tools.ietf.org/html/rfc7231#section-7.1.2) response header field with the value expressed as a fully qualified domain name (FQDN) [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) for all operations which use the `POST` HTTP method.
 * Services MAY provide the Location header as a relative value noting this requires client code to build URIs which should generally be avoided.
 
-####  <a name="header-cache"></a>Cache Headers
+#### <a name="header-cache"></a>Cache Headers
 
 For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (HTTP/1.1): Caching](https://tools.ietf.org/html/rfc7234). This section along with the [Last-Modified](#header-last-modified), [ETag](#header-etag) and [Precondition](#header-precondition) sections cover the caching responsibilities for a service.
 
@@ -73,15 +73,15 @@ For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (H
 	* [RFC 7234 Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)
 	* [RFC 7234 Warning](https://tools.ietf.org/html/rfc7234#section-5.5)
 
-####  <a name="header-last-modified"></a>Last-Modified
+#### <a name="header-last-modified"></a>Last-Modified
 
 * Services SHOULD provide the [RFC 7232 Last-Modified](https://tools.ietf.org/html/rfc7232#section-2.2) header in all responses.
 
-####  <a name="header-etag"></a>ETag
+#### <a name="header-etag"></a>ETag
 
 * Services SHOULD provide the [RFC 7232 ETag](https://tools.ietf.org/html/rfc7232#section-2.3) header in all responses.
 
-####  <a name="header-precondition"></a>Precondition Headers
+#### <a name="header-precondition"></a>Precondition Headers
 
 * Services SHOULD support the following request header fields:
 	* [RFC 7232 If-Match](https://tools.ietf.org/html/rfc7232#section-3.1)
@@ -128,7 +128,7 @@ scheme     authority       path        query   fragment
 		* Service(s) would have to implement a reverse proxy at each hop.
 		* It breaks the consistency model of service/resource/representation.
 
-####  <a name="collection-item-pattern"></a>Collection and Item Pattern
+#### <a name="collection-item-pattern"></a>Collection and Item Pattern
 
 * Services SHOULD arrange and name resources according to a `/collection/item` paradigm.
   * `collection` name is plural.
@@ -155,7 +155,7 @@ https://example.com/stores/schema/com-example-store-v1                // A singl
 	* This pattern usually duplicates data which should be found in the resource itself.
 	* This pattern MUST NOT be a substitute for proper handling of [Hypermedia as the Engine of Application State](#links-hateoas) or [Related Data](#related-data).
 
-####  <a name="creating-resources"></a>Creation of Resources and Representations
+#### <a name="creating-resources"></a>Creation of Resources and Representations
 
 > One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
@@ -223,7 +223,7 @@ Collection: `https://example.com/stores/all`
 ]
 ```
 
-####  <a name="resource-naming-syntax"></a>Resource Naming Syntax
+#### <a name="resource-naming-syntax"></a>Resource Naming Syntax
 
 Building upon everything in this section the following illustrates how teams should think of URIs when naming resources:
 
@@ -274,7 +274,7 @@ Examples:
 ```
 
 * Services SHOULD refrain from using dots / periods (`.`) in resource names.
-  * Approaching friendly names from the perspective of a file based system may come a desire to append a file name to the end a resource name, for example: `com-example-baseball-equipment-glove-v1`. This may be shortsighted and may appear to be in conflict with the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header should a server decide to make multiple formats available in the future.
+  * Approaching friendly names from the perspective of a file based system may come a desire to append a file name to the end a resource name, for example: `com-example-baseball-equipment-glove-v1.schema.json`. This may be shortsighted and may appear to be in conflict with the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header should a server decide to make multiple formats available in the future.
 
 ### <a name="hypermedia"></a>Hypermedia as the Engine of Application State
 
@@ -289,13 +289,13 @@ Examples:
 * Client code binds to the `rel` (relation) key and follows the link in the `href` key using the HTTP method in the `method` key.
   * This insulates against breaking changes as it allows the server to change the `href` value at any time and the client code will still work.
 
-####  <a name="hypermedia-operations"></a>Operations Schema
+#### <a name="hypermedia-operations"></a>Operations Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
 `operations`|`array`|[`operation`](#hypermedia-operations-operation)|The hypermedia as the engine of application state (HATEOAS) information.
 
-####  <a name="hypermedia-operations-operation"></a>Operation Schema
+#### <a name="hypermedia-operations-operation"></a>Operation Schema
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -388,7 +388,7 @@ The service index is one of the keys to evolvability of services, allowing clien
 
 Pagination leverages the [Hypermedia as the Engine of Application State](#hypermedia) [`operations`](#hypermedia-operations) schema.
 
-####  Example
+#### Example
 
 ```json
 {
@@ -420,7 +420,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ### <a name="data"></a>Data Design
 
-####  <a name="data-identifiers"></a>Identifiers
+#### <a name="data-identifiers"></a>Identifiers
 
 > The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
 
@@ -441,7 +441,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 }
 ```
 
-####  <a name="data-self-describing"></a>Self-describing Data
+#### <a name="data-self-describing"></a>Self-describing Data
 
 * Representations SHOULD be self-describing through the use of a `schema` key in the root of all payloads.
 * The `schema` value SHOULD be in the form of a [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986).
@@ -453,7 +453,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 }
 ```
 
-####  <a name="data-date-time"></a>Dates and Times
+#### <a name="data-date-time"></a>Dates and Times
 
 * Services SHOULD choose from the following formats to accept and represent dates and timestamps:
   * **Preferred**: [RFC 3339 Date and Time on the Internet: Timestamps](#RFC-3339): `YYYY-MM-DDThh:mm:ss.nnn-hh:mmZ`
@@ -481,7 +481,7 @@ Unix
 }
 ```
 
-####  <a name="data-currency"></a>Currency
+#### <a name="data-currency"></a>Currency
 
 * All currency values SHOULD follow [ISO 4217:2015 Codes for the representation of currencies](#ISO-4217).
 * A currency value SHOULD be an JSON object with the following keys:
@@ -507,7 +507,7 @@ Unix
 }
 ```
 
-####  <a name="data-key-names"></a>Key-Value Pair Names
+#### <a name="data-key-names"></a>Key-Value Pair Names
 
 * Services SHOULD use [Camel Case](https://en.wikipedia.org/wiki/CamelCase) with the first letter in lower case for all key-value pair names. Example: `total`, `currencyCode` and `createDate`.
 
@@ -525,7 +525,7 @@ Status Code Range|Definition
 4xx|The 4xx (Client Error) class of status code indicates that the client seems to have erred.
 5xx|The 5xx (Server Error) class of status code indicates that the server is aware that it has erred or is incapable of performing the requested method.
 
-####  <a name="errors-when-4xx"></a>Errors when HTTP Status Code is 4xx
+#### <a name="errors-when-4xx"></a>Errors when HTTP Status Code is 4xx
 
 * Services SHOULD provide additional context via JSON entity document when 4xx HTTP status code is provided in the response.
 * Generally speaking, most 4xx errors occur occur during a `PUT` or `POST` operation.
@@ -775,7 +775,7 @@ Links to claims within the RFC:
 
 ### <a name="ISO-8601"></a>ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times
 
-* [ISO 8601:2004 Data elements and interchange formats -- Information interchange -- Representation of dates and times](https://www.iso.org/standard/40874.html)
+* [https://www.iso.org/standard/40874.html](https://www.iso.org/standard/40874.html)
 
 ### <a name="RFC-2119"></a>RFC 2119 Key words for use in RFCs to Indicate Requirement Levels
 

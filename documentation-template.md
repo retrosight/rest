@@ -1,4 +1,5 @@
 # Service Name
+
 Description
 
 * [TOC1](#toc1)
@@ -49,7 +50,7 @@ Name | Type | Format | Description
 -----|------|--------|------------
 `name`|`type`|-|**Required** The URI query parameter.
 
-#### Payload Body
+#### Payload
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -146,7 +147,7 @@ Name | Type | Format | Description
 * [RFC 7231 Allow](https://tools.ietf.org/html/rfc7231#section-7.4.1)
 * [RFC 7231 Server](https://tools.ietf.org/html/rfc7231#section-7.4.2)
 
-#### Payload Body
+#### Payload
 
 Name | Type | Format | Description
 -----|------|--------|------------
@@ -171,6 +172,7 @@ Payload
 -------------
 
 # Service v10
+
 Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
 
 * [Sample for posting a payload](#post-a-payload)
@@ -200,7 +202,7 @@ Name | Type | Format | Description
 `storeIdentifier`|`string`|-|**Required** Note required when applicable.
 `requestDate`|`string`|[`dateTime`](#dateTime)|This parameter isn't required. Link to format using anchor tags when applicable.
 
-#### Payload Body
+#### Payload
 
 Generally speaking these payloads will be described in much detail with a Schema section.
 
@@ -212,6 +214,7 @@ Name | Type | Format | Description
 ### Response
 
 #### Status Codes
+
 * [200 OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)
 * [201 Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)
 * [400 Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)
@@ -235,6 +238,7 @@ Showing developers exactly what they can expect when using [curl](https://curl.h
 `curl -v http://example.com/?storeIdentifier=abc`
 
 #### Response
+
 Ensure the headers are kept separate as a code block from the payload for ease of reading.
 
 ```
@@ -243,12 +247,12 @@ Cache-Control: max-age=604800
 Content-Type: application/json
 Date: Wed, 06 Jul 2018 17:33:03 GMT
 Etag: "359670651+ident"
-Expires: Wed, 13 Jul 2016 17:33:03 GMT
-Last-Modified: Fri, 09 Aug 2017 23:54:35 GMT
+Expires: Wed, 13 Jul 2018 17:33:03 GMT
+Last-Modified: Fri, 09 Aug 2018 23:54:35 GMT
 Content-Length: 1270
 ```
 
-```
+```json
 {
 	"https://example.com": {
 		"alpha": {
@@ -260,6 +264,7 @@ Content-Length: 1270
 ## <a name="schema"></a>Sample Schema
 
 ### <a name="schema-common"></a>Sample Common
+
 Name | Type | Format | Description
 -----|------|--------|------------
 <a name="dateTime"></a>`dateTime`|`string`|-|DateTime of where the transaction happened in format specified in ISO 8601. While the standard regards time zone designators as optional, we highly recommend to use UTC + Offset. For example, 2016-04-22T12:20+0700 (12:20 PM in Pacific Time).

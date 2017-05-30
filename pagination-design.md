@@ -28,10 +28,10 @@ Following the prior example of a `pageSize` parameter:
 One of the features of [RFC 5988 Web Linking](https://tools.ietf.org/html/rfc5988) is the defined [`Link`](https://tools.ietf.org/html/rfc5988#section-5) header field which allows for the creation of pagination links via HTTP header as in this example:
 
 ```
-Link: <https://example.com/people/page4>; rel="next",
-	  <https://example.com/people/page2>; rel="prev",
-	  <https://example.com/people/first>; rel="first",
-	  <https://example.com/people/last>; rel="last";
+Link: <https://example.com/service/page4>; rel="next",
+	  <https://example.com/service/page2>; rel="prev",
+	  <https://example.com/service/first>; rel="first",
+	  <https://example.com/service/last>; rel="last";
 ```
 
 The reason the guidelines place the links in the payload body is:

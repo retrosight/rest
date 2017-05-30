@@ -49,12 +49,8 @@ start ----------> | received  | ----------> | accepted  | ----------> | fulfille
 ```json
 {
 	"operations": [
-		{
-      "rel": "order-post", "href": "https://...", "method": "post"
-		},
-    {
-      "rel": "orders-all", "href": "https://..."
-    }
+		{ "rel": "order-post", "href": "https://...", "method": "post" },
+    { "rel": "orders-all", "href": "https://..." }
 	]
 }
 ```

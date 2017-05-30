@@ -38,7 +38,7 @@ POST https://example.com/people
   "colorEyes": "brown",
   "ssn": "123-45-6789",
 
-  "comment": "// Identifier",
+  "commentIdentifier": "// Identifier",
   "href": "https://example.com/people/11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "id": "11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "template": "https://example.com/people/{id}"
@@ -60,12 +60,12 @@ Following on the example, let's see what a family and where they live might look
   "colorEyes": "brown",
   "ssn": "123-45-6789",
 
-  "comment": "// Identifier",
+  "commentIdentifier": "// Identifier",
   "href": "https://example.com/people/11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "id": "11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "template": "https://example.com/people/{id}",
 
-  "comment": "// Related Data",
+  "commendRelatedData": "// Related Data",
   "spouse": "https://example.com/people/3ba141c1-1aaf-47f2-8939-1709f0263008",
   "children": [
       "https://example.com/people/516287fa-dd48-49c9-bc9c-dddaae46a41b",
@@ -88,12 +88,12 @@ Continuing the example, the server lets the client know it can update and remove
   "colorEyes": "brown",
   "ssn": "123-45-6789",
 
-  "comment": "// Identifier",
+  "commentIdentifier": "// Identifier",
   "href": "https://example.com/people/11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "id": "11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "template": "https://example.com/people/{id}",
 
-  "comment": "// Related Data",
+  "commendRelatedData": "// Related Data",
   "spouse": "https://example.com/people/3ba141c1-1aaf-47f2-8939-1709f0263008",
   "children": [
       "https://example.com/people/516287fa-dd48-49c9-bc9c-dddaae46a41b",
@@ -101,7 +101,7 @@ Continuing the example, the server lets the client know it can update and remove
   ],
   "house": "https://www.google.com/maps/place/1820+Wensley+Dr,+Charlotte,+NC+28210/@35.1541824,-80.8694037,17z",
 
-  "comment": "// Hypermedia As The Engine Of Application State",
+  "commentHATEOAS": "// HATEOAS",
   "operations": [
     {
       "rel": "update-person",
