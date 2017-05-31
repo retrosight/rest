@@ -14,6 +14,7 @@
 		* [Collection and Item Pattern](#collection-item-pattern)
 		* [Creation of Resources and Representations](#creating-resources)
 		* [Resource Naming Syntax](#resource-naming-syntax)
+		* [Friendly resource name pattern](#resource-naming-friendly)
 	* [Hypermedia as the Engine of Application State](#hypermedia)
 	* [Related Data](#related-data)
 	* [Custom Data](#custom-data)
@@ -21,6 +22,7 @@
 	* [Pagination](#pagination)
 	* [Data Design](#data)
 		* [Identifiers](#data-identifiers)
+		* [Self-describing Data](#data-self-describing)
 		* [Dates and Times](#data-date-time)
 		* [Currency](#data-currency)
 		* [Key-Value Pair Names](#data-key-names)
@@ -251,7 +253,7 @@ https://example.com/stores/{identifier}/{representation}               // Repres
 https://example.com/stores/{collection}/{identifier}/{representation}  // Representation of a single item within a collection.
 ```
 
-##### Friendly resource name pattern
+#### <a name="resource-naming-friendly"></a>Friendly resource name pattern
 
 There are times when resource names should have friendly names readable by humans, for example:
 
