@@ -1,4 +1,4 @@
-# rest
+# RESTful Server Guidelines
 
 Welcome...!
 
