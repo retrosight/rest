@@ -65,7 +65,7 @@ Following on the example, let's see what a family and where they live might look
   "id": "11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "template": "https://example.com/people/{id}",
 
-  "commendRelatedData": "// Related Data",
+  "commentRelatedData": "// Related Data",
   "spouse": "https://example.com/people/3ba141c1-1aaf-47f2-8939-1709f0263008",
   "children": [
       "https://example.com/people/516287fa-dd48-49c9-bc9c-dddaae46a41b",
@@ -93,7 +93,7 @@ Continuing the example, the server lets the client know it can update and remove
   "id": "11fa754d-d5b8-45e3-a2e7-d821351dc345",
   "template": "https://example.com/people/{id}",
 
-  "commendRelatedData": "// Related Data",
+  "commentRelatedData": "// Related Data",
   "spouse": "https://example.com/people/3ba141c1-1aaf-47f2-8939-1709f0263008",
   "children": [
       "https://example.com/people/516287fa-dd48-49c9-bc9c-dddaae46a41b",
