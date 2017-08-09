@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "href": "https://example.com/schemas/com-example-error-v1",
   "title": "Error Schema",
   "description": "The error schema provides a way for servers to convey error conditions to clients in the case of HTTP status codes 4xx.",
