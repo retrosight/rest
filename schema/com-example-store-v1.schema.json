@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "href": "https://example.com/schemas/com-example-store-v1",
   "title": "Store v1 Schema",
   "description": "A single store for example: grocery store.",
