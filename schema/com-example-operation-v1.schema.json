@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "href": "https://example.com/schemas/com-example-operation-v1",
   "title": "Operation Schema",
   "description": "An operation provides the base for Hypermedia as the Engine of Application State",
