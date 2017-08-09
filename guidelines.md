@@ -779,6 +779,10 @@ Links to claims within the RFC:
 
 * [https://www.iso.org/standard/40874.html](https://www.iso.org/standard/40874.html)
 
+### ECMAScript® 2017 Language Specification (ECMA-262, 8th edition, June 2017)
+
+* [https://www.ecma-international.org/ecma-262/8.0/index.html](https://www.ecma-international.org/ecma-262/8.0/index.html)
+
 ### <a name="RFC-2119"></a>RFC 2119 Key words for use in RFCs to Indicate Requirement Levels
 
 * [https://www.ietf.org/rfc/rfc2119.txt](https://www.ietf.org/rfc/rfc2119.txt)
