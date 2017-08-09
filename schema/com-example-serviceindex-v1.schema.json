@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "href": "https://example.com/schemas/com-example-serviceindex-v1",
   "title": "Service Index Version 1",
   "description": "A modified schema for JSON Home documents based upon in part on https://mnot.github.io/I-D/json-home/#RFC7159",
