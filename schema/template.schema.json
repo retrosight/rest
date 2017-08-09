@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "href": "https://example.com/schemas/template",
   "title": "Template Schema",
   "description": "This template contains many of the major JSON schema types and keywords - use for building other schemas.",
