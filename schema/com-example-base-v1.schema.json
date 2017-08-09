@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "href": "https://example.com/schemas/com-example-base-v1",
   "title": "Base Schema",
   "description": "The base schema provides a starting point for all documents, is the default schema for all documents and is the schema used for metadata.",
