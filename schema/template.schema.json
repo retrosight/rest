@@ -148,6 +148,6 @@
       },
       "required": ["keyNameString"],
       "additionalProperties": false
-        }
     }
+  }
 }

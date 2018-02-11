@@ -12,7 +12,7 @@
         "type": "string",
         "description": "Hyperlink to related resources."
       }
-    },
-    "required": [ "hrefs" ]
-  }
+    }
+  },
+  "required": [ "hrefs" ]
 }

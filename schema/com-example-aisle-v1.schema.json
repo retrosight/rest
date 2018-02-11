@@ -17,7 +17,7 @@
     "aisleNumber": {
       "type": "integer",
       "description": "Aisle number. Examples: `1` and `2`"
-    },
+    }
   },
   "required": [ "storeId", "aisleName" ]
 }

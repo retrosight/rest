@@ -24,7 +24,8 @@
     "errors": {
       "type": "array",
       "description": "An array of errors. Note: this points to this schema as errors can nest.",
-      "items": { "$ref": "https://example.com/schemas/com-example-error-v1" }}
+      "items": { "$ref": "https://example.com/schemas/com-example-error-v1" }
+    }
   },
   "required": [ "errorCode", "errorMessage" ]
 }
