@@ -1,25 +1,38 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "href": "https://example.com/schemas/template",
+  "$id": "",
+
+  "$schema": "http://json-schema.org/draft-07/schema#",
+
+  "$ref": "",
+
+  "$comment":"",
+
   "title": "Template Schema",
+
   "description": "This template contains many of the major JSON schema types and keywords - use for building other schemas.",
+
+  "default": true,
+
+  "readOnly": true,
+
+  "examples": [ ],
 
   "type": "object",
 
   "allOf": [{
-    "$ref": "https://example.com/schemas/com-example-base-v1"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
   }],
 
   "anyOf": [{
-    "$ref": "https://example.com/schemas/com-example-base-v1"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
   }],
 
   "oneOf": [{
-    "$ref": "https://example.com/schemas/com-example-base-v1"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
   }],
 
   "not": {
-    "$ref": "https://example.com/schemas/com-example-base-v1"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
   },
 
   "comment": "`default` and `enum` are available for all instance types.",
@@ -104,7 +117,7 @@
 
     "keyNameArrayReference": {
       "type": "array",
-      "items": { "$ref": "https://example.com/schemas/com-example-base-v1" }
+      "items": { "$ref": "https://example.com/schemas/com-example-base-2018-03-01" }
     },
 
     "keyNameObject": { "type": "object" },
@@ -132,6 +145,7 @@
   "required": ["keyNameString", "keyNameNumber"],
 
   "definitions": {
+
     "keyNameDefinition": {
       "type": "string",
       "description": "",
@@ -148,6 +162,44 @@
       },
       "required": ["keyNameString"],
       "additionalProperties": false
+    },
+
+    "schemaArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#" }
+    },
+
+    "nonNegativeInteger": {
+      "type": "integer",
+      "minimum": 0
+    },
+
+    "nonNegativeIntegerDefault0": {
+      "allOf": [
+        { "$ref": "#/definitions/nonNegativeInteger" },
+        { "default": 0 }
+      ]
+    },
+
+    "simpleTypes": {
+      "enum": [
+        "array",
+        "boolean",
+        "integer",
+        "null",
+        "number",
+        "object",
+        "string"
+      ]
+    },
+
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "default": []
     }
+
   }
 }

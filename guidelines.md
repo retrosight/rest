@@ -176,7 +176,7 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}",
-  "schema": "https://example.com/schemas/com-example-store-v1",
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
   "name": "Alpha",
   "phone": "(425) 555-1212",
   "operations": [
@@ -199,7 +199,7 @@ Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/pho
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}/phone",
-  "schema": "https://example.com/schemas/com-example-store-v1",
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
   "phone": "(425) 555-1212"
 }
 ```
@@ -215,7 +215,7 @@ Collection: `https://example.com/stores/all`
   	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   	"id": "76cc758e256c438b8e49546e0102b8c8",
   	"template": "https://example.com/stores/{id}",
-    "schema": "https://example.com/schemas/com-example-store-v1",
+    "schema": "https://example.com/schemas/com-example-store-2018-03-01",
     "name": "Alpha",
     "phone": "(425) 555-1212"
   },
