@@ -147,7 +147,7 @@ https://example.com/stores/aisles                                     // A relat
 https://example.com/stores/aisles/c66f06fdb31b4882ad995e4d19ca7aed    // A single item within the collection.
 
 https://example.com/stores/schema                                     // A schema collection within the service.
-https://example.com/stores/schema/com-example-store-v1                // A single item within the collection.
+https://example.com/stores/schema/com-example-store-2018-03-01        // A single item within the collection.
 
 ```
 
@@ -176,7 +176,7 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}",
-  "schema": "https://example.com/schemas/com-example-store-v1",
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
   "name": "Alpha",
   "phone": "(425) 555-1212",
   "operations": [
@@ -199,7 +199,7 @@ Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/pho
   "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
   "template": "https://example.com/stores/{id}/phone",
-  "schema": "https://example.com/schemas/com-example-store-v1",
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
   "phone": "(425) 555-1212"
 }
 ```
@@ -215,7 +215,7 @@ Collection: `https://example.com/stores/all`
   	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
   	"id": "76cc758e256c438b8e49546e0102b8c8",
   	"template": "https://example.com/stores/{id}",
-    "schema": "https://example.com/schemas/com-example-store-v1",
+    "schema": "https://example.com/schemas/com-example-store-2018-03-01",
     "name": "Alpha",
     "phone": "(425) 555-1212"
   },
@@ -271,12 +271,12 @@ In order to avoid name collisions a pattern MAY be agreed upon and it is suggest
 
 Examples:
 
-  com-example-baseball-equipment-glove-v1
+  com-example-baseball-equipment-glove-2018-03-01
   org-example-soccer-worldcup-2018-39f6256e
 ```
 
 * Services SHOULD refrain from using dots / periods (`.`) in resource names.
-  * Approaching friendly names from the perspective of a file based system may come a desire to append a file name to the end a resource name, for example: `com-example-baseball-equipment-glove-v1.schema.json`. This may be shortsighted and may appear to be in conflict with the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header should a server decide to make multiple formats available in the future.
+  * Approaching friendly names from the perspective of a file based system may come a desire to append a file name to the end a resource name, for example: `com-example-baseball-equipment-glove-2018-03-01.schema.json`. This may be shortsighted and may appear to be in conflict with the [RFC 7231 Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) header should a server decide to make multiple formats available in the future.
 
 ### <a name="hypermedia"></a>Hypermedia as the Engine of Application State
 
@@ -451,7 +451,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ```json
 {
-	"schema": "http://example.com/schema/com-example-base-v1"
+	"schema": "http://example.com/schema/com-example-base-2018-03-01"
 }
 ```
 

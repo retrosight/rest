@@ -1,7 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "href": "https://example.com/schemas/com-example-base-v1",
-  "title": "Base Schema",
+  "$id": "https://example.com/schemas/com-example-base-2018-03-01",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$comment": "This keyword is reserved for comments from schema authors to readers or maintainers of the schema.",
+  "title": "Base Schema Version 2018-03-01",
   "description": "The base schema provides a starting point for all documents, is the default schema for all documents and is the schema used for metadata.",
   "type": "object",
   "properties": {
@@ -28,22 +29,22 @@
     "relatedDataLinks": {
       "type": "array",
       "description": "An array for providing hyperlinks to related data in a parent response.",
-      "items": { "$ref": "https://example.com/schemas/com-example-links-v1" }
+      "items": { "$ref": "https://example.com/schemas/com-example-links-2018-03-01" }
     },
     "alternates": {
       "type": "array",
       "description": "An array for providing hyperlinks to alternative representations for this resource.",
-      "items": { "$ref": "https://example.com/schemas/com-example-operation-v1" }
+      "items": { "$ref": "https://example.com/schemas/com-example-operation-2018-03-01" }
     },
     "operations": {
       "type": "array",
       "description": "The hypermedia as the engine of application state (HATEOAS) information.",
-      "items": { "$ref": "https://example.com/schemas/com-example-operation-v1" }
+      "items": { "$ref": "https://example.com/schemas/com-example-operation-2018-03-01" }
     },
     "errors": {
       "type": "array",
       "description": "The errors collection for when the response code is 4xx.",
-      "items": { "$ref": "https://example.com/schemas/com-example-error-v1" }
+      "items": { "$ref": "https://example.com/schemas/com-example-error-2018-03-01" }
     }
   },
   "required": [ "schema" ]
