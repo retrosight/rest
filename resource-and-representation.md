@@ -143,19 +143,19 @@ Name | Type | Format | Description
 
 ```json
 {
-	"href": "https://example.com/stores",
-	"schema": "https://example.com/schemas/com-example-base-2018-03-01",
-	"operations": [
+  "href": "https://example.com/stores",
+  "schema": "https://example.com/schemas/com-example-base-2018-03-01",
+  "operations": [
     {
       "rel": "all-stores",
       "href": "https://example.com/stores/all"
     },
-		{
-			"rel": "create-store",
-			"href": "https://example.com/stores",
-			"method": "POST"
-		}
-	]
+    {
+      "rel": "create-store",
+      "href": "https://example.com/stores",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -175,9 +175,9 @@ Name | Type | Format | Description
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-2018-03-01",
-	"storeName": "Alpha",
-	"storePhone": "(425) 555-1212"
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
+  "storeName": "Alpha",
+  "storePhone": "(425) 555-1212"
 }
 ```
 
@@ -197,19 +197,19 @@ Location: https://example.com/store/97b83a735620465cb8a01bf82392336b
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-2018-03-01",
-	"storeName": "Alpha",
-	"storePhone": "(425) 555-1212",
-	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-	"id": "97b83a735620465cb8a01bf82392336b",
-	"template": "https://example.com/store/{id}",
-	"operations": [
-		{
-			"rel": "add-aisle",
-			"href": "https://example.com/aisles",
-			"method": "POST"
-		}
-	]
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
+  "storeName": "Alpha",
+  "storePhone": "(425) 555-1212",
+  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+  "id": "97b83a735620465cb8a01bf82392336b",
+  "template": "https://example.com/store/{id}",
+  "operations": [
+    {
+      "rel": "add-aisle",
+      "href": "https://example.com/aisles",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -228,10 +228,10 @@ Location: https://example.com/store/97b83a735620465cb8a01bf82392336b
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-	"aisleName": "Dairy",
-	"aisleNumber": 10
+  "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+  "storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+  "aisleName": "Dairy",
+  "aisleNumber": 10
 }
 ```
 
@@ -244,20 +244,20 @@ Location: https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-	"aisleName": "Dairy",
-	"aisleNumber": 10,
-	"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
-	"id": "b29e49452ebf4625b44de3034ad99e4d",
-	"template": "https://example.com/aisle/{id}",
-	"operations": [
-		{
-			"rel": "update-aisle",
-			"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
-			"method": "POST"
-		}
-	]
+  "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+  "storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+  "aisleName": "Dairy",
+  "aisleNumber": 10,
+  "href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+  "id": "b29e49452ebf4625b44de3034ad99e4d",
+  "template": "https://example.com/aisle/{id}",
+  "operations": [
+    {
+      "rel": "update-aisle",
+      "href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -267,10 +267,10 @@ Location: https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-	"aisleName": "Baking",
-	"aisleNumber": 11
+  "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+  "storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+  "aisleName": "Baking",
+  "aisleNumber": 11
 }
 ```
 
@@ -283,20 +283,20 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-	"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-	"aisleName": "Baking",
-	"aisleNumber": 11,
-	"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
-	"id": "a256aabde9884b379f1f99222ebdfe3d",
-	"template": "https://example.com/aisle/{id}",
-	"operations": [
-		{
-			"rel": "update-aisle",
-			"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
-			"method": "POST"
-		}
-	]
+  "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+  "storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+  "aisleName": "Baking",
+  "aisleNumber": 11,
+  "href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
+  "id": "a256aabde9884b379f1f99222ebdfe3d",
+  "template": "https://example.com/aisle/{id}",
+  "operations": [
+    {
+      "rel": "update-aisle",
+      "href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -322,29 +322,29 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-2018-03-01",
-	"storeName": "Alpha",
-	"storePhone": "(425) 555-1212",
-	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-	"id": "97b83a735620465cb8a01bf82392336b",
-	"template": "https://example.com/store/{id}",
-	"alternates": [
-		{
-			"rel": "store-aisle-data-links",
-			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks"
-		},
-		{
-			"rel": "store-aisle-data",
-			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata"
-		}
-	],
-	"operations": [
-		{
-			"rel": "add-aisle",
-			"href": "https://example.com/aisles",
-			"method": "POST"
-		}
-	]
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
+  "storeName": "Alpha",
+  "storePhone": "(425) 555-1212",
+  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+  "id": "97b83a735620465cb8a01bf82392336b",
+  "template": "https://example.com/store/{id}",
+  "alternates": [
+    {
+      "rel": "store-aisle-data-links",
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks"
+    },
+    {
+      "rel": "store-aisle-data",
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata"
+    }
+  ],
+  "operations": [
+    {
+      "rel": "add-aisle",
+      "href": "https://example.com/aisles",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -371,38 +371,38 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-2018-03-01",
-	"storeName": "Alpha",
-	"storePhone": "(425) 555-1212",
-	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks",
-	"id": "97b83a735620465cb8a01bf82392336b",
-	"template": "https://example.com/store/{id}/aisledatalinks",
-	"relatedDataLinks": [
-		{
-			"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-			"hrefs": [
-				"https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
-				"https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d"
-			]
-		}
-	],
-	"alternates": [
-		{
-			"rel": "store",
-			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b"
-		},
-		{
-			"rel": "store-aisle-data",
-			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata"
-		}
-	],
-	"operations": [
-		{
-			"rel": "add-aisle",
-			"href": "https://example.com/aisles",
-			"method": "POST"
-		}
-	]
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
+  "storeName": "Alpha",
+  "storePhone": "(425) 555-1212",
+  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks",
+  "id": "97b83a735620465cb8a01bf82392336b",
+  "template": "https://example.com/store/{id}/aisledatalinks",
+  "relatedDataLinks": [
+    {
+      "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+      "hrefs": [
+        "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+        "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d"
+      ]
+    }
+  ],
+  "alternates": [
+    {
+      "rel": "store",
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b"
+    },
+    {
+      "rel": "store-aisle-data",
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata"
+    }
+  ],
+  "operations": [
+    {
+      "rel": "add-aisle",
+      "href": "https://example.com/aisles",
+      "method": "POST"
+    }
+  ]
 }
 ```
 
@@ -422,56 +422,56 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ```json
 {
-	"schema": "https://example.com/schemas/com-example-store-2018-03-01",
-	"storeName": "Alpha",
-	"storePhone": "(425) 555-1212",
-	"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata",
-	"id": "97b83a735620465cb8a01bf82392336b",
-	"template": "https://example.com/store/{id}/aisledata",
-	"relatedData": [
-		{
-			"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-			"aisleName": "Dairy",
-			"aisleNumber": 10,
-			"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
-			"id": "b29e49452ebf4625b44de3034ad99e4d",
-			"template": "https://example.com/aisle/{id}",
-			"operations": [
-				{
-					"rel": "update",
-					"href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
-					"method": "PUT"
-				}
-			]
-		},
-		{
-			"schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
-			"storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
-			"aisleName": "Baking",
-			"aisleNumber": 11,
-			"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
-			"id": "a256aabde9884b379f1f99222ebdfe3d",
-			"template": "https://example.com/aisle/{id}",
-			"operations": [
-				{
-					"rel": "update",
-					"href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
-					"method": "PUT"
-				}
-			]
-		}
-	],
-	"alternates": [
-		{
-			"rel": "store",
-			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b"
-		},
-		{
-			"rel": "store-aisle-data-links",
-			"href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks"
-		}
-	],
+  "schema": "https://example.com/schemas/com-example-store-2018-03-01",
+  "storeName": "Alpha",
+  "storePhone": "(425) 555-1212",
+  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledata",
+  "id": "97b83a735620465cb8a01bf82392336b",
+  "template": "https://example.com/store/{id}/aisledata",
+  "relatedData": [
+    {
+      "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+      "storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+      "aisleName": "Dairy",
+      "aisleNumber": 10,
+      "href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+      "id": "b29e49452ebf4625b44de3034ad99e4d",
+      "template": "https://example.com/aisle/{id}",
+      "operations": [
+        {
+          "rel": "update",
+          "href": "https://example.com/aisle/b29e49452ebf4625b44de3034ad99e4d",
+          "method": "PUT"
+        }
+      ]
+    },
+    {
+      "schema": "https://example.com/schemas/com-example-aisle-2018-03-01",
+      "storeId": "https://example.com/store/97b83a735620465cb8a01bf82392336b",
+      "aisleName": "Baking",
+      "aisleNumber": 11,
+      "href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
+      "id": "a256aabde9884b379f1f99222ebdfe3d",
+      "template": "https://example.com/aisle/{id}",
+      "operations": [
+        {
+          "rel": "update",
+          "href": "https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d",
+          "method": "PUT"
+        }
+      ]
+    }
+  ],
+  "alternates": [
+    {
+      "rel": "store",
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b"
+    },
+    {
+      "rel": "store-aisle-data-links",
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b/aisledatalinks"
+    }
+  ],
   "operations": [
     {
       "rel": "add-aisle",
