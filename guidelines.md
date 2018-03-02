@@ -212,9 +212,9 @@ Collection: `https://example.com/stores/all`
 ```json
 [
   {
-  	"href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
-  	"id": "76cc758e256c438b8e49546e0102b8c8",
-  	"template": "https://example.com/stores/{id}",
+    "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
+    "id": "76cc758e256c438b8e49546e0102b8c8",
+    "template": "https://example.com/stores/{id}",
     "schema": "https://example.com/schemas/com-example-store-2018-03-01",
     "name": "Alpha",
     "phone": "(425) 555-1212"
@@ -330,13 +330,13 @@ Contents of https://example.com/stores/abc:
 
 ```json
 {
-	"name":"Example",
-	"inventory": "https://example.com/inventory/123",
-	"aisles": [
-		"https://example.com/aisles/1",
-		"https://example.com/aisles/2"
-	],
-	"map": "https://www.google.com/maps/place/1820+Wensley+Dr,+Charlotte,+NC+28210/@35.1541824,-80.8694037,17z"
+  "name":"Example",
+  "inventory": "https://example.com/inventory/123",
+  "aisles": [
+    "https://example.com/aisles/1",
+    "https://example.com/aisles/2"
+  ],
+  "map": "https://www.google.com/maps/place/1820+Wensley+Dr,+Charlotte,+NC+28210/@35.1541824,-80.8694037,17z"
 }
 ```
 
@@ -352,11 +352,11 @@ Name | Type | Format | Description
 
 ```json
 {
-	"https://example.com": {
-		"alpha": {
-			"bravo": "charlie"
-		}
-	}
+  "https://example.com": {
+    "alpha": {
+      "bravo": "charlie"
+    }
+  }
 }
 ```
 
@@ -394,29 +394,29 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ```json
 {
-	"data": [
-		{ "id": "Alpha" },
-		{ "id": "Bravo" },
-		{ "id": "Charlie" }
-	],
-	"operations": [
-		{
-			"rel": "next",
-			"href": "https://example.com/service/page4"
-		},
-		{
-			"rel": "prev",
-			"href": "https://example.com/service/page2"
-		},
-		{
-			"rel": "first",
-			"href": "https://example.com/service/first"
-		}
-		{
-			"rel": "last",
-			"href": "https://example.com/service/last"
-		}
-	]
+  "data": [
+    { "id": "Alpha" },
+    { "id": "Bravo" },
+    { "id": "Charlie" }
+  ],
+  "operations": [
+    {
+      "rel": "next",
+      "href": "https://example.com/service/page4"
+    },
+    {
+      "rel": "prev",
+      "href": "https://example.com/service/page2"
+    },
+    {
+      "rel": "first",
+      "href": "https://example.com/service/first"
+    }
+    {
+      "rel": "last",
+      "href": "https://example.com/service/last"
+    }
+  ]
 }
 ```
 
@@ -437,9 +437,9 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ```json
 {
-	"href": "http://example.com/service/ae7d9679708f48e2951bbefd478b3d16",
-	"id": "ae7d9679708f48e2951bbefd478b3d16",
-	"template": "http://example.com/service/{id}"
+  "href": "http://example.com/service/ae7d9679708f48e2951bbefd478b3d16",
+  "id": "ae7d9679708f48e2951bbefd478b3d16",
+  "template": "http://example.com/service/{id}"
 }
 ```
 
@@ -451,7 +451,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ```json
 {
-	"schema": "http://example.com/schema/com-example-base-2018-03-01"
+  "schema": "http://example.com/schema/com-example-base-2018-03-01"
 }
 ```
 
@@ -494,18 +494,18 @@ Unix
 
 ```json
 {
-	"subtotal": {
-		"amount": -1234.56,
-		"currency": "USD"
-	},
-	"tax": {
-		"amount": 1.00,
-		"currency": "CHF"
-	},
-	"total": {
-		"amount": 100,
-		"currency": "JPY"
-	}
+  "subtotal": {
+    "amount": -1234.56,
+    "currency": "USD"
+  },
+  "tax": {
+    "amount": 1.00,
+    "currency": "CHF"
+  },
+  "total": {
+    "amount": 100,
+    "currency": "JPY"
+  }
 }
 ```
 
@@ -562,12 +562,12 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 
 ```json
 {
-	"errors": [
-		{
-			"errorCode": "missingRequiredProp",
-			"errorMessage": "Missing required property: dateTime"
-		}
-	]
+  "errors": [
+    {
+      "errorCode": "missingRequiredProp",
+      "errorMessage": "Missing required property: dateTime"
+    }
+  ]
 }
 ```
 
@@ -580,16 +580,16 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 
 ```json
 {
-	"errors": [
-		{
-			"errorCode": "missingRequiredProp",
-			"errorMessage": "Missing required property: dateTime"
-		},
-		{
-			"errorCode": "parseDataFailed",
-			"errorMessage": "Unable to parse data."
-		}
-	]
+  "errors": [
+    {
+      "errorCode": "missingRequiredProp",
+      "errorMessage": "Missing required property: dateTime"
+    },
+    {
+      "errorCode": "parseDataFailed",
+      "errorMessage": "Unable to parse data."
+    }
+  ]
 }
 ```
 
@@ -604,22 +604,22 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 
 ```json
 {
-	"errors": [
-		{
-			"errorCode": "missingRequiredProp",
-			"errorMessage": "Missing required property: dateTime",
-			"dataPath": "/merchant/location/address",
-			"schemaPath": "/allOf/0/required/0",
-			"errors": [
-				{
-					"errorCode": "parseDataFailed",
-					"errorMessage": "Unable to parse data.",
-					"dataPath": "/merchant/location/address/state",
-					"schemaPath": "/allOf/0/required/0/0"
-				}    
-			]
-		}    
-	]
+  "errors": [
+    {
+      "errorCode": "missingRequiredProp",
+      "errorMessage": "Missing required property: dateTime",
+      "dataPath": "/merchant/location/address",
+      "schemaPath": "/allOf/0/required/0",
+      "errors": [
+        {
+          "errorCode": "parseDataFailed",
+          "errorMessage": "Unable to parse data.",
+          "dataPath": "/merchant/location/address/state",
+          "schemaPath": "/allOf/0/required/0/0"
+        }    
+      ]
+    }    
+  ]
 }
 ```
 

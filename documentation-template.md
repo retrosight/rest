@@ -254,11 +254,11 @@ Content-Length: 1270
 
 ```json
 {
-	"https://example.com": {
-		"alpha": {
-			"bravo": "charlie"
-		}
-	}
+  "https://example.com": {
+    "alpha": {
+      "bravo": "charlie"
+    }
+  }
 }
 ```
 ## <a name="schema"></a>Sample Schema

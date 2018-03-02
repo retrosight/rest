@@ -29,9 +29,9 @@ One of the features of [RFC 5988 Web Linking](https://tools.ietf.org/html/rfc598
 
 ```
 Link: <https://example.com/service/page4>; rel="next",
-	  <https://example.com/service/page2>; rel="prev",
-	  <https://example.com/service/first>; rel="first",
-	  <https://example.com/service/last>; rel="last";
+      <https://example.com/service/page2>; rel="prev",
+      <https://example.com/service/first>; rel="first",
+      <https://example.com/service/last>; rel="last";
 ```
 
 The reason the guidelines place the links in the payload body is:
@@ -52,29 +52,29 @@ The reason the guidelines place the links in the payload body is:
 
 ```json
 {
-	"data": [
-		{
-			"id": "Alpha",
-			"relateddata": [
-				{ "id": "Delta"	},
-				{ "id": "Echo" },
-				{ "id": "Foxtrot" }
-			],
-			"operations": [
-				{
-					"rel": "next",
-					"href": "https://example.com/service/relateddata/page2"
-				}
-			]
-		},
-		{ "id": "Bravo" },
-		{ "id": "Charlie" }
-	],
-	"operations": [
-		{
-			"rel": "next",
-			"href": "https://example.com/service/data/page4"
-		}
-	]
+  "data": [
+    {
+      "id": "Alpha",
+      "relateddata": [
+        { "id": "Delta"	},
+        { "id": "Echo" },
+        { "id": "Foxtrot" }
+      ],
+      "operations": [
+        {
+          "rel": "next",
+          "href": "https://example.com/service/relateddata/page2"
+        }
+      ]
+    },
+    { "id": "Bravo" },
+    { "id": "Charlie" }
+  ],
+  "operations": [
+    {
+      "rel": "next",
+      "href": "https://example.com/service/data/page4"
+    }
+  ]
 }
 ```
