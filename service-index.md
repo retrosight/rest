@@ -177,13 +177,7 @@ This example represents the bare minimum service index document.
           "formats": [ "application/json" ],
           "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01" ],
           "docs": "http://example.com/apis/creating-an-account.html"
-        }
-      ]
-    },
-    {
-      "rel": "accounts-2017-05-25",
-      "href": "http://example.com/accounts",
-      "hints": [
+        },
         {
           "method": "get",
           "formats": [ "application/json", "text/xml" ],
