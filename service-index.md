@@ -85,20 +85,19 @@ Name | Type | Format | Description
 #### Versioning within the `rel` value
 
 * Services SHOULD come up with a version scheme in the `rel` value. It is expected services will grow in functionality over time and with this growth comes the need for changes which can (or will) break existing client code. By versioning the `rel` value a service can more clearly hint the growth.
-* Services MAY adopt the following pattern:
+* Services MAY adopt the following pattern or some variation thereof:
 
 ```
-{YYYY}
- -{MM}
-  -{DD}
-   -{activity}
-    -{target}
+  -{target}
+    -{YYYY}
+      -{MM}
+        -{DD}
 
 Examples:
 
-  2017-05-25-create-hello
-  2018-12-31-create-hello
-  2017-06-07-update-flight
+  stores-2017-05-25
+  products-2018-12-31
+  product-2017-06-07
 ```
 
 ### <a name="schema-hints"></a>2.4 hints
@@ -149,7 +148,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "2017-05-25-hello-world",
+      "rel": "hello-world-2017-05-25",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -170,7 +169,7 @@ This example represents the bare minimum service index document.
   "title": "The API for Example",
   "resources": [
     {
-      "rel": "2017-05-25-create-account",
+      "rel": "accounts-2017-05-25",
       "href": "http://example.com/accounts",
       "hints": [
         {
@@ -182,7 +181,7 @@ This example represents the bare minimum service index document.
       ]
     },
     {
-      "rel": "2017-05-25-list-accounts",
+      "rel": "accounts-2017-05-25",
       "href": "http://example.com/accounts",
       "hints": [
         {
@@ -253,7 +252,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "2017-05-25-hello-world",
+      "rel": "hello-world-2017-05-25",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -274,7 +273,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "2017-05-25-hello-world",
+      "rel": "hello-world-2017-05-25",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -286,7 +285,7 @@ This example represents the bare minimum service index document.
       ]
     },
     {
-      "rel": "2017-05-25-hello-planet",
+      "rel": "hello-planet-2017-05-25",
       "href": "http://example.com/api/helloplanet",
       "hints": [
         {
@@ -310,7 +309,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "2017-05-25-hello-world",
+      "rel": "hello-world-2017-05-25",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -331,7 +330,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "2017-05-25-hello-world",
+      "rel": "hello-world-2017-05-25",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
@@ -357,7 +356,7 @@ This example represents the bare minimum service index document.
   "href": "http://example.com/apis",
   "resources": [
     {
-      "rel": "2017-05-25-hello-world",
+      "rel": "hello-world-2017-05-25",
       "href": "http://example.com/api/helloworld",
       "hints": [
         {
