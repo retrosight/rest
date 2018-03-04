@@ -254,7 +254,7 @@ Content-Length: 1270
 
 ```json
 {
-  "https://example.com": {
+  "zeta": {
     "alpha": {
       "bravo": "charlie"
     }

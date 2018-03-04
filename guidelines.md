@@ -6,6 +6,7 @@
 		* [Accept](#header-accept)
 		* [Accept-Language](#header-accept-language)
 		* [Date](#header-date)
+		* [Location](#header-location)
 		* [Cache Headers](#header-cache)
 		* [Last-Modified](#header-last-modified)
 		* [ETag](#header-etag)
@@ -28,6 +29,12 @@
 		* [Key-Value Pair Names](#data-key-names)
 	* [HTTP Status Codes](#http-status-codes)
 		* [Errors when HTTP Status Code is 4xx](#errors-when-4xx)
+	* [Service Changes](#service-changes)
+		* [Breaking](#service-changes-breaking)
+		* [Non-Breaking](#service-changes-non-breaking)
+	* [Documentation](#documentation)
+		* [Markdown](#documentation-markdown)
+		* [Schema](#documentation-schema)
 * [Works Cited](#works-cited)
 
 ## <a name="guidelines"></a>Guidelines
@@ -112,7 +119,7 @@ scheme     authority       path        query   fragment
 		* Service names SHOULD be alphanumeric characters only.
 		* Service names SHOULD NOT include `service` in their name.
 		* Service names SHOULD NOT include punctuation.
-		* Services SHOULD provide a [service index](#index) at this root path.
+	* Services SHOULD provide a [Service Index](#index) at this root path.
 	* Services MAY include a version number in the URI path using the form of vX where X is a positive integer: `v1`, `v2`, ... , `v10` in the second URI path segment.
 		* Generally speaking, well designed services should never need a version number. It is included here for completeness.
 		* For an excellent talk on why "no versioning" is a good thing fast forward to 27:50 in [GOTO 2014 • REST: I don't Think it Means What You Think it Does](https://youtu.be/pspy1H6A3FM?t=1670).
@@ -128,14 +135,16 @@ scheme     authority       path        query   fragment
 		* `/stores/aisles` and `/stores/aisles`
 	* Reasons:
 		* Service(s) would have to implement a reverse proxy at each hop.
-		* It breaks the consistency model of service/resource/representation.
+		* Versioning overload makes it difficult to independently evolve services.
+		* Service(s) would have to manage top level disaster recovery where an API gateway (reverse gateway) can handle.
+		* It breaks the consistency model of `{service}/{version}/{collection}/{item}/{representation}`.
 
 #### <a name="collection-item-pattern"></a>Collection and Item Pattern
 
 * Services SHOULD arrange and name resources according to a `/collection/item` paradigm.
   * `collection` name is plural.
   * `item` name is singular.
-* Services SHOULD have a base collection, the root of which is the [service index](#index) resource.
+* Services SHOULD have a base collection, the root of which is the [Service Index](#index) resource.
 * The base collection MAY contain individual items.
 * The base collection MAY contain additional collections.
 
@@ -146,8 +155,8 @@ https://example.com/stores/76cc758e256c438b8e49546e0102b8c8           // A singl
 https://example.com/stores/aisles                                     // A related collection within the same service.
 https://example.com/stores/aisles/c66f06fdb31b4882ad995e4d19ca7aed    // A single item within the collection.
 
-https://example.com/stores/schema                                     // A schema collection within the service.
-https://example.com/stores/schema/com-example-store-2018-03-01        // A single item within the collection.
+https://example.com/stores/schemas                                    // A schema collection within the service.
+https://example.com/stores/schemas/com-example-store-2018-03-01       // A single item within the collection.
 
 ```
 
@@ -234,7 +243,7 @@ Building upon everything in this section the following illustrates how teams sho
                         |    |       |                   |                    |
                        _|__  |   ____|__   ______________|_______________   __|_
                       /    \ /\ /       \ /                              \ /    \
-  https://example.com/stores/v1/inventory/71b1d7acbb254e05b7f9060b0a29efab/digest?name=ferret#nose
+  https://example.com/stores/v1/products/71b1d7acbb254e05b7f9060b0a29efab/digest?name=ferret#nose
   \___/   \_________/ \________________________________________________________/ \_________/ \__/
     |          |                                  |                                   |        |
  scheme    authority                             path                               query   fragment
@@ -284,6 +293,7 @@ Examples:
 
 > The differences between [Hypermedia as the Engine of Application State](#hypermedia), [Related Data](#related-data) and [Identifiers](#data-identifiers) are explained [here](./id-related-data-hateoas.md).
 
+* APIs SHOULD expose the full application state to the consumers
 * Services SHOULD make links available only when they are valid for the state of the service at the time of the response.
 * Hypermedia as the Engine of Application State describes what client code can do with the server.
 * The "application state" portion of the concept refers to the server (not the client).
@@ -316,13 +326,13 @@ Name | Type | Format | Description
 > One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
 * All relationships to data outside of the document SHOULD be described by fully qualified domain name (FQDN) `URI` resource links.
-* It is acceptable for data to reference other data which does not have a corresponding reference back; In the example given it would be fine if the inventory did not have a link to the store.
+* It is acceptable for data to reference other data which does not have a corresponding reference back; In the example given it would be fine if the products did not have a link to the store.
 * Related data can reference resources outside of the domain.
 
 #### Example
 
 In the following example:
-* `inventory` is the inventory for a store.
+* `products` is the items available for sale in a store.
 * `aisles` is an array of aisles for the store.
 * `map` is a hyperlink to the location for the store within a external domain.
 
@@ -331,7 +341,7 @@ Contents of https://example.com/stores/abc:
 ```json
 {
   "name":"Example",
-  "inventory": "https://example.com/inventory/123",
+  "products": "https://example.com/products/123",
   "aisles": [
     "https://example.com/aisles/1",
     "https://example.com/aisles/2"
@@ -347,16 +357,24 @@ Contents of https://example.com/stores/abc:
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`customDataUri`|`string`|-|[RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986)
--|`object`|-|Any valid JSON.
+`customData`|`array`|-|An array of `object`, each of which is disambiguated with a reference to a schema.
 
 ```json
 {
-  "https://example.com": {
-    "alpha": {
-      "bravo": "charlie"
+  "comment": "The customData key would be in a larger JSON document.",
+  "customData": [
+    {
+      "schema":"https://example.com/schema/be9e17e751bd4dc690ff3d079c8808fe",
+      "foo": "hello",
+      "baz": "world"
+    },
+    {
+      "schema":"https://example.com/schema/someotheridentifier",
+      "alpha": "bravo",
+      "delta": "tango",
+      "echo": "foxtrot"
     }
-  }
+  ]
 }
 ```
 
@@ -429,23 +447,27 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 * Services SHOULD identify unique resources with a string in the format of a [RFC 4122 A Universally Unique IDentifier (UUID) URN Namespace](#RFC-4122) UUID4 without dashes in a key named `id`.
 	* This value SHOULD be separate from database key values (i.e., primary key) to avoid leaking implementation details.
 * Services SHOULD provide a URI as the identifier (including the UUID4 value stored in `id`) for the resource in a key named `href`.
-	* The key name `href` is based on the [HTML5 concept of links](https://www.w3.org/TR/html5/links.html), [RFC 5988 Web Linking Appendix A Notes on Using the Link Header with the HTML4 Format](https://tools.ietf.org/html/rfc5988#appendix-A) and is consistent with other sections of the guidelines where hyperlinks are provided using the Hypermedia as the Engine of Application State [Operations Schema](#hypermedia-operations-operation) such as [Related Data](#related-data), [Index](#index) and [Pagination](#pagination).
+	* The key name `href` is based on the [HTML5 concept of links](https://www.w3.org/TR/html5/links.html), [RFC 5988 Web Linking Appendix A Notes on Using the Link Header with the HTML4 Format](https://tools.ietf.org/html/rfc5988#appendix-A) and is consistent with other sections of the guidelines where hyperlinks are provided using the Hypermedia as the Engine of Application State [Operations Schema](#hypermedia-operations-operation) such as [Related Data](#related-data), [Service Index](#index) and [Pagination](#pagination).
 * Services SHOULD provide a [RFC 6570 URI Template](#RFC-6570) in a key named `template`.
 	* The combination of `template` + `id` = `href` allows legacy relational database systems the flexibility to store URI values minimally to avoid database bloat (mainly due to indexing) and therefore storage costs.
+* `href`, `id` and `template` SHOULD be considered reserved keywords.
+  * `href` and `id` SHOULD only be used in the root of a representation document.
+  * `template` SHOULD be used as a key name only when the value is a URI template.
 
 ##### Example
 
 ```json
 {
-  "href": "http://example.com/service/ae7d9679708f48e2951bbefd478b3d16",
+  "href": "https://example.com/service/ae7d9679708f48e2951bbefd478b3d16",
   "id": "ae7d9679708f48e2951bbefd478b3d16",
-  "template": "http://example.com/service/{id}"
+  "template": "https://example.com/service/{id}",
+  "comment": "...and additional resource data follows."
 }
 ```
 
 #### <a name="data-self-describing"></a>Self-describing Data
 
-* Representations SHOULD be self-describing through the use of a `schema` key in the root of all payloads.
+* Representations SHOULD be self-describing through the use of a `schema` key in the root of all documents.
 * The `schema` value SHOULD be in the form of a [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986).
 * Examples of schema illustrating the paradigms found in this document can be found in [schema](./schema).
 
@@ -622,6 +644,16 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
   ]
 }
 ```
+
+### <a name="documentation"></a>Documentation
+
+#### <a name="documentation-markdown"></a>Markdown
+* Services SHOULD fully document the data structures, all verbs and how the service works using [Markdown](https://daringfireball.net/projects/markdown/syntax) including all of the sections within the [Documentation Template](./documentation-template.md).
+
+#### <a name="documentation-schema"></a>Schema
+* Services SHOULD fully document data structures using [JSON schema](#json-schema) whether or not the schema is used for validation purposes within the service.
+* Services SHOULD make the schema available via a source code repository.
+* Services MAY make the schema available via the service itself.
 
 ## <a name="works-cited"></a>Works Cited
 
