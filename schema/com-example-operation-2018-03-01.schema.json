@@ -1,5 +1,5 @@
 {
-  "$id": "https://example.com/schemas/com-example-operation-2018-03-01",
+  "$id": "https://example.com/schemas/com-example-operation-2018-03-01.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Operation Schema Version 2018-03-01",
   "description": "An operation provides the base for Hypermedia as the Engine of Application State",

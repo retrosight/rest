@@ -20,19 +20,19 @@
   "type": "object",
 
   "allOf": [{
-    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json"
   }],
 
   "anyOf": [{
-    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json"
   }],
 
   "oneOf": [{
-    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json"
   }],
 
   "not": {
-    "$ref": "https://example.com/schemas/com-example-base-2018-03-01"
+    "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json"
   },
 
   "comment": "`default` and `enum` are available for all instance types.",
@@ -117,7 +117,7 @@
 
     "keyNameArrayReference": {
       "type": "array",
-      "items": { "$ref": "https://example.com/schemas/com-example-base-2018-03-01" }
+      "items": { "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json" }
     },
 
     "keyNameObject": { "type": "object" },

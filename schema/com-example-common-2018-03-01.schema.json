@@ -1,5 +1,5 @@
 {
-  "$id": "https://example.com/schemas/com-example-common-2018-03-01",
+  "$id": "https://example.com/schemas/com-example-common-2018-03-01.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Common Schema Version 2018-03-01",
   "description": "Shared types used by multiple schemas.",
@@ -25,15 +25,6 @@
       "maxLength": 3,
       "format": "country-code",
       "description": "2 or 3 character country code as defined in ISO 3166-2:2013"
-    },
-    "currency": {
-      "type": "string",
-      "pattern": "^[-]?\\d*\\.?\\d+$"
-    },
-    "currencyCode": {
-      "type": "string",
-      "minLength": 3,
-      "maxLength": 3
     },
     "latitude": {
       "type": "number",

@@ -1,0 +1,20 @@
+{
+  "schema": "https://example.com/schemas/com-example-schemaindex-2018-03-01.schema.json",
+  "schemas": [
+    "https://example.com/schemas/com-example-aisle-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-base-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-common-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-error-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-error-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-links-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-operation-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+    "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
+    "https://example.com/schemas/org-json-schema-hyper-schema-output-v7.json",
+    "https://example.com/schemas/org-json-schema-hyper-schema-v7.json",
+    "https://example.com/schemas/org-json-schema-links-v7.json",
+    "https://example.com/schemas/org-json-schema-schema-v7.json",
+    "https://example.com/schemas/template.schema.json"
+  ]
+}

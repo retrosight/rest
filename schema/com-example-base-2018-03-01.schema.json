@@ -29,22 +29,22 @@
     "relatedDataLinks": {
       "type": "array",
       "description": "An array for providing hyperlinks to related data in a parent response.",
-      "items": { "$ref": "https://example.com/schemas/com-example-links-2018-03-01" }
+      "items": { "$ref": "https://example.com/schemas/com-example-links-2018-03-01.schema.json" }
     },
     "alternates": {
       "type": "array",
       "description": "An array for providing hyperlinks to alternative representations for this resource.",
-      "items": { "$ref": "https://example.com/schemas/com-example-operation-2018-03-01" }
+      "items": { "$ref": "https://example.com/schemas/com-example-operation-2018-03-01.schema.json" }
     },
     "operations": {
       "type": "array",
       "description": "The hypermedia as the engine of application state (HATEOAS) information.",
-      "items": { "$ref": "https://example.com/schemas/com-example-operation-2018-03-01" }
+      "items": { "$ref": "https://example.com/schemas/com-example-operation-2018-03-01.schema.json" }
     },
     "errors": {
       "type": "array",
       "description": "The errors collection for when the response code is 4xx.",
-      "items": { "$ref": "https://example.com/schemas/com-example-error-2018-03-01" }
+      "items": { "$ref": "https://example.com/schemas/com-example-error-2018-03-01.schema.json" }
     }
   },
   "required": [ "schema" ]

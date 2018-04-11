@@ -1,10 +1,10 @@
 {
-  "$id": "https://example.com/schemas/com-example-links-2018-03-01",
+  "$id": "https://example.com/schemas/com-example-links-2018-03-01.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "List Schema Version 2018-03-01",
   "description": "This schema is used for listing out related data via hyperlinks.",
   "type": "object",
-  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-2018-03-01" } ],
+  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json" } ],
   "properties": {
     "hrefs": {
       "type": "array",

@@ -144,7 +144,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "resources": [
     {
@@ -164,7 +164,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "title": "The API for Example",
   "resources": [
@@ -175,13 +175,13 @@ This example represents the bare minimum service index document.
         {
           "method": "post",
           "formats": [ "application/json" ],
-          "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01" ],
+          "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01.schema.json" ],
           "docs": "http://example.com/apis/creating-an-account.html"
         },
         {
           "method": "get",
           "formats": [ "application/json", "text/xml" ],
-          "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01" ],
+          "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01.schema.json" ],
           "docs": "http://example.com/apis/listing-accounts.html"
         }
       ]
@@ -194,7 +194,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "vars": [
     {
@@ -242,7 +242,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "resources": [
     {
@@ -263,7 +263,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "resources": [
     {
@@ -299,7 +299,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "resources": [
     {
@@ -320,7 +320,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "resources": [
     {
@@ -346,7 +346,7 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01",
+  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
   "href": "http://example.com/apis",
   "resources": [
     {

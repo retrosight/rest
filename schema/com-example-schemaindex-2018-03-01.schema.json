@@ -1,0 +1,18 @@
+{
+  "$id": "https://example.com/schemas/com-example-schemaindex-2018-03-01.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schema Index Version 2018-03-01",
+  "description": "An index of schema.",
+  "type": "object",
+  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json" } ],
+  "properties": {
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "FQDN URI to all schemas available."
+      }
+    }
+  },
+  "required": [ "schemas" ]
+}
