@@ -11,11 +11,11 @@ resource within the scope of the URI's scheme and naming authority
 (if any).
 ```
 
-The phrase `serves to identify` from the RFC can be interpreted to mean it may or may not return only a single item -- hence search should always return an array.
+The phrase `serves to identify` from the RFC is a bit ambiguous and can be interpreted to mean it may or may not return only a single item -- hence search should always return an array.
 
 Search is another collection within the service.
 
-> This is how Google approaches search, as a collection: `https://www.google.com/search?q=api`
+> This is how Google formats the search URI: `https://www.google.com/search?q=api`
 
 ## Examples of search
 
@@ -53,24 +53,6 @@ GET https:/example.com/search?product=milk&collection=stores
 Having a collection for search also preserves the use of the query component within other URIs, for example:
 
 ```
-Template: /{collection}  /{identifier}  ?{query}
-URI:      /stores        /abc123def456  ?city=Seattle
-```
-
----
-
-```
-/profile?type=companyid&name=208602     // identify within all of profile.
-/profile/v1?type=companyid&name=208602  // identify within all of profile v1
-/profile/v1/companies?name=208602       // identify within all of the companies collection within profile v1
-```
-
-You'll note the last one doesn't need `type=company` because presumably you are within the collection that only serves up a company. (edited)
-In any event, I tend to think of any use of the `?` within the URI as a search which returns an array.
-Even if it's an array of one.
-
-```
-[
-  "/profile/e41ab369-f1ba-4790-b685-fc04cb3387c2"
-]
+Template: /{collection}/{identifier}?{query}
+URI:      /stores       /abc123de   ?city=Seattle
 ```

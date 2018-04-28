@@ -14,6 +14,7 @@
 	* [Resource Naming](#resource-naming)
 		* [Collection and Item Pattern](#collection-item-pattern)
 		* [Creation of Resources and Representations](#creating-resources)
+    * [Providing an array of resources](#resource-array)
 		* [Resource Naming Syntax](#resource-naming-syntax)
 		* [Friendly resource name pattern](#resource-naming-friendly)
 	* [Hypermedia as the Engine of Application State](#hypermedia)
@@ -134,7 +135,7 @@ scheme     authority       path        query   fragment
 		* Service(s) would have to implement a reverse proxy at each hop.
 		* Versioning overload makes it difficult to independently evolve services.
 		* Service(s) would have to manage top level disaster recovery where an API gateway (reverse gateway) can handle.
-		* It breaks the consistency model of `{service}/{version}/{collection}/{item}/{representation}`.
+		* It breaks the consistency model of `{service}/{collection}/{item}/{representation}`.
 
 #### <a name="collection-item-pattern"></a>Collection and Item Pattern
 
@@ -167,15 +168,18 @@ https://example.com/stores/schemas/com-example-store                  // A singl
 
 > One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
+* Services SHOULD use the `fragment` component of [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986) to denote secondary representations.
 * Services MAY create as many representations as is needed.
-	* Services are encouraged to do so in order to logically order the resources and representations.
+	* Services are encouraged to do so in order to logically provide the representations.
 	* Services are encouraged to do so to avoid overcomplicating paths.
 * Services MAY make the same resource or representation available via multiple paths.
 * Services MAY make subsets of resources available in representations.
 
 ##### <a name="creating-resources-example"></a>Examples
 
-Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
+**Primary Representation**
+
+URI: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 
 ```json
 {
@@ -195,25 +199,29 @@ Item: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 }
 ```
 
-* A representation containing only the metadata and one key value pair, excluding all other data and the HATEOAS operations.
-* A pattern of `resource/representation` has been used in naming: `76cc758e256c438b8e49546e0102b8c8/phone`
+**Secondary Representation**
 
-Representation: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone`
+* A representation containing only the metadata and one key value pair, excluding all other data and the HATEOAS operations.
+* A pattern of `{resource}#{representation}` has been used in naming: `76cc758e256c438b8e49546e0102b8c8#phone`
+
+URI: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8#phone`
 
 ```json
 {
-  "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/phone",
+  "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8#phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
-  "template": "https://example.com/stores/{id}/phone",
+  "template": "https://example.com/stores/{id}#phone",
   "schema": "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
   "phone": "(425) 555-1212"
 }
 ```
 
-* A representation which provides all items in the collection, excluding the HATEOAS operations.
-* A naming pattern of `resource/representation` is still present: `/all`; The `resource` is implied and is the base collection.
+#### <a name="resource-array"></a>Providing an array of resources
 
-Collection: `https://example.com/stores/all`
+* A resource which provides multiple items from the collection.
+* A naming pattern of `collection/item` is still present, the item returned is an array.
+
+URI: `https://example.com/stores/all`
 
 ```json
 [
@@ -223,10 +231,14 @@ Collection: `https://example.com/stores/all`
     "template": "https://example.com/stores/{id}",
     "schema": "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
     "name": "Alpha",
-    "phone": "(425) 555-1212"
-  },
-  {
-    "comment": "...another store..."
+    "phone": "(425) 555-1212",
+    "operations": [
+      {
+        "rel": "add-aisle",
+        "href": "https://example.com/stores/aisles",
+        "method": "POST"
+      }
+    ]
   }
 ]
 ```
@@ -236,27 +248,27 @@ Collection: `https://example.com/stores/all`
 Building upon everything in this section the following illustrates how teams should think of URIs when naming resources:
 
 ```
-                  service  version   resource        identifier         representation
-                        |    |       |                   |                    |
-                       _|__  |   ____|__   ______________|_______________   __|_
-                      /    \ /\ /       \ /                              \ /    \
-  https://example.com/stores/v1/products/71b1d7acbb254e05b7f9060b0a29efab/digest?name=ferret#nose
-  \___/   \_________/ \________________________________________________________/ \_________/ \__/
-    |          |                                  |                                   |        |
- scheme    authority                             path                               query   fragment
+                     service  resource           identifier         representation
+                        |        |                   |                    |
+                       _|__   ___|__   ______________|_______________   __|_
+                      /    \ /      \ /                              \ /    \
+  https://example.com/stores/products/71b1d7acbb254e05b7f9060b0a29efab/digest?name=ferret#nose
+  \___/   \_________/ \_____________________________________________________/ \_________/ \__/
+    |          |                                  |                                |       |
+ scheme    authority                             path                            query   fragment
 ```
 
 * Naming paradigms and patterns for the `path` are optional and flexible.
 * All of the following are valid:
 
 ```
-https://example.com/stores/                                            // Base collection
+https://example.com/stores/                                            // Base collection (typically the service index).
+https://example.com/stores/#{representation}                           // Representation of the base collection.
 https://example.com/stores/{collection}                                // Collection within the service.
 https://example.com/stores/{identifier}                                // Single item within the base collection.
-https://example.com/stores/{representation}                            // Representation of the base collection.
+https://example.com/stores/{identifier}#{representation}               // Representation of a single item within the base collection.
 https://example.com/stores/{collection}/{identifier}                   // Single item within a collection.
-https://example.com/stores/{identifier}/{representation}               // Representation of a single item within the base collection.
-https://example.com/stores/{collection}/{identifier}/{representation}  // Representation of a single item within a collection.
+https://example.com/stores/{collection}/{identifier}#{representation}  // Representation of a single item within a collection.
 ```
 
 #### <a name="resource-naming-friendly"></a>Friendly resource name pattern
