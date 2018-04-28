@@ -14,7 +14,7 @@
 	* [Resource Naming](#resource-naming)
 		* [Collection and Item Pattern](#collection-item-pattern)
 		* [Creation of Resources and Representations](#creating-resources)
-    * [Providing an array of resources](#resource-array)
+		* [Providing an array of resources](#resource-array)
 		* [Resource Naming Syntax](#resource-naming-syntax)
 		* [Friendly resource name pattern](#resource-naming-friendly)
 	* [Hypermedia as the Engine of Application State](#hypermedia)
