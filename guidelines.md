@@ -135,7 +135,7 @@ scheme     authority       path        query   fragment
 		* Service(s) would have to implement a reverse proxy at each hop.
 		* Versioning overload makes it difficult to independently evolve services.
 		* Service(s) would have to manage top level disaster recovery where an API gateway (reverse gateway) can handle.
-		* It breaks the consistency model of `{service}/{collection}/{item}/{representation}`.
+		* It breaks the consistency model of `{service}/{collection}/{item}#{representation}`.
 
 #### <a name="collection-item-pattern"></a>Collection and Item Pattern
 
