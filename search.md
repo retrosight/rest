@@ -73,11 +73,23 @@ GET https:/example.com/search?product=milk&resources=stores
 ```
 
 ```json
-[
-  "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
-  "https://example.com/stores/5ad81b6a25e347899c6335aa46fe1097",
-  "https://example.com/stores/51873c3a2f654a2680fef0c3b926630d",
-]
+{
+  "schema": "http://example.com/schema/com-example-search-2018-03-01.schema.json",
+  "href": "https:/example.com/search?product=milk&resources=stores",
+  "id": "product=milk&resources=stores",
+  "template": "https:/example.com/search?{id}",
+  "results": [
+    {
+      "schema": "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
+      "items":
+      [
+        "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8",
+        "https://example.com/stores/5ad81b6a25e347899c6335aa46fe1097",
+        "https://example.com/stores/51873c3a2f654a2680fef0c3b926630d"
+      ]
+    }
+  ]
+}
 ```
 
 Having a resource for search also preserves the use of the query component within other URIs, for example:
