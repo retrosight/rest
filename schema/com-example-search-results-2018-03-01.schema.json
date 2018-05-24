@@ -1,0 +1,29 @@
+{
+  "$id": "https://example.com/schemas/com-example-search-results-2018-03-01.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Search Schema Version 2018-03-01",
+  "description": "A definition for search results.",
+  "type": "object",
+  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json" } ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+             "description": "A definition of the items within this set of results."
+          },
+          "hrefs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "An array of URIs matching the schema."
+          }
+        },
+        "required": ["schema", "hrefs"]
+      }
+    }
+  },
+  "required": [ "results" ]
+}

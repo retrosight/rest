@@ -1,0 +1,42 @@
+{
+  "$id": "https://example.com/schemas/com-example-search-results-nested-2018-03-01.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nested Search Schema Version 2018-03-01",
+  "description": "A definition for nested search results.",
+  "type": "object",
+  "anyOf": [ { "$ref": "https://example.com/schemas/com-example-base-2018-03-01.schema.json" } ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+             "description": "A definition of the items within this set of results."
+          },
+          "hrefs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string",
+                   "description": ""
+                },
+                "results": {
+                  "type": "array",
+                  "description": "An array of results. Note: this points to this schema as results can nest. Typically used to show related (parent+child) items where search criteria might not be present in the child items.",
+                  "items": { "$ref": "https://example.com/schemas/com-example-search-results-nested-2018-03-01.schema.json" }
+                }
+              },
+              "required": [ "href" ]
+            }
+          }
+        },
+        "required": [ "schema" ]
+      }
+    }
+  },
+  "required": [ "results" ]
+}
