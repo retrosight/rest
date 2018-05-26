@@ -25,8 +25,6 @@ Search is another resource within the service.
 GET https:/example.com/search?product=milk
 ```
 
-<script src="https://gist.github.com/retrosight/d7df7dcc72803d850bc06c87e8f01818.js"></script>
-
 ```json
 {
   "schema": "http://example.com/schema/com-example-search-results-2018-03-01.schema.json",
