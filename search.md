@@ -25,7 +25,7 @@ Search is another resource within the service.
 GET https:/example.com/search?product=milk
 ```
 
-```json
+```JSON
 {
   "schema": "http://example.com/schema/com-example-search-results-2018-03-01.schema.json",
   "href": "https:/example.com/search?product=milk",
