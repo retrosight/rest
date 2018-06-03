@@ -527,7 +527,7 @@ Unix
 }
 ```
 
-#### <a name="data-currency"></a>Currency
+#### <a name="data-"></a>Currency
 
 * All currency values SHOULD follow [ISO 4217:2015 Codes for the representation of currencies](#ISO-4217).
 * A currency value SHOULD be an JSON object with the following keys:

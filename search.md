@@ -139,4 +139,98 @@ URI:      /stores    /abc123de    ?city=Seattle
 
 ## Compute vs. storage in search
 
-Modeling search as a resource........
+Modeling search as a resource abstracts away the actual implementation in such a way it can be static (using storage) or dynamic (using compute).
+
+Using a static approach means the search results resource will get updated each time there is an operation which changes a resource which will affect the search result.
+
+Modeling search as a resource also allows it to fully participate as any other resource, including in the service index.
+
+```
+title Search Authoring - Resource Exists
+person->search: GET /search?nameFirst=Alpha
+search->person: 200 OK [results]
+person->person: Edit [results]
+person->search: PUT /search?nameFirst=Alpha
+search->person: 200 OK [results]
+```
+
+```
+title Search Authoring - Resource Does Not Exist
+person->search: GET /search?nameFirst=Alpha
+search->person: 404 NOT FOUND
+person->person: Create [results]
+person->search: PUT /search?nameFirst=Alpha [results]
+search->person: 200 OK [results]
+```
+
+**Example**
+
+**NOT YET DONE**
+
+```
+POST https://example.com/api
+```
+
+```json
+{
+  "schema": "http://example.com/schema/person.schema.json",
+  "nameFirst": "Alpha",
+  "nameLast": "Bravo"
+}
+```
+
+```
+201 Created
+```
+
+```json
+{
+  "schema": "http://example.com/schema/person.schema.json",
+  "nameFirst": "Alpha",
+  "nameLast": "Bravo",
+  "href": "https://example.com/api/1234",
+  "id": "1234",
+  "template": "https://example.com/api/{id}"
+}
+```
+Upon completion of the post the search results resource is written as follows by the service:
+
+```
+GET https://example.com/api/search?nameFirst=Alpha
+```
+
+
+When both of those are POSTed the search results are written as follows;
+
+```
+GET https://example.com/api/search?nameFirst=Alpha
+```
+
+```json
+{
+  "schema": "http://example.com/schema/com-example-search-results-2018-03-01.schema.json",
+  "href": "https://example.com/api/search?nameFirst=Alpha",
+  "id": "nameFirst=Alpha",
+  "template": "https://example.com/api/search?{id}",
+  "results": [
+    {
+      "schema": "http://example.com/schema/person.schema.json",
+      "hrefs":
+      [
+        "https://example.com/api/1234"
+      ]
+    }
+  ]
+}
+```
+
+```
+GET https://example.com/api/5678
+```
+
+```json
+{
+  "schema": "http://example.com/schema/person.schema.json",
+  "nameLast": "Delta"
+}
+```
