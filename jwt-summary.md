@@ -27,13 +27,13 @@ JSON Web Token (JWT) is a compact claims representation format intended for spac
 ### URL
 
 ```
-http://example.com/resource/abc123?data=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDaGFybGllIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJDaGFybGllIE93ZW4iLCJodHRwOi8vZXhhbXBsZS5jb20vbWFycmllZCI6dHJ1ZX0.5AbiwFGjAHDmNnPGteUkg2aHV9l8VY5uwuDu2Ke7PYI
+http://example.com/resource/abc123?authorization=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJKb2huIERvZSIsImh0dHA6Ly9leGFtcGxlLmNvbS9oYXBweSI6dHJ1ZX0.649N7uXd9YJsdPSN5YR1GJUOAUXNk7_bo-86xnCTKR0
 ```
 
 ### HTTP Header
 
 ```
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDaGFybGllIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJDaGFybGllIE93ZW4iLCJodHRwOi8vZXhhbXBsZS5jb20vbWFycmllZCI6dHJ1ZX0.5AbiwFGjAHDmNnPGteUkg2aHV9l8VY5uwuDu2Ke7PYI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJKb2huIERvZSIsImh0dHA6Ly9leGFtcGxlLmNvbS9oYXBweSI6dHJ1ZX0.649N7uXd9YJsdPSN5YR1GJUOAUXNk7_bo-86xnCTKR0
 ```
 
 ## Access Tokens and Tokens

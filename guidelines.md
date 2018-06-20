@@ -11,6 +11,7 @@
 		* [Last-Modified](#header-last-modified)
 		* [ETag](#header-etag)
 		* [Precondition Headers](#header-precondition)
+    * [Authorization](#header-authorization)
 	* [Resource Naming](#resource-naming)
 		* [Collection and Item Pattern](#collection-item-pattern)
 		* [Creation of Resources and Representations](#creating-resources)
@@ -99,6 +100,12 @@ For a full understanding of caching see [RFC 7234 Hypertext Transfer Protocol (H
 * Services SHOULD respond with the following HTTP status codes to conditional requests:
 	* [304 Not Modified](https://tools.ietf.org/html/rfc7232#section-4.1)
 	* [412 Precondition Failed](https://tools.ietf.org/html/rfc7232#section-4.2)
+
+#### <a name="header-authorization"></a>Authorization
+
+* Services which make use of access tokens which contain data (such as [JSON Web Token](./jwt-summary.md)) SHOULD NOT leverage the data therein for any portion of the request other than authorization.
+
+Generally speaking a well designed interface of an API will not be aware of the authorization mechanism being used and this authorization mechanism can be replaced wholesale without affecting any client code whatsoever other than authorization pieces. In other words: Authorization schemes can be changed / replaced and this action only affects the `Authorization` header.
 
 ### <a name="resource-naming"></a>Resource Naming
 
