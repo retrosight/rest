@@ -5,16 +5,16 @@
   "description": "An amount object including quanity and currency code.",
   "type": "object",
   "properties": {
-    "quantity": {
+    "amount": {
       "type": "string",
       "pattern": "^[-]?\\d*\\.?\\d+$"
     },
-    "currencyCode": {
+    "currency": {
       "type": "string",
       "pattern": "^[a-zA-Z0-9]{3}$",
       "minLength": 3,
       "maxLength": 3
     }
   },
-  "required": [ "quantity", "currencyCode" ]
+  "required": [ "amount", "currency" ]
 }

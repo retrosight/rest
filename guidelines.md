@@ -538,23 +538,29 @@ Unix
 
 * All currency values SHOULD follow [ISO 4217:2015 Codes for the representation of currencies](#ISO-4217).
 * A currency value SHOULD be an JSON object with the following keys:
- 	* `amount` - Number with decimal and an optional negative (-) sign. The value SHOULD NOT contain formatting:
-		* No monetary symbols.
-		* No thousands separator.
+ 	* `amount`
+    * Stored as a `string` data type due to poor handling of floating point numbers in Javascript.
+    * Only valid numbers.
+    * Optional single decimal point.
+    * Optional negative (-) sign.
+    * The value SHOULD NOT contain formatting:
+		  * No monetary symbols.
+		    * No thousands separator.
 	* `currency` - The [ISO 3166](#ISO-3166) country code.
+* Schema: [.schema/com-example-currencyamount-2018-03-01.schema.json](.schema/com-example-currencyamount-2018-03-01.schema.json)
 
 ```json
 {
   "subtotal": {
-    "amount": -1234.56,
+    "amount": "-1234.56",
     "currency": "USD"
   },
   "tax": {
-    "amount": 1.00,
+    "amount": "1.00",
     "currency": "CHF"
   },
   "total": {
-    "amount": 100,
+    "amount": "100",
     "currency": "JPY"
   }
 }
@@ -667,9 +673,9 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
           "errorMessage": "Unable to parse data.",
           "dataPath": "/merchant/location/address/state",
           "schemaPath": "/allOf/0/required/0/0"
-        }    
+        }
       ]
-    }    
+    }
   ]
 }
 ```

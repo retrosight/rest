@@ -157,7 +157,10 @@ Name | Type | Format | Description
 
 #### Request
 
-`curl`
+```
+{HTTP Method} {URI}
+{Header}: {Value}
+```
 
 #### Response
 
@@ -235,7 +238,10 @@ Name | Type | Format | Description
 
 Showing developers exactly what they can expect when using [curl](https://curl.haxx.se) is perhaps the simplest way to complete this portion of the documentation.
 
-`curl -v http://example.com/?storeIdentifier=abc`
+```
+GET https://example.com/stores/123
+Accept: application/json
+```
 
 #### Response
 
@@ -245,10 +251,10 @@ Ensure the headers are kept separate as a code block from the payload for ease o
 HTTP/1.1 200 OK
 Cache-Control: max-age=604800
 Content-Type: application/json
-Date: Wed, 06 Jul 2018 17:33:03 GMT
+Date: Wed, 06 Jul 2020 17:33:03 GMT
 Etag: "359670651+ident"
-Expires: Wed, 13 Jul 2018 17:33:03 GMT
-Last-Modified: Fri, 09 Aug 2018 23:54:35 GMT
+Expires: Wed, 13 Jul 2020 17:33:03 GMT
+Last-Modified: Fri, 09 Aug 2020 23:54:35 GMT
 Content-Length: 1270
 ```
 
