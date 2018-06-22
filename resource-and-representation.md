@@ -331,11 +331,11 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
   "alternates": [
     {
       "rel": "store-aisle-data-links",
-      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledatalinks"
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledatalinks"
     },
     {
       "rel": "store-aisle-data",
-      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledata"
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledata"
     }
   ],
   "operations": [
@@ -361,7 +361,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ### Request
 
-`GET https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledatalinks`
+`GET https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledatalinks`
 
 ### Response
 
@@ -374,9 +374,9 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
   "schema": "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
   "storeName": "Alpha",
   "storePhone": "(425) 555-1212",
-  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledatalinks",
+  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledatalinks",
   "id": "97b83a735620465cb8a01bf82392336b",
-  "template": "https://example.com/store/{id}#aisledatalinks",
+  "template": "https://example.com/store/{id}?representation=aisledatalinks",
   "relatedDataLinks": [
     {
       "schema": "https://example.com/schemas/com-example-aisle-2018-03-01.schema.json",
@@ -393,7 +393,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
     },
     {
       "rel": "store-aisle-data",
-      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledata"
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledata"
     }
   ],
   "operations": [
@@ -418,16 +418,16 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
 
 ### Request
 
-`GET https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledata`
+`GET https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledata`
 
 ```json
 {
   "schema": "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
   "storeName": "Alpha",
   "storePhone": "(425) 555-1212",
-  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledata",
+  "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledata",
   "id": "97b83a735620465cb8a01bf82392336b",
-  "template": "https://example.com/store/{id}#aisledata",
+  "template": "https://example.com/store/{id}?representation=aisledata",
   "relatedData": [
     {
       "schema": "https://example.com/schemas/com-example-aisle-2018-03-01.schema.json",
@@ -469,7 +469,7 @@ Location: https://example.com/aisle/a256aabde9884b379f1f99222ebdfe3d
     },
     {
       "rel": "store-aisle-data-links",
-      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b#aisledatalinks"
+      "href": "https://example.com/store/97b83a735620465cb8a01bf82392336b?representation=aisledatalinks"
     }
   ],
   "operations": [

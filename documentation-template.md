@@ -236,7 +236,7 @@ Name | Type | Format | Description
 
 #### Request
 
-Showing developers exactly what they can expect when using [curl](https://curl.haxx.se) is perhaps the simplest way to complete this portion of the documentation.
+Showing developers exactly what they can expect in request and response values when using is perhaps the simplest way to complete this portion of the documentation.
 
 ```
 GET https://example.com/stores/123
@@ -252,7 +252,7 @@ HTTP/1.1 200 OK
 Cache-Control: max-age=604800
 Content-Type: application/json
 Date: Wed, 06 Jul 2020 17:33:03 GMT
-Etag: "359670651+ident"
+Etag: "359670651"
 Expires: Wed, 13 Jul 2020 17:33:03 GMT
 Last-Modified: Fri, 09 Aug 2020 23:54:35 GMT
 Content-Length: 1270

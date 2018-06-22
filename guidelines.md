@@ -175,7 +175,7 @@ https://example.com/stores/schemas/com-example-store                  // A singl
 
 > One example (of many approaches) for resources, representations and related data can be found in [Resources and Representations](./resource-and-representation.md).
 
-* Services SHOULD use the `fragment` component of [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986) to denote secondary representations.
+* Services SHOULD use the `query` component of [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986) to denote secondary representations.
 * Services MAY create as many representations as is needed.
 	* Services are encouraged to do so in order to logically provide the representations.
 	* Services are encouraged to do so to avoid overcomplicating paths.
@@ -209,15 +209,15 @@ URI: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8`
 **Secondary Representation**
 
 * A representation containing only the metadata and one key value pair, excluding all other data and the HATEOAS operations.
-* A pattern of `{resource}#{representation}` has been used in naming: `76cc758e256c438b8e49546e0102b8c8#phone`
+* A pattern of `{key}={value}` has been used in naming: `76cc758e256c438b8e49546e0102b8c8?representation=phone`
 
-URI: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8#phone`
+URI: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8?representation=phone`
 
 ```json
 {
-  "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8#phone",
+  "href": "https://example.com/stores/76cc758e256c438b8e49546e0102b8c8?representation=phone",
   "id": "76cc758e256c438b8e49546e0102b8c8",
-  "template": "https://example.com/stores/{id}#phone",
+  "template": "https://example.com/stores/{id}?representation=phone",
   "schema": "https://example.com/schemas/com-example-store-2018-03-01.schema.json",
   "phone": "(425) 555-1212"
 }
