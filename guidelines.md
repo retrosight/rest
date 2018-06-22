@@ -538,15 +538,15 @@ Unix
 
 * All currency values SHOULD follow [ISO 4217:2015 Codes for the representation of currencies](#ISO-4217).
 * A currency value SHOULD be an JSON object with the following keys:
- 	* `amount`
+  * `amount`
     * Stored as `string` data type due to poor handling of floating point numbers in Javascript.
     * Only valid numbers.
     * Optional single decimal point.
     * Optional negative (-) sign.
     * The value SHOULD NOT contain formatting:
-		  * No monetary symbols.
-		    * No thousands separator.
-	* `currency` - The [ISO 3166](#ISO-3166) country code.
+      * No monetary symbols.
+      * No thousands separator.
+  * `currency` - The [ISO 3166](#ISO-3166) country code.
 * Schema: [./schema/com-example-currencyamount-2018-03-01.schema.json](./schema/com-example-currencyamount-2018-03-01.schema.json)
 
 ```json
