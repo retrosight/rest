@@ -142,7 +142,7 @@ scheme     authority       path        query   fragment
 		* Service(s) would have to implement a reverse proxy at each hop.
 		* Versioning overload makes it difficult to independently evolve services.
 		* Service(s) would have to manage top level disaster recovery where an API gateway (reverse gateway) can handle.
-		* It breaks the consistency model of `{service}/{collection}/{item}#{representation}`.
+		* It breaks the consistency model of `{service}/{collection}/{item}?representation={value}`.
 
 #### <a name="collection-item-pattern"></a>Collection and Item Pattern
 
@@ -269,13 +269,13 @@ Building upon everything in this section the following illustrates how teams sho
 * All of the following are valid:
 
 ```
-https://example.com/stores/                                            // Base collection (typically the service index).
-https://example.com/stores/#{representation}                           // Representation of the base collection.
-https://example.com/stores/{collection}                                // Collection within the service.
-https://example.com/stores/{identifier}                                // Single item within the base collection.
-https://example.com/stores/{identifier}#{representation}               // Representation of a single item within the base collection.
-https://example.com/stores/{collection}/{identifier}                   // Single item within a collection.
-https://example.com/stores/{collection}/{identifier}#{representation}  // Representation of a single item within a collection.
+https://example.com/stores/                                                  // Base collection (typically the service index).
+https://example.com/stores/?representation={value}                           // Representation of the base collection.
+https://example.com/stores/{collection}                                      // Collection within the service.
+https://example.com/stores/{identifier}                                      // Single item within the base collection.
+https://example.com/stores/{identifier}?representation={value}               // Representation of a single item within the base collection.
+https://example.com/stores/{collection}/{identifier}                         // Single item within a collection.
+https://example.com/stores/{collection}/{identifier}?representation={value}  // Representation of a single item within a collection.
 ```
 
 #### <a name="resource-naming-friendly"></a>Friendly resource name pattern
@@ -539,7 +539,7 @@ Unix
 * All currency values SHOULD follow [ISO 4217:2015 Codes for the representation of currencies](#ISO-4217).
 * A currency value SHOULD be an JSON object with the following keys:
  	* `amount`
-    * Stored as a `string` data type due to poor handling of floating point numbers in Javascript.
+    * Stored as `string` data type due to poor handling of floating point numbers in Javascript.
     * Only valid numbers.
     * Optional single decimal point.
     * Optional negative (-) sign.
@@ -547,7 +547,7 @@ Unix
 		  * No monetary symbols.
 		    * No thousands separator.
 	* `currency` - The [ISO 3166](#ISO-3166) country code.
-* Schema: [.schema/com-example-currencyamount-2018-03-01.schema.json](.schema/com-example-currencyamount-2018-03-01.schema.json)
+* Schema: [./schema/com-example-currencyamount-2018-03-01.schema.json](./schema/com-example-currencyamount-2018-03-01.schema.json)
 
 ```json
 {
