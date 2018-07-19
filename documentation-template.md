@@ -2,9 +2,9 @@
 
 Description
 
-* [TOC1](#toc1)
-* [TOC2](#toc2)
-	* [TOC2.1](#toc2-1)
+* [Section](#section)
+* [Schema](#schema)
+  * [Stuff](#schema-stuff)
 
 ## <a name="section"></a>Section
 
@@ -46,15 +46,19 @@ Description
 
 #### Parameters
 
-Name | Type | Format | Description
------|------|--------|------------
-`name`|`type`|-|**Required** The URI query parameter.
+Name|Type|Format|Description
+---|---|---|---
+`variable`|`type`|-|**Required** Description
+
+##### URI Template
+
+```
+https://example.com/api/{variable}
+```
 
 #### Payload
 
-Name | Type | Format | Description
------|------|--------|------------
-`name`|`type`|JSON|**Required** Description.
+[Stuff](#schema-stuff)
 
 ### Response
 
@@ -149,9 +153,7 @@ Name | Type | Format | Description
 
 #### Payload
 
-Name | Type | Format | Description
------|------|--------|------------
-`name`|`type`|format|description
+[Stuff](#schema-stuff)
 
 ### Example
 
@@ -172,6 +174,14 @@ Headers
 Payload
 ```
 
+## <a name="schema"></a>Schema
+
+### <a name="schema-stuff"></a>Stuff
+
+Name|Type|Format|Description
+---|---|---|---
+`name`|`type`|format|**Required** Description.
+
 -------------
 
 # Service v10
@@ -179,8 +189,9 @@ Payload
 Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
 
 * [Sample for posting a payload](#post-a-payload)
-* [Sample Schema](#schema)
+* [Sample Schema](#schema-example)
 	* [Sample Common](#schema-common)
+  * [Another](#schema-another)
 
 ## <a name="post-a-payload"></a>Sample for posting a payload
 
@@ -200,19 +211,20 @@ Posting a payload is among the most common tasks for client code. Use this openi
 
 These are documentation examples and not API design guidelines -- you won't normally have request parameters for POST verb usage.
 
-Name | Type | Format | Description
------|------|--------|------------
+Name|Type|Format|Description
+---|---|---|---
 `storeIdentifier`|`string`|-|**Required** Note required when applicable.
 `requestDate`|`string`|[`dateTime`](#dateTime)|This parameter isn't required. Link to format using anchor tags when applicable.
 
+##### URI Template
+
+```
+https://example.com/api?store={storeIdentifier}&date={requestDate}
+```
+
 #### Payload
 
-Generally speaking these payloads will be described in much detail with a Schema section.
-
-Name | Type | Format | Description
------|------|--------|------------
-`theRequestPayload`|`type`|JSON|**Required** The payload.
-`theOtherRequestPayload`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
+[Common](#schema-common)
 
 ### Response
 
@@ -228,9 +240,7 @@ Name | Type | Format | Description
 
 #### Payload
 
-Name | Type | Format | Description
------|------|--------|------------
-`theResponsePayload`|`type`|JSON|Just an example -- you won't normally have a response payload for POST unless there are errors.
+[Another](#schema-another)
 
 ### Example
 
@@ -267,10 +277,17 @@ Content-Length: 1270
   }
 }
 ```
-## <a name="schema"></a>Sample Schema
+## <a name="schema-example"></a>Schema
 
-### <a name="schema-common"></a>Sample Common
+### <a name="schema-common"></a>Common
 
-Name | Type | Format | Description
------|------|--------|------------
+Name|Type|Format|Description
+---|---|---|---
 <a name="dateTime"></a>`dateTime`|`string`|-|DateTime of where the transaction happened in format specified in ISO 8601. While the standard regards time zone designators as optional, we highly recommend to use UTC + Offset. For example, 2016-04-22T12:20+0700 (12:20 PM in Pacific Time).
+
+### <a name="schema-another"></a>Another
+
+Name|Type|Format|Description
+---|---|---|---
+`theRequestPayload`|`type`|JSON|**Required** The payload.
+`theOtherRequestPayload`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
