@@ -24,7 +24,7 @@
 
 ## <a name="introduction"></a>1 Introduction
 
-One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) hyperlinks to navigate between resources. Traditionally, client code (including a human using a web browser) typically make use of documented static URLs (E.g., http://example.com) as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
+One of the core architectural tenants of the internet is the use of [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax](#RFC-3986) hyperlinks to navigate between resources. Traditionally, client code (including a human using a web browser) typically make use of documented static URLs (E.g., https://example.com) as the starting point which servers implement and any interaction outside of these bounds is uncharted territory.
 
 Service index documents provide a fundamental starting place for the programmable internet like home pages do at root URLs for the World Wide Web used by humans with browsers.
 
@@ -144,12 +144,12 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "resources": [
     {
       "rel": "hello-world-2017-05-25",
-      "href": "http://example.com/api/helloworld",
+      "href": "https://example.com/api/helloworld",
       "hints": [
         {
           "method": "get"
@@ -164,25 +164,25 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "title": "The API for Example",
   "resources": [
     {
       "rel": "accounts-2017-05-25",
-      "href": "http://example.com/accounts",
+      "href": "https://example.com/accounts",
       "hints": [
         {
           "method": "post",
           "formats": [ "application/json" ],
-          "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01.schema.json" ],
-          "docs": "http://example.com/apis/creating-an-account.html"
+          "profiles": [ "https://example.com/schemas/com-example-accountinfo-2018-03-01.schema.json" ],
+          "docs": "https://example.com/apis/creating-an-account.html"
         },
         {
           "method": "get",
           "formats": [ "application/json", "text/xml" ],
-          "profiles": [ "http://example.com/schemas/com-example-accountinfo-2018-03-01.schema.json" ],
-          "docs": "http://example.com/apis/listing-accounts.html"
+          "profiles": [ "https://example.com/schemas/com-example-accountinfo-2018-03-01.schema.json" ],
+          "docs": "https://example.com/apis/listing-accounts.html"
         }
       ]
     }
@@ -194,8 +194,8 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "vars": [
     {
       "varName": "specificPath",
@@ -203,13 +203,13 @@ This example represents the bare minimum service index document.
     },
     {
       "varName": "resourceIdentifier",
-      "varDefinition": "http://example.com/apis/vars/types-of-accounts.html"
+      "varDefinition": "https://example.com/apis/vars/types-of-accounts.html"
     }
   ],
   "resources": [
     {
       "rel": "var-name-and-value",
-      "href": "http://example.com/api/{specificPath}",
+      "href": "https://example.com/api/{specificPath}",
       "hints": [
         {
           "method": "get"
@@ -218,7 +218,7 @@ This example represents the bare minimum service index document.
     },
     {
       "rel": "var-name-and-definition",
-      "href": "http://example.com/api/{resourceIdentifier}",
+      "href": "https://example.com/api/{resourceIdentifier}",
       "hints": [
         {
           "method": "get"
@@ -227,7 +227,7 @@ This example represents the bare minimum service index document.
     },
     {
       "rel": "var-name-and-value-and-definition",
-      "href": "http://example.com/api/{specificPath}/{resourceIdentifier}",
+      "href": "https://example.com/api/{specificPath}/{resourceIdentifier}",
       "hints": [
         {
           "method": "get"
@@ -242,12 +242,12 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "resources": [
     {
       "rel": "hello-world-2017-05-25",
-      "href": "http://example.com/api/helloworld",
+      "href": "https://example.com/api/helloworld",
       "hints": [
         {
           "method": "put",
@@ -263,12 +263,12 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "resources": [
     {
       "rel": "hello-world-2017-05-25",
-      "href": "http://example.com/api/helloworld",
+      "href": "https://example.com/api/helloworld",
       "hints": [
         {
           "method": "get",
@@ -280,13 +280,13 @@ This example represents the bare minimum service index document.
     },
     {
       "rel": "hello-planet-2017-05-25",
-      "href": "http://example.com/api/helloplanet",
+      "href": "https://example.com/api/helloplanet",
       "hints": [
         {
           "method": "get",
           "status": {
             "code": "301 Moved Permanently",
-            "rels": [ "http://example.com/api/hellojupiter" ]
+            "rels": [ "https://example.com/api/hellojupiter" ]
           }
         }
       ]
@@ -299,12 +299,12 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "resources": [
     {
       "rel": "hello-world-2017-05-25",
-      "href": "http://example.com/api/helloworld",
+      "href": "https://example.com/api/helloworld",
       "hints": [
         {
           "method": "get",
@@ -320,12 +320,12 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "resources": [
     {
       "rel": "hello-world-2017-05-25",
-      "href": "http://example.com/api/helloworld",
+      "href": "https://example.com/api/helloworld",
       "hints": [
         {
           "method": "get",
@@ -346,12 +346,12 @@ This example represents the bare minimum service index document.
 
 ```json
 {
-  "schema": "http://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
-  "href": "http://example.com/apis",
+  "schema": "https://example.com/schemas/com-example-serviceindex-2018-03-01.schema.json",
+  "href": "https://example.com/apis",
   "resources": [
     {
       "rel": "hello-world-2017-05-25",
-      "href": "http://example.com/api/helloworld",
+      "href": "https://example.com/api/helloworld",
       "hints": [
         {
           "method": "post",

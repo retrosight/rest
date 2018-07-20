@@ -5,12 +5,12 @@
 For example, let us examine a server accepting a `pageSize` query parameter where the maximum size is 100.
 
 ```
-http://example.com/stores?pageSize=100
+https://example.com/stores?pageSize=100
 ```
 
 * Should the server later determine for optimization purposes the number should be no greater than 50 it is a breaking change.
-* Should the client code enter a value outside the `pageSize` parameter maximum (example" `http://example.com/stores?pageSize=1000`) the server has to write code to handle the out of bounds value.
-* Should the server leave the `pageSize` parameter unbounded (allowing for example `http://example.com/stores?pageSize=1000000000000`) opens up holes to get all of the data at one time, which could be a potential DDOS or at the least a data leak issue).
+* Should the client code enter a value outside the `pageSize` parameter maximum (example" `https://example.com/stores?pageSize=1000`) the server has to write code to handle the out of bounds value.
+* Should the server leave the `pageSize` parameter unbounded (allowing for example `https://example.com/stores?pageSize=1000000000000`) opens up holes to get all of the data at one time, which could be a potential DDOS or at the least a data leak issue).
 
 This paradigm breaks the client-server constraint of the REST model by allowing the client to control server behavior.
 

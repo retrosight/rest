@@ -186,7 +186,11 @@ Name|Type|Format|Description
 
 # Service v10
 
+**Preview** _This is a prerelease version of the service and is subject to change before final release._
+
 Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
+
+Include a [relative link](./schema/template.schema.json).
 
 * [Sample for posting a payload](#post-a-payload)
 * [Sample Schema](#schema-example)
@@ -246,7 +250,8 @@ https://example.com/api?store={storeIdentifier}&date={requestDate}
 
 #### Request
 
-Showing developers exactly what they can expect in request and response values when using is perhaps the simplest way to complete this portion of the documentation.
+* Showing developers exactly what they can expect in request and response values when using is perhaps the simplest way to complete this portion of the documentation.
+* Use triple backticks to create fenced code blocks.
 
 ```
 GET https://example.com/stores/123
@@ -255,7 +260,9 @@ Accept: application/json
 
 #### Response
 
-Ensure the headers are kept separate as a code block from the payload for ease of reading.
+* Ensure the headers are kept separate as a code block from the payload for ease of reading.
+* Add the language identifier to any code blocks for syntax highlighting
+* See the GitHub topic [Creating and highlighting code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/) for more information.
 
 ```
 HTTP/1.1 200 OK

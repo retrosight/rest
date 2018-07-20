@@ -27,7 +27,7 @@ JSON Web Token (JWT) is a compact claims representation format intended for spac
 ### URL
 
 ```
-http://example.com/resource/abc123?authorization=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJKb2huIERvZSIsImh0dHA6Ly9leGFtcGxlLmNvbS9oYXBweSI6dHJ1ZX0.649N7uXd9YJsdPSN5YR1GJUOAUXNk7_bo-86xnCTKR0
+https://example.com/resource/abc123?authorization=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lIiwiaHR0cDovL2V4YW1wbGUuY29tL25hbWUiOiJKb2huIERvZSIsImh0dHA6Ly9leGFtcGxlLmNvbS9oYXBweSI6dHJ1ZX0.649N7uXd9YJsdPSN5YR1GJUOAUXNk7_bo-86xnCTKR0
 ```
 
 ### HTTP Header
@@ -58,7 +58,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lIiwiaHR0cDovL2V4Y
 * I can buy a kitten. My daughter can purchase a chew toy. Yay for scopes.
 
 ```
-POST http://example.com/shopforpetstuff { "dollars": 40 }
+POST https://example.com/shopforpetstuff { "dollars": 40 }
 ```
 
 * Services can define scopes for themselves.

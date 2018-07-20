@@ -137,7 +137,7 @@ scheme     authority       path        query   fragment
 	* `/aisles`
 * Services SHOULD NOT share paths.
 	* Examples:
-		* `/stores/aisles` and `/stores/aisles`
+		* `/stores/aisles` and `/stores/products` is better expressed as distinct services: `/stores`, `/aisles`, `/products` and `/inventory`.
 	* Reasons:
 		* Service(s) would have to implement a reverse proxy at each hop.
 		* Versioning overload makes it difficult to independently evolve services.
@@ -157,12 +157,8 @@ scheme     authority       path        query   fragment
 https://example.com/stores                                            // The base collection.
 https://example.com/stores/76cc758e256c438b8e49546e0102b8c8           // A single item within the collection.
 
-https://example.com/stores/aisles                                     // A related collection within the same service.
-https://example.com/stores/aisles/c66f06fdb31b4882ad995e4d19ca7aed    // A single item within the collection.
-
-https://example.com/stores/schemas                                    // A schema collection within the service.
-https://example.com/stores/schemas/com-example-store                  // A single item within the collection.
-
+https://example.com/stores/schemas                                    // A related collection within the service.
+https://example.com/stores/schemas/com-example-store.schema.json      // A single item within the collection.
 ```
 
 * Services MAY use paths which describe a parent-child hierarchy of resources available within the domain of the service.
@@ -177,9 +173,7 @@ https://example.com/stores/schemas/com-example-store                  // A singl
 
 * Services SHOULD use the `query` component of [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986) to denote secondary representations.
 * Services MAY create as many representations as is needed.
-	* Services are encouraged to do so in order to logically provide the representations.
-	* Services are encouraged to do so to avoid overcomplicating paths.
-* Services MAY make the same resource or representation available via multiple paths.
+* Services MAY make the same representation available via multiple paths.
 * Services MAY make subsets of resources available in representations.
 
 ##### <a name="creating-resources-example"></a>Examples
@@ -250,27 +244,43 @@ URI: `https://example.com/stores/all`
 ]
 ```
 
+#### <a name="resource-naming-query"></a>Use of the query component in naming resources
+
+* Services MAY use the query component of a URI as non-hierarchical data to identify resources.
+* Services SHOULD NOT change the nature of a resource in response to the presence of the query component.
+* Services MAY change the representation provided for a resource in response to the presence of the query component.
+
+##### <a name="resource-naming-query-example"></a>Examples
+
+```
+https://example.com/things?userId=foo          // Array of things for a user.
+https://example.com/things?companyId=baz       // Array of things for a company.
+https://example.com/things/123?userId=foo      // Single item with user query component.
+https://example.com/things/123?companyId=baz   // Single item with company query component.
+```
+
 #### <a name="resource-naming-syntax"></a>Resource Naming Syntax
 
 Building upon everything in this section the following illustrates how teams should think of URIs when naming resources:
 
 ```
-                     service  resource           identifier         representation
+                     service  collection     resource identifier     representation identifier
                         |        |                   |                    |
-                       _|__   ___|__   ______________|_______________   __|_
-                      /    \ /      \ /                              \ /    \
-  https://example.com/stores/products/71b1d7acbb254e05b7f9060b0a29efab/digest?name=ferret#nose
-  \___/   \_________/ \_____________________________________________________/ \_________/ \__/
-    |          |                                  |                                |       |
- scheme    authority                             path                            query   fragment
+                       _|__   ___|__   ______________|_______________   __|________________
+                      /    \ /      \ /                              \ /                   \
+  https://example.com/stores/fixtures/71b1d7acbb254e05b7f9060b0a29efab?representation=digest#nose
+  \___/   \_________/ \______________________________________________/ \___________________/ \__/
+    |          |                                  |                              |            |
+ scheme    authority                             path                          query       fragment
 ```
 
 * Naming paradigms and patterns for the `path` are optional and flexible.
-* All of the following are valid:
+* The distinction in the following URI templates is subtle: `{collection}` is also an `{identifier}`.
+* Typically (but not always) the resource is an array when `{collection}` and a non-array (single item) when `{identifier}`.
 
 ```
 https://example.com/stores/                                                  // Base collection (typically the service index).
-https://example.com/stores/?representation={value}                           // Representation of the base collection.
+https://example.com/stores?representation={value}                            // Representation of the base collection.
 https://example.com/stores/{collection}                                      // Collection within the service.
 https://example.com/stores/{identifier}                                      // Single item within the base collection.
 https://example.com/stores/{identifier}?representation={value}               // Representation of a single item within the base collection.
@@ -310,10 +320,12 @@ Examples:
 > A primer on Search can be found [here](./search.md).
 
 * Services SHOULD provide a dedicated endpoint for the purposes of finding resources within all of the service.
-* Services MAY provide search within individual collections.
+* Services MAY provide search within collections.
+* It may be helpful to think of search as another resource collection.
 
 ```
 https:/example.com/stores/search?product=milk
+https:/example.com/stores/fixtures/search?type=shelf
 ```
 
 ### <a name="hypermedia"></a>Hypermedia as the Engine of Application State
@@ -386,7 +398,7 @@ Contents of https://example.com/stores/abc:
 
 Name | Type | Format | Description
 -----|------|--------|------------
-`customData`|`array`|-|An array of `object`, each of which is disambiguated with a reference to a schema.
+`customData`|`array`|-|An array of `object` each of which is disambiguated with a URI to a schema.
 
 ```json
 {
@@ -502,7 +514,7 @@ Pagination leverages the [Hypermedia as the Engine of Application State](#hyperm
 
 ```json
 {
-  "schema": "http://example.com/schema/com-example-base-2018-03-01.schema.json"
+  "schema": "https://example.com/schema/com-example-base-2018-03-01.schema.json"
 }
 ```
 

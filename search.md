@@ -27,7 +27,7 @@ GET https:/example.com/search?product=milk
 
 ```json
 {
-  "schema": "http://example.com/schema/com-example-search-results-2018-03-01.schema.json",
+  "schema": "https://example.com/schema/com-example-search-results-2018-03-01.schema.json",
   "href": "https:/example.com/search?product=milk",
   "id": "product=milk",
   "template": "https:/example.com/search?{id}",
@@ -68,7 +68,7 @@ GET https:/example.com/search?product=milk&resources=stores
 
 ```json
 {
-  "schema": "http://example.com/schema/com-example-search-results-2018-03-01.schema.json",
+  "schema": "https://example.com/schema/com-example-search-results-2018-03-01.schema.json",
   "href": "https:/example.com/search?product=milk&resources=stores",
   "id": "product=milk&resources=stores",
   "template": "https:/example.com/search?{id}",
@@ -173,7 +173,7 @@ POST https://example.com/api
 
 ```json
 {
-  "schema": "http://example.com/schema/person.schema.json",
+  "schema": "https://example.com/schema/person.schema.json",
   "nameFirst": "Alpha",
   "nameLast": "Bravo"
 }
@@ -185,7 +185,7 @@ POST https://example.com/api
 
 ```json
 {
-  "schema": "http://example.com/schema/person.schema.json",
+  "schema": "https://example.com/schema/person.schema.json",
   "nameFirst": "Alpha",
   "nameLast": "Bravo",
   "href": "https://example.com/api/1234",
@@ -208,13 +208,13 @@ GET https://example.com/api/search?nameFirst=Alpha
 
 ```json
 {
-  "schema": "http://example.com/schema/com-example-search-results-2018-03-01.schema.json",
+  "schema": "https://example.com/schema/com-example-search-results-2018-03-01.schema.json",
   "href": "https://example.com/api/search?nameFirst=Alpha",
   "id": "nameFirst=Alpha",
   "template": "https://example.com/api/search?{id}",
   "results": [
     {
-      "schema": "http://example.com/schema/person.schema.json",
+      "schema": "https://example.com/schema/person.schema.json",
       "hrefs":
       [
         "https://example.com/api/1234"
@@ -230,7 +230,7 @@ GET https://example.com/api/5678
 
 ```json
 {
-  "schema": "http://example.com/schema/person.schema.json",
+  "schema": "https://example.com/schema/person.schema.json",
   "nameLast": "Delta"
 }
 ```
