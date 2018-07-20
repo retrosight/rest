@@ -702,6 +702,17 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 * Services SHOULD make the schema available via a source code repository.
 * Services MAY make the schema available via the service itself.
 
+Title|$id|Local|Source
+---|---|---|---
+Core schema meta-schema (v7)|http://json-schema.org/draft-07/schema#|[org-json-schema-schema-v7.json](./schema/org-json-schema-schema-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/schema.json)
+JSON Hyper-Schema (v7)|http://json-schema.org/draft-07/hyper-schema#|[org-json-schema-hyper-schema-v7.json](./schema/org-json-schema-hyper-schema-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/hyper-schema.json)
+- (v7)|http://json-schema.org/draft-7/hyper-schema-output|[org-json-schema-hyper-schema-output-v7.json](./schema/org-json-schema-hyper-schema-output-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/hyper-schema-output.json)
+Link Description Object (v7)|http://json-schema.org/draft-07/links#|[org-json-schema-links-v7.json](./schema/org-json-schema-links-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/links.json)
+Core schema meta-schema (v8)|http://json-schema.org/draft-08/schema#|[org-json-schema-schema-v8.json](./schema/org-json-schema-schema-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)
+JSON Hyper-Schema (v8)|http://json-schema.org/draft-08/hyper-schema#|[org-json-schema-hyper-schema-v8.json](./schema/org-json-schema-hyper-schema-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/hyper-schema.json)
+- (v8)|http://json-schema.org/draft-08/hyper-schema-output|[org-json-schema-hyper-schema-output-v8.json](./schema/org-json-schema-hyper-schema-output-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/hyper-schema-output.json)
+Link Description Object (v8)|http://json-schema.org/draft-08/links#|[org-json-schema-links-v7.json](./schema/org-json-schema-links-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/links.json)
+
 ## <a name="works-cited"></a>Works Cited
 
 ### <a name="rest"></a>Representational State Transfer (REST) Dissertation by Roy Fielding, 2000
