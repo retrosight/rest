@@ -18,7 +18,11 @@ This is a set of guidelines and resources for building a server that can partici
   * [Documentation Template](./documentation-template.md) - Lists out all the basics an API should cover within its documentation and it includes all of the HTTP headers and status codes as hyperlinks to the various RFCs that cover same.
   * JSON Web Tokens are becoming more commonplace for access tokens included in an Authorization Header -- find a `TL;dr` explanation within [JWT Summary](./jwt-summary.md).
 
+---
+
 Please note that this project is released with a [Contributor Code of Conduct](./code-of-conduct.md). By participating in this project you agree to abide by its terms. Learn more at [https://www.contributor-covenant.org/](https://www.contributor-covenant.org/).
+
+---
 
 MIT License
 
