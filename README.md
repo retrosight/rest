@@ -1,5 +1,7 @@
 # RESTful Server Guidelines
 
+> [Find the website at https://retrosight.github.io/rest/](https://retrosight.github.io/rest/)
+
 Welcome...!
 
 This is a set of guidelines and resources for building a server that can participate in a RESTful paradigm.
