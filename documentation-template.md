@@ -7,7 +7,6 @@ Include an introduction here as well as include an indented + bulleted table of 
 > This is a blockquote.
 
 * [Create a resource](#create-resource)
-* [Obtain a representation](#obtain-representation)
 * [Schema](#schema)
   * [Schema One](#schema-one)
   * [Schema Two](#schema-two)
