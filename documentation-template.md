@@ -1,16 +1,44 @@
 # Service Name
 
-Description
+**Preview** _This is a prerelease version of the service and is subject to change before final release._
 
-* [Section](#section)
+Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
+
+> This is a blockquote.
+
+* [Create a resource](#create-resource)
+* [Obtain a representation](#obtain-representation)
 * [Schema](#schema)
-  * [Stuff](#schema-stuff)
+  * [Schema One](#schema-one)
+  * [Schema Two](#schema-two)
+* [Definitions](#definitions)
 
-## <a name="section"></a>Section
+## <a name="create-resource"></a>Create a resource
 
 Description
+
+### Scopes
+
+Scope|Description
+---|---
+`scope`|Description
 
 ### Request
+
+#### URI
+
+##### Template
+
+```shell
+https://{datacenterURI}/api/{storeIdentifier}?purchaseDate={purchaseDate}
+```
+
+##### Parameters
+
+Name|Type|Format|Description
+---|---|---|---
+`storeIdentifier`|`string`|-|**Required** Note required when applicable.
+`purchaseDate`|`string`|-|This parameter isn't required.
 
 #### Headers
 
@@ -44,21 +72,9 @@ Description
 * [RFC 7231 Referer](https://tools.ietf.org/html/rfc7231#section-5.5.2)
 * [RFC 7231 User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3)
 
-#### Parameters
-
-Name|Type|Format|Description
----|---|---|---
-`variable`|`type`|-|**Required** Description
-
-##### URI Template
-
-```
-https://example.com/api/{variable}
-```
-
 #### Payload
 
-[Stuff](#schema-stuff)
+* [Schema One](#schema-one)
 
 ### Response
 
@@ -153,118 +169,86 @@ https://example.com/api/{variable}
 
 #### Payload
 
-[Stuff](#schema-stuff)
-
-### Example
-
-#### Request
-
-```
-{HTTP Method} {URI}
-{Header}: {Value}
-```
-
-#### Response
-
-```
-Headers
-```
-
-```
-Payload
-```
-
-## <a name="schema"></a>Schema
-
-### <a name="schema-stuff"></a>Stuff
-
-Name|Type|Format|Description
----|---|---|---
-`name`|`type`|format|**Required** Description.
-
--------------
-
-# Service v10
-
-**Preview** _This is a prerelease version of the service and is subject to change before final release._
-
-Include an introduction here as well as include an indented + bulleted table of contents which helps the reader navigate the various sections.
-
-Include a [relative link](./schema/template.schema.json).
-
-* [Sample for posting a payload](#post-a-payload)
-* [Sample Schema](#schema-example)
-	* [Sample Common](#schema-common)
-  * [Another](#schema-another)
-
-## <a name="post-a-payload"></a>Sample for posting a payload
-
-Posting a payload is among the most common tasks for client code. Use this opening paragraph to explain at a high level what business activity is achieved when doing this task. Use a bulleted list to make it easier for the reader to follow. When the service receives a request:
-
-* It will do this first.
-* Then it will do this second.
-* Finally it will do this thing here.
-
-### Request
-
-#### Headers
-
-* [RFC 7235 Authorization](https://tools.ietf.org/html/rfc7235#section-4.2)
-
-#### Parameters
-
-These are documentation examples and not API design guidelines -- you won't normally have request parameters for POST verb usage.
-
-Name|Type|Format|Description
----|---|---|---
-`storeIdentifier`|`string`|-|**Required** Note required when applicable.
-`requestDate`|`string`|[`dateTime`](#dateTime)|This parameter isn't required. Link to format using anchor tags when applicable.
-
-##### URI Template
-
-```
-https://example.com/api?store={storeIdentifier}&date={requestDate}
-```
-
-#### Payload
-
-[Common](#schema-common)
-
-### Response
-
-#### Status Codes
-
-* [200 OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)
-* [201 Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)
-* [400 Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)
-
-#### Headers
-
-* [RFC 7231 Location](https://tools.ietf.org/html/rfc7231#section-7.1.2)
-
-#### Payload
-
-[Another](#schema-another)
+* [Schema One](#schema-one)
+* [Errors Schema](./guidelines.md#errors-when-4xx-errors)
 
 ### Example
 
 #### Request
 
 * Showing developers exactly what they can expect in request and response values when using is perhaps the simplest way to complete this portion of the documentation.
-* Use triple backticks to create fenced code blocks.
+* Use triple backticks to create fenced code blocks and a language identifier for syntax highlighting.
+* See [Creating and highlighting code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/) for more information.
+* Ensure the headers are kept separate as a code block from the payload for ease of reading.
 
+```shell
+{HTTP Method} {URI}
+{Header}: {Value}
 ```
-GET https://example.com/stores/123
-Accept: application/json
+
+```json
+{
+  "Payload"
+}
 ```
 
 #### Response
 
-* Ensure the headers are kept separate as a code block from the payload for ease of reading.
-* Add the language identifier to any code blocks for syntax highlighting
-* See the GitHub topic [Creating and highlighting code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/) for more information.
+```shell
+{Header}: {Value}
+```
+
+```json
+{
+  "Payload"
+}
+```
+
+## <a name="schema"></a>Schema
+
+### <a name="schema-one"></a>Schema One
+
+Name|Type|Format|Description
+---|---|---|---
+`orderId`|`string`|-|**Required** A description including required status.
+`orderMemo`|`string`|-|A description. This key is not required.
+`transactionTimestamp`|`string`|[dateTime](#definition-dateTime)|A key linking to a definition for the format.
+`arrayOfThings`|`array`|[Schema Two](#schema-two)|A key linking to another schema for the format.
+
+### <a name="schema-two"></a>Schema Two
+
+Name|Type|Format|Description
+---|---|---|---
+`orderDetailsId`|`string`|-|A description for the key.
+`aKeyForEnum`|`number`|`enum`|The value must be one of these: `1`, `2` or `3`.
+
+## <a name="definitions"></a>Definitions
+
+Name|Type|Format|Description
+---|---|---|---
+<a name="definition-dateTime"></a>`dateTime`|`string`|[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)|DateTime of when the transaction occurred. For example: `2016-04-22T12:20+0700` (12:20 PM in Pacific Time).
+
+---
+
+**Request**
+
+```shell
+PUT https://example.com/stores/123
+If-Match: a1b2c3d4e5
+Accept: application/json
 
 ```
+
+```json
+{
+  "orderId": "value",
+  "orderMemo": "value"
+}
+```
+
+**Response**
+
+```shell
 HTTP/1.1 200 OK
 Cache-Control: max-age=604800
 Content-Type: application/json
@@ -277,24 +261,14 @@ Content-Length: 1270
 
 ```json
 {
-  "zeta": {
-    "alpha": {
-      "bravo": "charlie"
+  "orderId": "value",
+  "orderMemo": "value",
+  "transactionTimestamp": "Wed, 01 Jan 2020 12:00:00 GMT",
+  "arrayOfThings": [
+    {
+      "orderDetailsId": "value",
+      "aKeyForEnum": 1
     }
-  }
+  ]
 }
 ```
-## <a name="schema-example"></a>Schema
-
-### <a name="schema-common"></a>Common
-
-Name|Type|Format|Description
----|---|---|---
-<a name="dateTime"></a>`dateTime`|`string`|-|DateTime of where the transaction happened in format specified in ISO 8601. While the standard regards time zone designators as optional, we highly recommend to use UTC + Offset. For example, 2016-04-22T12:20+0700 (12:20 PM in Pacific Time).
-
-### <a name="schema-another"></a>Another
-
-Name|Type|Format|Description
----|---|---|---
-`theRequestPayload`|`type`|JSON|**Required** The payload.
-`theOtherRequestPayload`|`type`|JSON|It is possible to have multiple payloads when a multi-part post.
