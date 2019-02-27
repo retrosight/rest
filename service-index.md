@@ -39,7 +39,7 @@ Service index documents embrace and dovetail nicely with the HTTP protocol and R
   * New link relations (Extensibility)
   * New metadata for existing link relations. (Evolvability)
 * Abstraction of implementation details - The server can choose the URLs associated with a given link relation without breaking client code which is bound to relation descriptions which rarely, if ever, change.
-* The service index aligns nicely with RESTful uniform interface constraints:
+* The service index aligns nicely with REST uniform interface constraints:
   * Identification of resources - Service index documents define the starter set of all of the resources available at a given root URL.
   * Hypermedia as the engine of application state (HATEOAS) - Home documents are the first place the server can define its state for client code, for example: emitting authorization boundaries by making only the resources / methods available as appropriate for the caller.
   * Self describing - The service index allows the server to be wholly self-describing starting at the root URL.

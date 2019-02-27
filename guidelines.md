@@ -1,4 +1,4 @@
-# RESTful API Server Design
+# Representational State Transfer (REST) API Design
 
 * [Guidelines](#guidelines)
 	* [Headers](#headers)

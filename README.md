@@ -1,10 +1,10 @@
-# RESTful Server Guidelines
+# Representational State Transfer (REST) Guidelines
 
 > [Find the website at https://retrosight.github.io/rest/](https://retrosight.github.io/rest/)
 
 Welcome...!
 
-This is a set of guidelines and resources for building a server that can participate in a RESTful paradigm.
+This is a set of guidelines and resources for building a server that can participate in a REST paradigm.
 
 * The [Guidelines](./guidelines.md) leverage the Representational State Transfer (REST) dissertation by Fielding to craft an API accounting for the Null Style, Client-Server (CS), Stateless, Cache and Uniform Interface constraints.
 * [Service Index](./service-index.md) documents provide a fundamental starting place for the programmable internet like home pages do at root URLs for the World Wide Web used by humans with browsers.
@@ -15,7 +15,7 @@ This is a set of guidelines and resources for building a server that can partici
 * [Search](./search.md) is an important way an API allows client code to discover resources based on criteria.
 * [JSON Schema](/schema) resources which are used in the design -- see http://json-schema.org/ for more information on this emerging standard.
 * Also in the repository:
-  * [A Day of REST](./A-Day-Of-REST.pdf) is a set of slides used in a five hour course I teach. It's very useful as an introduction to the key concepts and constraints of RESTful design.
+  * [A Day of REST](./A-Day-Of-REST.pdf) is a set of slides used in a five hour course I teach. It's very useful as an introduction to the key concepts and constraints of REST design.
   * [Design Thoughts](./design-thoughts.md) - A collection of mostly readings from folks who influenced the overall design you find here.
   * [Documentation Template](./documentation-template.md) - Lists out all the basics an API should cover within its documentation and it includes all of the HTTP headers and status codes as hyperlinks to the various RFCs that cover same.
   * JSON Web Tokens are becoming more commonplace for access tokens included in an Authorization Header -- find a `TL;dr` explanation within [JWT Summary](./jwt-summary.md).
