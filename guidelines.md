@@ -736,23 +736,21 @@ Date: Tue, 19 Jul 2016 18:23:16 GMT
 ### <a name="documentation"></a>Documentation
 
 #### <a name="documentation-markdown"></a>Markdown
+
 * Services SHOULD fully document the data structures, all verbs and how the service works using [Markdown](https://daringfireball.net/projects/markdown/syntax) including all of the sections within the [Documentation Template](./documentation-template.md).
 
 #### <a name="documentation-schema"></a>Schema
+
 * Services SHOULD fully document data structures using [JSON schema](#json-schema) whether or not the schema is used for validation purposes within the service.
 * Services SHOULD make the schema available via a source code repository.
 * Services MAY make the schema available via the service itself.
 
 Title|$id|Local|Source
 ---|---|---|---
-Core schema meta-schema (v7)|http://json-schema.org/draft-07/schema#|[org-json-schema-schema-v7.json](./schema/org-json-schema-schema-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/schema.json)
-JSON Hyper-Schema (v7)|http://json-schema.org/draft-07/hyper-schema#|[org-json-schema-hyper-schema-v7.json](./schema/org-json-schema-hyper-schema-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/hyper-schema.json)
-- (v7)|http://json-schema.org/draft-7/hyper-schema-output|[org-json-schema-hyper-schema-output-v7.json](./schema/org-json-schema-hyper-schema-output-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/hyper-schema-output.json)
-Link Description Object (v7)|http://json-schema.org/draft-07/links#|[org-json-schema-links-v7.json](./schema/org-json-schema-links-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/5f3f798ed0af9e31c5c8bffd11a70be97025cb06/links.json)
-Core schema meta-schema (v8)|http://json-schema.org/draft-08/schema#|[org-json-schema-schema-v8.json](./schema/org-json-schema-schema-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)
-JSON Hyper-Schema (v8)|http://json-schema.org/draft-08/hyper-schema#|[org-json-schema-hyper-schema-v8.json](./schema/org-json-schema-hyper-schema-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/hyper-schema.json)
-- (v8)|http://json-schema.org/draft-08/hyper-schema-output|[org-json-schema-hyper-schema-output-v8.json](./schema/org-json-schema-hyper-schema-output-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/hyper-schema-output.json)
-Link Description Object (v8)|http://json-schema.org/draft-08/links#|[org-json-schema-links-v7.json](./schema/org-json-schema-links-v8.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/master/links.json)
+Core schema meta-schema (v7)|`http://json-schema.org/draft-07/schema#`|[org-json-schema-schema-v7.json](./schema/org-json-schema-schema-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/draft-07/schema.json)
+JSON Hyper-Schema (v7)|`http://json-schema.org/draft-07/hyper-schema#`|[org-json-schema-hyper-schema-v7.json](./schema/org-json-schema-hyper-schema-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/draft-07/hyper-schema.json)
+JSON Hyper-Schema Output (v7)|`http://json-schema.org/draft-7/hyper-schema-output`|[org-json-schema-hyper-schema-output-v7.json](./schema/org-json-schema-hyper-schema-output-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/draft-07/hyper-schema-output.json)
+Link Description Object (v7)|`http://json-schema.org/draft-07/links#`|[org-json-schema-links-v7.json](./schema/org-json-schema-links-v7.json)|[Source](https://github.com/json-schema-org/json-schema-spec/blob/draft-07/links.json)
 
 ## <a name="works-cited"></a>Works Cited
 
