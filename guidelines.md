@@ -11,12 +11,16 @@
 		* [Last-Modified](#header-last-modified)
 		* [ETag](#header-etag)
 		* [Precondition Headers](#header-precondition)
-    * [Authorization](#header-authorization)
+		* [Authorization](#header-authorization)
 	* [Resource Naming](#resource-naming)
 		* [Collection and Item Pattern](#collection-item-pattern)
+		* [Hierarchical Pattern](#hierarchical-pattern)
 		* [Creation of Resources and Representations](#creating-resources)
+		* [Use of the query component in naming resources](#resource-naming-query)
 		* [Providing an array of resources](#resource-array)
+		* [Use of the fragment component in identifiers](#fragment-component-use)
 		* [Resource Naming Syntax](#resource-naming-syntax)
+			* [Example URI Templates](#example-uri-templates)
 		* [Friendly resource name pattern](#resource-naming-friendly)
 	* [Hypermedia as the Engine of Application State](#hypermedia)
 	* [Related Data](#related-data)
@@ -161,11 +165,22 @@ https://example.com/stores/schemas                                    // A relat
 https://example.com/stores/schemas/com-example-store.schema.json      // A single item within the collection.
 ```
 
+#### <a name="hierarchical-pattern"></a>Hierarchical Pattern
+
+> The [Collection and Item Pattern](#collection-item-pattern) is preferred.
+
 * Services MAY use paths which describe a parent-child hierarchy of resources available within the domain of the service.
-	* Example: `https://example.com/stores/76cc758e256c438b8e49546e0102b8c8/aisles/c66f06fdb31b4882ad995e4d19ca7aed`
-	* This pattern can cause resources to be named in an overly complex way, including the revealing of data storage paradigms, business logic, business unit seams or embracing of Remote Procedure Call (RPC) architecture style.
-	* This pattern usually duplicates data which should be found in the resource itself.
-	* This pattern MUST NOT be a substitute for proper handling of [Hypermedia as the Engine of Application State](#links-hateoas) or [Related Data](#related-data).
+* This pattern:
+  * Can cause resources to be identified in an overly complex way.
+  * Can reveal / leak implementation details like data storage paradigms, business logic, business unit seams and more.
+  * Can more easily lead to Remote Procedure Call (RPC) architecture style.
+  * Usually duplicates data which should be or already is present in the resource itself.
+* This pattern MUST NOT be a substitute for proper handling of [Hypermedia as the Engine of Application State](#links-hateoas) or [Related Data](#related-data).
+
+```
+Template: https://example.com/{service}/{version}/{identifier}{child}/{identifier}.../{child}/{identifier}
+Example:  https://example.com/stores/v1/76cc758e256c438b8e49546e0102b8c8/aisles/df62491e95f54fe1a3ef9bdf40c4d1f5/shelves/c66f06fdb31b4882ad995e4d19ca7aed
+```
 
 #### <a name="creating-resources"></a>Creation of Resources and Representations
 
@@ -173,6 +188,8 @@ https://example.com/stores/schemas/com-example-store.schema.json      // A singl
 
 * Services SHOULD use the `query` component of [RFC 3986 Uniform Resource Identifier (URI)](#RFC-3986) to denote secondary representations.
 * Services MAY create as many representations as is needed.
+  * Services are encouraged to do so in order to logically order the representations.
+  * Services are encouraged to do so to avoid overcomplicating paths.
 * Services MAY make the same representation available via multiple paths.
 * Services MAY make subsets of resources available in representations.
 
@@ -259,6 +276,23 @@ https://example.com/things/123?userId=foo      // Single item with user query co
 https://example.com/things/123?companyId=baz   // Single item with company query component.
 ```
 
+#### <a name="fragment-component-use"></a>Use of the fragment component in identifiers
+
+From [RFC 3986 Uniform Resource Identifier (URI): Generic Syntax Section 3.5 Fragment](https://tools.ietf.org/html/rfc3986#section-3.5):
+
+> "Fragment identifiers have a special role in information retrieval systems as the primary form of client-side indirect referencing, allowing an author to specifically identify aspects of an existing resource that are only indirectly provided by the resource owner.  As such, the fragment identifier is not used in the scheme-specific processing of a URI; instead, the fragment identifier is separated from the rest of the URI prior to a dereference, and thus the identifying information within the fragment itself is dereferenced solely by the user agent, regardless of the URI scheme."
+
+This means the server will not typically receive the fragment portion of the URI in any requests and if it does receive a fragment it should ignore the data.
+
+To demonstrate this use `cUrl` with a URI which contains a fragment -- the tool will remove the fragment portion before sending.
+
+```
+curl -v https://retrosight.github.io/rest/hateoas-model-example.html#start
+
+> GET /rest/hateoas-model-example.html <-- fragment removed
+> Host: retrosight.github.io
+```
+
 #### <a name="resource-naming-syntax"></a>Resource Naming Syntax
 
 Building upon everything in this section the following illustrates how teams should think of URIs when naming resources:
@@ -268,24 +302,31 @@ Building upon everything in this section the following illustrates how teams sho
                         |        |                   |                    |
                        _|__   ___|__   ______________|_______________   __|________________
                       /    \ /      \ /                              \ /                   \
-  https://example.com/stores/fixtures/71b1d7acbb254e05b7f9060b0a29efab?representation=digest#nose
-  \___/   \_________/ \______________________________________________/ \___________________/ \__/
-    |          |                                  |                              |            |
- scheme    authority                             path                          query       fragment
+  https://example.com/stores/fixtures/71b1d7acbb254e05b7f9060b0a29efab?representation=digest
+  \___/   \_________/ \______________________________________________/ \___________________/
+    |          |                                  |                              |
+ scheme    authority                             path                          query
 ```
 
 * Naming paradigms and patterns for the `path` are optional and flexible.
 * The distinction in the following URI templates is subtle: `{collection}` is also an `{identifier}`.
 * Typically (but not always) the resource is an array when `{collection}` and a non-array (single item) when `{identifier}`.
 
+##### <a name="example-uri-templates"></a>Example URI Templates
+
 ```
-https://example.com/stores/                                                  // Base collection (typically the service index).
-https://example.com/stores?representation={value}                            // Representation of the base collection.
-https://example.com/stores/{collection}                                      // Collection within the service.
-https://example.com/stores/{identifier}                                      // Single item within the base collection.
-https://example.com/stores/{identifier}?representation={value}               // Representation of a single item within the base collection.
-https://example.com/stores/{collection}/{identifier}                         // Single item within a collection.
-https://example.com/stores/{collection}/{identifier}?representation={value}  // Representation of a single item within a collection.
+https://example.com/stores                                                   // Base collection (typically the service index)
+https://example.com/stores?{key}={value}                                     // Base collection with query component
+https://example.com/stores?representation={value}                            // Representation of the base collection
+https://example.com/stores/{collection}                                      // Collection within the service
+https://example.com/stores/{collection}?{key}={value}                        // Collection within the service with query component
+https://example.com/stores/{collection}?representation={value}               // Representation of a collection
+https://example.com/stores/{identifier}                                      // Single item within the base collection
+https://example.com/stores/{identifier}?{key}={value}                        // Single item with query component
+https://example.com/stores/{identifier}?representation={value}               // Representation of a single item within the base collection
+https://example.com/stores/{collection}/{identifier}                         // Single item within a collection
+https://example.com/stores/{collection}/{identifier}?{key}={value}           // Single item within a collection with query component
+https://example.com/stores/{collection}/{identifier}?representation={value}  // Representation of a single item within a collection
 ```
 
 #### <a name="resource-naming-friendly"></a>Friendly resource name pattern
@@ -614,7 +655,7 @@ Name | Type | Format | Description
 ##### <a name="errors-when-4xx-error"></a>Error Schema
 Name | Type | Format | Description
 -----|------|--------|------------
-`errorCode`|`string`|-|**Required** Machine readable code associated with the error. Examples: `dateTimeMissing`, `OutOfMem`, `invalidUser`. Contextual strings are recommended over numbers or UUID4 values.
+`errorCode`|`string`|-|**Required** Machine readable code associated with the error which is static and never localized. Examples: `dateTimeMissing`, `OutOfMem` and `invalidUser`. These could also be UUID4 (`a1d7bb3bb19348b0858687acc9e303ec`), number (`123456`) or a URI (`https://example.com/errors/invaliduser`). Whatever form is chosen it's worth noting contextual strings are helpful to developers reading the code.
 `errorMessage`|`string`|-|**Required** Message associated with the error.
 `dataPath`|`string`|-|Relative data path.
 `schemaPath`|`string`|-|Relative schema path.
@@ -835,7 +876,7 @@ Links to claims within the RFC:
 
 ### <a name="RFC-3986"></a>RFC 3986 Uniform Resource Identifier (URI): Generic Syntax
 
-* [https://www.ietf.org/rfc/rfc3986.txt](https://www.ietf.org/rfc/rfc3986.txt)
+* [https://tools.ietf.org/html/rfc3986](https://tools.ietf.org/html/rfc3986)
 
 ### <a name="RFC-4122"></a>RFC 4122 A Universally Unique IDentifier (UUID) URN Namespace
 
