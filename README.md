@@ -8,7 +8,7 @@ This is a set of guidelines and resources for building a server that can partici
 
 * The [Guidelines](./guidelines.md) leverage the Representational State Transfer (REST) dissertation by Fielding to craft an API accounting for the Null Style, Client-Server (CS), Stateless, Cache and Uniform Interface constraints.
 * [Service Index](./service-index.md) documents provide a fundamental starting place for the programmable internet like home pages do at root URLs for the World Wide Web used by humans with browsers.
-* The [Hypermedia as the Engine of Application State Model](./hateoas-model-example.md) builds out the work of [Stefan Tilkov](https://twitter.com/stilkov) from his excellent talk [GOTO 2014 • REST: I don't Think it Means What You Think it Does](https://www.youtube.com/watch?v=pspy1H6A3FM). You can find my summary of his slides [here](https://github.com/retrosight/learning/blob/master/REST-I-dont-think-it-means-what-you-think-it-does-stefan-tilkov.md).
+* The [Hypermedia as the Engine of Application State Model](./hateoas-model-example.md) builds out the work of [Stefan Tilkov](https://twitter.com/stilkov) from his excellent talk [GOTO 2014 • REST: I don't Think it Means What You Think it Does](https://www.youtube.com/watch?v=pspy1H6A3FM). You can find my summary of his slides [here](https://github.com/retrosight/learning/blob/primary/REST-I-dont-think-it-means-what-you-think-it-does-stefan-tilkov.md).
 * [Resources and Representations](./resource-and-representation.md) provides an example of how there can be one resource with many representations as well as how to bring together data from two distinct resources into a single representation for client code to use.
 * Hyperlinks are rather ubiquitous in REST and it can get confusing so [Comparing Hyperlinks: Identifiers, Related Data and Hypermedia As The Engine Of Application State](./id-related-data-hateoas.md) attempts to disambiguate for the reader.
 * [Pagination](./pagination-design.md) elaborates on how the server controls pagination rather than putting it in the hands of the client.
@@ -28,7 +28,7 @@ Please note that this project is released with a [Contributor Code of Conduct](.
 
 MIT License
 
-Copyright (c) 2018 Charlie Owen
+Copyright (c) 2019 Charlie Owen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
