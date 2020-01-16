@@ -16,7 +16,7 @@
     },
     "id": {
       "type": "string",
-      "description": "For relational database systems to save the identifier separate from the URI template. When combined with the `template` key results in the href key value."
+      "description": "For relational database systems to save the identifier separate from the URI template. When combined with the `template` key results in the href key value. Suggest URL Encoded UUID4 value (aka GUID)."
     },
     "template": {
       "type": "string",
